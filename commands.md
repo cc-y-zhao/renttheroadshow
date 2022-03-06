@@ -19,6 +19,14 @@ npx sequelize seed:generate --name CarsSeeds
 
 
 
+npx dotenv sequelize db:seed:all
+
+To drop and create db -----------
+npx dotenv sequelize db:drop
+npx dotenv sequelize db:create
+
+
+
 
 
 
