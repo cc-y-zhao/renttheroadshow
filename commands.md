@@ -1,27 +1,26 @@
 ****DONT FORGET TO USE DOTENV!!!******
 CREATE USER czhao WITH PASSWORD 'nAu6N6Ng$BaAM$K' CREATEDB;
 
-npx dotenv sequelize db:create
-
+***USERS***
 npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
-
-npx dotenv sequelize db:migrate
- psql react_solo -c '\d "Users"'
-
 npx sequelize seed:generate --name demo-user
-  npx dotenv sequelize db:seed:all
-  npx dotenv sequelize db:seed:undo:all
-  psql react_solo -c 'SELECT * FROM "Users"'
+psql react_solo -c 'SELECT * FROM "Users"'
 
+***CARS***
 npx sequelize model:generate --name Car --attributes ownerId:integer,price:integer,description:text,brand:string,model:string,city:string,state:string,imageURL:string
-
 npx sequelize seed:generate --name CarsSeeds
 
+***REVIEWS***
+npx sequelize model:generate --name Review --attributes userId:integer,carId:integer,rating:integer,content:text
+npx sequelize seed:generate --name ReviewsSeeds
 
-
+***MISC***
+npx dotenv sequelize db:create
+npx dotenv sequelize db:migrate
 npx dotenv sequelize db:seed:all
+npx dotenv sequelize db:seed:undo:all
 
-To drop and create db -----------
+***To drop and create db***
 npx dotenv sequelize db:drop
 npx dotenv sequelize db:create
 
