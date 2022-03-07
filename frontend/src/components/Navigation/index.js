@@ -8,14 +8,15 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-  console.log("sessionUser-----------------", sessionUser);
 
+  console.log("sessionUSer----------", sessionUser);
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
+        <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
       </>
     );
   } else {
@@ -28,12 +29,14 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <nav className='nav-container'>
+      <ul>
+        <li>
+          <NavLink exact to="/">Home</NavLink>
+          {isLoaded && sessionLinks}
+        </li>
+      </ul>
+    </nav>
   );
 }
 

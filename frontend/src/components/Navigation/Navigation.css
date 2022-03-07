@@ -1,0 +1,40 @@
+ .nav-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background-color: #121212;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  align-content: center;
+  color :azure;
+ }
+
+ .welcome-msg {
+   display: inline-flex;
+   margin-left: 100%;
+   margin-right: 0px;
+   font-style: italic;
+ }
+/* nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-grow: 1;
+  background-color:rgb(3, 24, 17);
+  font-size: 18px;
+  margin: 5px;
+  padding: 5px;
+  color: aliceblue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+} */
+
+/* .nav-space {
+  margin-right: auto;
+} */
