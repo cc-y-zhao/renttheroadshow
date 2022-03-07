@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <ProfileButton user={sessionUser} />
-        {/* <CreateListingForm user={sessionUser}/> */}
+        <CreateListingForm user={sessionUser}/>
       </>
     );
   } else {

@@ -17,6 +17,20 @@ const CreateListingForm = ({ user }) => {
     if (showForm) return;
     setShowForm(true);
   }
+  ////////////
+  useEffect(() => {
+    if (!showForm) return;
+
+    const closeMenu = () => {
+      setShowForm(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+
+  }, [showForm]);
+
 
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
@@ -71,60 +85,67 @@ const CreateListingForm = ({ user }) => {
   };
 
   return (
-    <section>
-      <ErrorMessage message={errorMessages.overall} />
-      <form className="create-pokemon-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Make"
-          required
-          value={brand}
-          onChange={updateBrand} />
-        <ErrorMessage label={"Make"} message={errorMessages.brand} />
-        <input
-          type="text"
-          placeholder="Model"
-          required
-          value={model}
-          onChange={updateModel} />
-        <ErrorMessage label={"Model"} message={errorMessages.model} />
-        <input
-          type="text"
-          placeholder="Tell us a bit about your car"
-          required
-          value={description}
-          onChange={updateDescription} />
-        <ErrorMessage label={"Description"} message={errorMessages.description} />
-        <input
-          type="number"
-          placeholder="Price"
-          min="15"
-          required
-          value={price}
-          onChange={updatePrice} />
-        <ErrorMessage label={"Price"} message={errorMessages.price} />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageURL}
-          onChange={updateImageURL} />
-        <ErrorMessage label={"Image URL"} message={errorMessages.imageURL} />
-        <input
-          type="text"
-          placeholder="City"
-          value={city}
-          onChange={updateCity} />
-        <ErrorMessage label={"City"} message={errorMessages.city} />
-        <select onChange={updateState} value={state}>
-          {allStates.map(state =>
-            <option key={state}>{state}</option>
-          )}
-        </select>
-        <ErrorMessage label={"State"} message={errorMessages.state} />
-        <button type="submit">Create new listing</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
-      </form>
-    </section>
+    <>
+      <button onClick={openForm}>
+        Create Rental Listing
+      </button>
+      {showForm && (
+        <section>
+          <ErrorMessage message={errorMessages.overall} />
+          <form className="create-pokemon-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Make"
+              required
+              value={brand}
+              onChange={updateBrand} />
+            <ErrorMessage label={"Make"} message={errorMessages.brand} />
+            <input
+              type="text"
+              placeholder="Model"
+              required
+              value={model}
+              onChange={updateModel} />
+            <ErrorMessage label={"Model"} message={errorMessages.model} />
+            <input
+              type="text"
+              placeholder="Tell us a bit about your car"
+              required
+              value={description}
+              onChange={updateDescription} />
+            <ErrorMessage label={"Description"} message={errorMessages.description} />
+            <input
+              type="number"
+              placeholder="Price"
+              min="15"
+              required
+              value={price}
+              onChange={updatePrice} />
+            <ErrorMessage label={"Price"} message={errorMessages.price} />
+            <input
+              type="text"
+              placeholder="Image URL"
+              value={imageURL}
+              onChange={updateImageURL} />
+            <ErrorMessage label={"Image URL"} message={errorMessages.imageURL} />
+            <input
+              type="text"
+              placeholder="City"
+              value={city}
+              onChange={updateCity} />
+            <ErrorMessage label={"City"} message={errorMessages.city} />
+            <select onChange={updateState} value={state}>
+              {allStates.map(state =>
+                <option key={state}>{state}</option>
+              )}
+            </select>
+            <ErrorMessage label={"State"} message={errorMessages.state} />
+            <button type="submit">Create new listing</button>
+            <button type="button" onClick={handleCancelClick}>Cancel</button>
+          </form>
+        </section>
+      )}
+    </>
   );
 };
 
