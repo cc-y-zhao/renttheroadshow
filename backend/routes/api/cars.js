@@ -19,7 +19,7 @@ router.post(
   '/',
   carValidations.validateCreate,
   asyncHandler(async function (req, res) {
-    const id = await PokemonRepository.create(req.body);
+    const id = await Car.create(req.body);
     return res.redirect(`${req.baseUrl}/${id}`);
   })
 );

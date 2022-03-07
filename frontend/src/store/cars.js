@@ -1,5 +1,5 @@
 // import { csrfFetch } from "./csrf";
-// import { ValidationError } from '../utils/validationError';
+import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_CARS = 'cars/LOAD'
 const ADD_ONE_CAR = 'cars/ADD_ONE'
@@ -43,7 +43,7 @@ export const createListing = data => async dispatch => {
         let errorJSON;
         error = await response.text();
         try {
-          // Check if the error is JSON, i.e., from the Pokemon server. If so,
+          // Check if the error is JSON, i.e., from the Car seeds. If so,
           // don't throw error yet or it will be caught by the following catch
           errorJSON = JSON.parse(error);
         } catch {
@@ -54,9 +54,9 @@ export const createListing = data => async dispatch => {
       }
     }
 
-    const pokemon = await response.json();
-    dispatch(addOne(pokemon));
-    return pokemon;
+    const car = await response.json();
+    dispatch(addOneCar(car));
+    return car;
   } catch (error) {
     throw error;
   }

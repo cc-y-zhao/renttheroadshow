@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createListing } from '../../store/cars';
-import { ValidationError } from '../../utils/validationError';
+import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 
-const CreateListingForm = ({ hideForm }) => {
+const CreateListingForm = ({ user }) => {
   const [errorMessages, setErrorMessages] = useState({});
+  const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const openForm = () => {
+    if (showForm) return;
+    setShowForm(true);
+  }
 
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
@@ -28,15 +34,11 @@ const CreateListingForm = ({ hideForm }) => {
   const updateCity = (e) => setCity(e.target.value);
   const updateState = (e) => setState(e.target.value);
 
-
-  useEffect(() => {
-    dispatch(getPokemonTypes());
-  }, [dispatch]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     //need to include the userId in payload:-----------------------
+    //refer back to Navigation Component (user={sessionUser})
     const payload = {
       description,
       brand,
@@ -59,14 +61,13 @@ const CreateListingForm = ({ hideForm }) => {
     if (createdListing) {
       setErrorMessages({});
       history.push(`/cars/${createdListing.id}`);
-      hideForm();
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     setErrorMessages({});
-    hideForm();
+    //hide toggle
   };
 
   return (
