@@ -18,18 +18,18 @@ const CreateListingForm = ({ user }) => {
     setShowForm(true);
   }
   ////////////
-  useEffect(() => {
-    if (!showForm) return;
+  // useEffect(() => {
+  //   if (!showForm) return;
 
-    const closeMenu = () => {
-      setShowForm(false);
-    };
+  //   const closeMenu = () => {
+  //     setShowForm(false);
+  //   };
 
-    document.addEventListener('click', closeMenu);
+  //   document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+  //   return () => document.removeEventListener("click", closeMenu);
 
-  }, [showForm]);
+  // }, [showForm]);
 
 
   const [description, setDescription] = useState('');
@@ -63,25 +63,27 @@ const CreateListingForm = ({ user }) => {
       state
     };
 
-    let createdListing;
+    let newListing;
+
     try {
-      createdListing = await dispatch(createListing(payload));
+      newListing = await dispatch(createListing(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrorMessages(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
       else setErrorMessages({ overall: error.toString().slice(7) })
     }
-    if (createdListing) {
+    if (newListing) {
       setErrorMessages({});
-      history.push(`/cars/${createdListing.id}`);
+      history.push(`/cars/${newListing.id}`);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     setErrorMessages({});
-    //hide toggle
+    //close form:
+    setShowForm(false);
   };
 
   return (
@@ -93,6 +95,7 @@ const CreateListingForm = ({ user }) => {
         <section>
           <ErrorMessage message={errorMessages.overall} />
           <form className="create-pokemon-form" onSubmit={handleSubmit}>
+            Make:
             <input
               type="text"
               placeholder="Make"
@@ -100,6 +103,7 @@ const CreateListingForm = ({ user }) => {
               value={brand}
               onChange={updateBrand} />
             <ErrorMessage label={"Make"} message={errorMessages.brand} />
+            Model:
             <input
               type="text"
               placeholder="Model"
@@ -107,6 +111,7 @@ const CreateListingForm = ({ user }) => {
               value={model}
               onChange={updateModel} />
             <ErrorMessage label={"Model"} message={errorMessages.model} />
+            Description:
             <input
               type="text"
               placeholder="Tell us a bit about your car"
@@ -114,6 +119,7 @@ const CreateListingForm = ({ user }) => {
               value={description}
               onChange={updateDescription} />
             <ErrorMessage label={"Description"} message={errorMessages.description} />
+            Price:
             <input
               type="number"
               placeholder="Price"
@@ -122,18 +128,21 @@ const CreateListingForm = ({ user }) => {
               value={price}
               onChange={updatePrice} />
             <ErrorMessage label={"Price"} message={errorMessages.price} />
+            Image URL:
             <input
               type="text"
               placeholder="Image URL"
               value={imageURL}
               onChange={updateImageURL} />
             <ErrorMessage label={"Image URL"} message={errorMessages.imageURL} />
+            City:
             <input
               type="text"
               placeholder="City"
               value={city}
               onChange={updateCity} />
             <ErrorMessage label={"City"} message={errorMessages.city} />
+            State:
             <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
