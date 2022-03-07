@@ -1,6 +1,9 @@
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('./utils');
 
+const ownerId = check('user.id')
+  .notEmpty()
+  .withMessage('Please log in to create a listing')
 const description = check('description')
   .notEmpty()
   .withMessage('Please tell us a little bit about your car')

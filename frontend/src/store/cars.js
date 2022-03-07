@@ -1,4 +1,4 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_CARS = 'cars/LOAD'
@@ -24,14 +24,14 @@ export const getCars = () => async dispatch => {
   }
 };
 
-export const createListing = data => async dispatch => {
+export const createListing = payload => async dispatch => {
   try {
-    const response = await fetch(`/api/cars`, {
-      method: 'post',
+    const response = await csrfFetch(`/api/cars`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
@@ -87,6 +87,10 @@ const carReducer = (state = {}, action) => {
       });
 
       return allCars;
+    case ADD_ONE_CAR:
+      const newCar = action.car;
+      const newState = { ...state, newCar};
+      return newState;
     default:
       return state;
   }

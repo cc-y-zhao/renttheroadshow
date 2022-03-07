@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { createListing } from '../../store/cars';
 import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -31,7 +31,7 @@ const CreateListingForm = ({ user }) => {
 
   // }, [showForm]);
 
-
+  const ownerId = user.id;
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -54,6 +54,7 @@ const CreateListingForm = ({ user }) => {
     //need to include the userId in payload:-----------------------
     //refer back to Navigation Component (user={sessionUser})
     const payload = {
+      ownerId,
       description,
       brand,
       model,
@@ -75,6 +76,7 @@ const CreateListingForm = ({ user }) => {
     }
     if (newListing) {
       setErrorMessages({});
+      console.log('SUCCESS!!!!!!!!')
       history.push(`/cars/${newListing.id}`);
     }
   };
@@ -95,6 +97,10 @@ const CreateListingForm = ({ user }) => {
         <section>
           <ErrorMessage message={errorMessages.overall} />
           <form className="create-pokemon-form" onSubmit={handleSubmit}>
+            <input
+              type="hidden"
+              value={user.id}
+            />
             Make:
             <input
               type="text"

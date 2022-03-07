@@ -16,6 +16,7 @@ function Navigation({ isLoaded }) {
       <>
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
+        <ul className='nav-space'></ul>
         <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
       </>
     );

@@ -36,8 +36,8 @@ function CarsList() {
             <img
               src={car.imageURL}
               alt={`${car.brand} ${car.model}`}
-              height="430px"
-              width="300px"
+              height="370px"
+              width="360px"
             />
           ))}
         </div>
