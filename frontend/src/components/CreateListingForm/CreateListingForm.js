@@ -7,7 +7,6 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 
 const CreateListingForm = ({ user }) => {
-  const [errorMessages, setErrorMessages] = useState({});
   const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
@@ -30,6 +29,7 @@ const CreateListingForm = ({ user }) => {
   //   return () => document.removeEventListener("click", closeMenu);
 
   // }, [showForm]);
+  const [errors, setErrors] = useState([]);
 
   const ownerId = user.id;
   const [description, setDescription] = useState('');
@@ -47,6 +47,20 @@ const CreateListingForm = ({ user }) => {
   const updatePrice = (e) => setPrice(e.target.value);
   const updateCity = (e) => setCity(e.target.value);
   const updateState = (e) => setState(e.target.value);
+
+  useEffect(() => {
+    const validationErrors = [];
+
+    if (brand.length < 3) validationErrors.push("Model name must be 3 or more characters");
+    if (model.length === 0) validationErrors.push('Please provide the model of your car');
+    if (description.length === 0) validationErrors.push('Please tell us a bit about your car');
+    if (imageURL.length === 0) validationErrors.push('Please provide an image URL for your car');
+    if (!price || price < 15) validationErrors.push('Please provide a minimum $15 rental price for your car');
+    if (city.length === 0) validationErrors.push('Please provide the city where your car is located');
+    if (state.length < 2) validationErrors.push('Please provide the state where your car is located');
+
+    setErrors(validationErrors);
+  }, [brand, model, description, imageURL, price, city, state])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,21 +83,23 @@ const CreateListingForm = ({ user }) => {
     try {
       newListing = await dispatch(createListing(payload));
     } catch (error) {
-      if (error instanceof ValidationError) setErrorMessages(error.errors);
+      if (error instanceof ValidationError) setErrors(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
-      else setErrorMessages({ overall: error.toString().slice(7) })
+      // else setErrorMessages({ overall: error.toString().slice(7) })
     }
     if (newListing) {
-      setErrorMessages({});
+      setErrors([]);
       console.log('SUCCESS!!!!!!!!')
-      history.push(`/cars/${newListing.id}`);
+      // alert()
+      history.push('/');
+      // history.push(`/cars/${newListing.id}`);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    setErrorMessages({});
+    setErrors([]);
     //close form:
     setShowForm(false);
   };
@@ -95,8 +111,14 @@ const CreateListingForm = ({ user }) => {
       </button>
       {showForm && (
         <section>
-          <ErrorMessage message={errorMessages.overall} />
           <form className="create-pokemon-form" onSubmit={handleSubmit}>
+            <ul className="errors">
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
             <input
               type="hidden"
               value={user.id}
@@ -108,7 +130,6 @@ const CreateListingForm = ({ user }) => {
               required
               value={brand}
               onChange={updateBrand} />
-            <ErrorMessage label={"Make"} message={errorMessages.brand} />
             Model:
             <input
               type="text"
@@ -116,7 +137,6 @@ const CreateListingForm = ({ user }) => {
               required
               value={model}
               onChange={updateModel} />
-            <ErrorMessage label={"Model"} message={errorMessages.model} />
             Description:
             <input
               type="text"
@@ -124,7 +144,6 @@ const CreateListingForm = ({ user }) => {
               required
               value={description}
               onChange={updateDescription} />
-            <ErrorMessage label={"Description"} message={errorMessages.description} />
             Price:
             <input
               type="number"
@@ -133,29 +152,30 @@ const CreateListingForm = ({ user }) => {
               required
               value={price}
               onChange={updatePrice} />
-            <ErrorMessage label={"Price"} message={errorMessages.price} />
             Image URL:
             <input
               type="text"
               placeholder="Image URL"
               value={imageURL}
               onChange={updateImageURL} />
-            <ErrorMessage label={"Image URL"} message={errorMessages.imageURL} />
             City:
             <input
               type="text"
               placeholder="City"
               value={city}
               onChange={updateCity} />
-            <ErrorMessage label={"City"} message={errorMessages.city} />
             State:
             <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
             </select>
-            <ErrorMessage label={"State"} message={errorMessages.state} />
-            <button type="submit">Create new listing</button>
+            <button
+              type="submit"
+              disabled={errors.length > 0}
+            >
+              Create new listing
+            </button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
           </form>
         </section>
