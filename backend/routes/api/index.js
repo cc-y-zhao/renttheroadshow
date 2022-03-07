@@ -13,9 +13,9 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/cars', carsRouter)
 
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
+// router.post('/test', (req, res) => {
+//   res.json({ requestBody: req.body });
+// });
 
 
 
