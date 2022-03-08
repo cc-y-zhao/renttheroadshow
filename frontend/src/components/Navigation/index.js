@@ -18,7 +18,8 @@ function Navigation({ isLoaded }) {
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
         <ul className='nav-space'></ul>
-        <NavLink to={'/listings/'+sessionUser.id}>My Listings</NavLink>
+        <NavLink className='navlink' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
+        <NavLink className='navlink' to='/'>My Reviews</NavLink>
         <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
       </>
     );
@@ -35,7 +36,7 @@ function Navigation({ isLoaded }) {
     <nav className='nav-container'>
       <ul>
         <li>
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink className='navlink' exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
         </li>
       </ul>
