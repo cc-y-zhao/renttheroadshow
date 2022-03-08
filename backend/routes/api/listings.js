@@ -7,12 +7,13 @@ const router = express.Router();
 
 router.get(
   '/:userId',
-  asyncHandler(async function (_req, res) {
+  asyncHandler(async function (req, res) {
     const listings = await Car.findAll({
       where: {
         ownerId: req.params.userId
       }
     });
+    console.log("req.params.userId-----------", req.params.userId);
     console.log("user's listings----------", listings);
     return res.json(listings);
   })

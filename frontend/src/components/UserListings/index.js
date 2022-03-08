@@ -4,30 +4,32 @@ import { useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 
 
-import { getUserListings } from "../../store/cars";
+import { getUserListings } from "../../store/listings";
 
 function UserListings() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userParams = useParams();
+  const params = useParams();
 
-  console.log("useParams------------", useParams);
+  console.log("params------------", params);
 
   const sessionUser = useSelector(state => state.session.user);
   const id = sessionUser.id
-  console.log("sessionUser---------", sessionUser.id);
+
+  if (params.userId.toString() !== id.toString()) history.push('/');
 
   if (!sessionUser) history.push('/');
-
-  const cars = useSelector((state) => {
-    return Object.values(state.cars);
-  });
-
-  console.log("cars--------", cars);
 
   useEffect(() => {
     dispatch(getUserListings(id));
   }, [dispatch]);
+
+  const listings = useSelector((state) => {
+    return Object.values(state.listings);
+  });
+
+  console.log("listings--------", listings);
+
 
   // useEffect(() => {
   //   dispatch(getCars()).then((data) => {
@@ -41,7 +43,7 @@ function UserListings() {
       <h2>My Listings</h2>
       <div>
         <div>
-          {cars?.map((car) => (
+          {listings?.map((car) => (
             <img
               src={car.imageURL}
               alt={`${car.brand} ${car.model}`}

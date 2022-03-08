@@ -3,7 +3,6 @@ import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_CARS = 'cars/LOAD';
 const ADD_ONE_CAR = 'cars/ADD_ONE';
-const LOAD_CARS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
 
 const loadCars = list => ({
   type: LOAD_CARS,
@@ -14,20 +13,6 @@ const addOneCar = car => ({
   type: ADD_ONE_CAR,
   car,
 });
-
-const loadCarsByOwner = listings => ({
-  type: LOAD_CARS_BY_OWNER,
-  listings,
-});
-
-export const getUserListings = (id) => async dispatch => {
-  const response = await fetch(`/api/listings/${id}`);
-
-  if (response.ok) {
-    const listings = await response.json();
-    dispatch(loadCarsByOwner(listings));
-  }
-}
 
 export const getCars = () => async dispatch => {
   const response = await fetch(`/api/cars`);
