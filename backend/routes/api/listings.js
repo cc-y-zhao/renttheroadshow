@@ -33,16 +33,12 @@ router.put(
   })
 );
 
-// router.delete('/:carId', asyncHandler(async function (req, res) {
-//   const listing = await Car.findByPk(req.params.carId);
-//   listing.destroy();
+router.delete('/:userId/:carId', asyncHandler(async function (req, res) {
+  const listing = await Car.findByPk(req.params.carId);
+  const deletedListing = await listing.destroy();
 
-//   res.json()
-// }))
-
-
-
-
+  return res.json(deletedListing);
+}));
 
 
 module.exports = router;

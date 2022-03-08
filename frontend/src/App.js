@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation/Navigation";
 
 import CarsList from "./components/CarsList";
-import UserListings from "./components/UserListings";
+import UserListings from "./components/UserListings/UserListings";
 
 function App() {
   const dispatch = useDispatch();

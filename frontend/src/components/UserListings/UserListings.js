@@ -5,6 +5,7 @@ import '../LandingPage/LandingPage.css';
 
 import { getUserListings } from "../../store/listings";
 import EditListingForm from "../EditListing/EditListing";
+import DeleteListing from "../DeleteListing/DeleteListing";
 
 function UserListings() {
   // const [showListings, setShowListings] = useState(false);
@@ -58,7 +59,7 @@ function UserListings() {
               />
               <span>{car.brand} {car.model}</span>
               <EditListingForm ownerId={sessionUser.id} carId={car.id}/>
-              <button type="button">Delete</button>
+              <DeleteListing ownerId={sessionUser.id} carId={car.id} />
             </span>
           ))}
         </div>
