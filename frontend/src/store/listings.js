@@ -73,15 +73,15 @@ const listingsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_LISTINGS_BY_OWNER:
       const listings = action.listings;
-      const newState = {...listings};
+      const newState = {};
+      listings.forEach(listing => {
+        newState[listing.id] = listing;
+      });
       return newState;
     case EDIT_LISTING:
       return {
         ...state,
-        [action.listing.id]: {
-          ...state[action.listing.id],
-          ...action.listing,
-        },
+        [action.listing.id]: {...action.listing},
       };
     default:
       return state;

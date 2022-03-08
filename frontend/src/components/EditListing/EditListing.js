@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { createListing } from '../../store/cars';
+import { editOneListing } from '../../store/listings';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 
-const EditListingForm = ({ user, carId}) => {
+const EditListingForm = ({ ownerId, carId}) => {
   const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
@@ -31,7 +31,6 @@ const EditListingForm = ({ user, carId}) => {
   // }, [showForm]);
   const [errors, setErrors] = useState([]);
 
-  const ownerId = user.id;
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -80,9 +79,9 @@ const EditListingForm = ({ user, carId}) => {
     };
 
     let updatedListing;
-
+////////////////////////////////////////////////////////////////////////////////
     try {
-      updatedListing = await dispatch(createListing(payload));
+      updatedListing = await dispatch(editOneListing(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrors(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
@@ -122,7 +121,11 @@ const EditListingForm = ({ user, carId}) => {
             </ul>
             <input
               type="hidden"
-              value={user.id}
+              value={ownerId}
+            />
+            <input
+              type="hidden"
+              value={carId}
             />
             Make:
             <input
@@ -175,7 +178,7 @@ const EditListingForm = ({ user, carId}) => {
               type="submit"
               disabled={errors.length > 0}
             >
-              Create new listing
+              Update Listing
             </button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
           </form>

@@ -60,7 +60,7 @@ function UserListings() {
                 width="360px"
               />
               <span>{car.brand} {car.model}</span>
-              <EditListingForm user={sessionUser} carId={car.id}/>
+              <EditListingForm ownerId={sessionUser.id} carId={car.id}/>
               <button type="button">Delete</button>
             </span>
           ))}
