@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import CarsList from "./components/CarsList";
+import UserListings from "./components/UserListings";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <CarsList />
+          </Route>
+          <Route path='/listings/:userId'>
+            <UserListings/>
           </Route>
         </Switch>
       )}

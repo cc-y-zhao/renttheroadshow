@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import CreateListingForm from '../CreateListingForm/CreateListingForm';
+import UserListings from '../UserListings/index';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
@@ -17,6 +18,7 @@ function Navigation({ isLoaded }) {
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
         <ul className='nav-space'></ul>
+        {/* <NavLink exact to='/listings'> My Listings</NavLink>  -------only show listings if user is logged in*/}
         <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
       </>
     );
