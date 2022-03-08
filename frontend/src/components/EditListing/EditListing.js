@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { editOneListing } from '../../store/listings';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -90,9 +90,12 @@ const EditListingForm = ({ ownerId, carId}) => {
     }
     if (updatedListing) {
       setErrors([]);
-      console.log('SUCCESS!!!!!!!!')
+      console.log('SUCCESS!!!!!!!!');
+      console.log("updated listing------------", updatedListing);
+      setShowForm(false);
+      return;
+      // return;
       // alert()
-      history.push('/');
       // history.push(`/cars/${updatedListing.id}`);
     }
   };

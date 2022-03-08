@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import '../LandingPage/LandingPage.css'
-
+import '../LandingPage/LandingPage.css';
 
 import { getUserListings } from "../../store/listings";
 import EditListingForm from "../EditListing/EditListing";
@@ -27,15 +26,13 @@ function UserListings() {
   //   setShowListings(true);
   // }
 
-  useEffect(() => {
-    dispatch(getUserListings(id));
-  }, [dispatch]);
-
   const listings = useSelector((state) => {
     return Object.values(state.listings);
   });
 
-  console.log("listings--------", listings);
+  useEffect(() => {
+    dispatch(getUserListings(id));
+  }, [listings.toString()]);
 
 
   // const handleCloseListings = (e) => {
