@@ -2,6 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 
 const { Car } = require('../../db/models');
+const listingValidations = require('../../validations/cars');
 
 const router = express.Router();
 
@@ -13,20 +14,31 @@ router.get(
         ownerId: req.params.userId
       }
     });
-    console.log("req.params.userId-----------", req.params.userId);
-    console.log("user's listings----------", listings);
+
     return res.json(listings);
   })
 );
 
-// router.post(
-//   '/',
-//   carValidations.validateCreate,
-//   asyncHandler(async function (req, res) {
-//     const id = await Car.create(req.body);
-//     return res.redirect(`${req.baseUrl}/${id}`);
-//   })
-// );
+router.put(
+  '/:userId/:carId',
+  listingValidations.validateUpdate,
+  asyncHandler(async function (req, res) {
+    const listing = await Car.update(req.body, {
+      where: {
+        id: req.params.carId,
+        ownerId: req.params.userId
+      }
+    });
+    return res.json(listing);
+  })
+);
+
+// router.delete('/:carId', asyncHandler(async function (req, res) {
+//   const listing = await Car.findByPk(req.params.carId);
+//   listing.destroy();
+
+//   res.json()
+// }))
 
 
 

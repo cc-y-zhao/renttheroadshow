@@ -5,6 +5,7 @@ import '../LandingPage/LandingPage.css'
 
 
 import { getUserListings } from "../../store/listings";
+import EditListingForm from "../EditListing/EditListing";
 
 function UserListings() {
   // const [showListings, setShowListings] = useState(false);
@@ -59,6 +60,8 @@ function UserListings() {
                 width="360px"
               />
               <span>{car.brand} {car.model}</span>
+              <EditListingForm user={sessionUser} carId={car.id}/>
+              <button type="button">Delete</button>
             </span>
           ))}
         </div>
