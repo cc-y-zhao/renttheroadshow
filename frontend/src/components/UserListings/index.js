@@ -6,8 +6,8 @@ import '../LandingPage/LandingPage.css'
 
 import { getUserListings } from "../../store/listings";
 
-function UserListings({user}) {
-  const [showListings, setShowListings] = useState(false);
+function UserListings() {
+  // const [showListings, setShowListings] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -16,15 +16,15 @@ function UserListings({user}) {
   console.log("params------------", params);
 
   const sessionUser = useSelector(state => state.session.user);
-  const id = user.id
+  const id = sessionUser.id;
 
   if (params.userId.toString() !== id.toString()) history.push('/');
   if (!sessionUser) history.push('/');
 
-  const openListings = () => {
-    if (showListings) return;
-    setShowListings(true);
-  }
+  // const openListings = () => {
+  //   if (showListings) return;
+  //   setShowListings(true);
+  // }
 
   useEffect(() => {
     dispatch(getUserListings(id));
@@ -37,37 +37,33 @@ function UserListings({user}) {
   console.log("listings--------", listings);
 
 
-  const handleCloseListings = (e) => {
-    e.preventDefault();
-    //close form:
-    setShowListings(false);
-  };
+  // const handleCloseListings = (e) => {
+  //   e.preventDefault();
+  //   //close form:
+  //   setShowListings(false);
+  // };
 
+  // {/* <button type="button" onClick={handleCloseListings}>Close</button> */}
 
   return (
-    <>
-      <button onClick={openListings}>
-        View My Listings
-      </button>
-      {showListings && (
+    <div>
+      <h2>My Listings</h2>
+      <div>
         <div>
-          <h2>My Listings</h2>
-          <button type="button" onClick={handleCloseListings}>Close</button>
-          <div>
-            <div>
-              {listings?.map((car) => (
-                <img
-                  src={car.imageURL}
-                  alt={`${car.brand} ${car.model}`}
-                  height="370px"
-                  width="360px"
-                />
-              ))}
-            </div>
-          </div>
+          {listings?.map((car) => (
+            <span className='car-in-listings'>
+              <img
+                src={car.imageURL}
+                alt={`${car.brand} ${car.model}`}
+                height="370px"
+                width="360px"
+              />
+              <span>{car.brand} {car.model}</span>
+            </span>
+          ))}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   )
 }
 
