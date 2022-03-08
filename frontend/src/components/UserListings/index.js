@@ -1,0 +1,73 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import '../LandingPage/LandingPage.css'
+
+
+import { getUserListings } from "../../store/listings";
+import EditListingForm from "../EditListing/EditListing";
+
+function UserListings() {
+  // const [showListings, setShowListings] = useState(false);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const params = useParams();
+
+  console.log("params------------", params);
+
+  const sessionUser = useSelector(state => state.session.user);
+  const id = sessionUser.id;
+
+  if (params.userId.toString() !== id.toString()) history.push('/');
+  if (!sessionUser) history.push('/');
+
+  // const openListings = () => {
+  //   if (showListings) return;
+  //   setShowListings(true);
+  // }
+
+  useEffect(() => {
+    dispatch(getUserListings(id));
+  }, [dispatch]);
+
+  const listings = useSelector((state) => {
+    return Object.values(state.listings);
+  });
+
+  console.log("listings--------", listings);
+
+
+  // const handleCloseListings = (e) => {
+  //   e.preventDefault();
+  //   //close form:
+  //   setShowListings(false);
+  // };
+
+  // {/* <button type="button" onClick={handleCloseListings}>Close</button> */}
+
+  return (
+    <div>
+      <h2>My Listings</h2>
+      <div>
+        <div>
+          {listings?.map((car) => (
+            <span className='car-in-listings'>
+              <img
+                src={car.imageURL}
+                alt={`${car.brand} ${car.model}`}
+                height="370px"
+                width="360px"
+              />
+              <span>{car.brand} {car.model}</span>
+              <EditListingForm user={sessionUser} carId={car.id}/>
+              <button type="button">Delete</button>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default UserListings;

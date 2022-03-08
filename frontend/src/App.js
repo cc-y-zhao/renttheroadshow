@@ -5,6 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
+import CarsList from "./components/CarsList";
+import UserListings from "./components/UserListings";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,6 +22,12 @@ function App() {
         <Switch>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <CarsList />
+          </Route>
+          <Route path='/listings/:userId'>
+            <UserListings/>
           </Route>
         </Switch>
       )}
