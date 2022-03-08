@@ -15,17 +15,16 @@ const editListing = listing => ({
   listing,
 })
 
-const deleteListing = payload => ({
+const deleteListing = (ownerId, carId) => ({
   type: DELETE_LISTING,
-  payload
+  ownerId,
+  carId,
 });
 
 //////////////////////////////////////////////////////////////////////////////
 
-export const deleteOneListing = payload => async dispatch => {
-  const {ownerId, carId} = payload;
+export const deleteOneListing = (ownerId, carId) => async dispatch => {
 
-  try {
     const response = await csrfFetch(`/api/listings/${ownerId}/${carId}`, {
       method: 'DELETE',
       headers: {
@@ -53,14 +52,11 @@ export const deleteOneListing = payload => async dispatch => {
       }
     }
 
+    //if response is ok
     const deletedListing = await response.json();
-    await dispatch(deleteListing(payload));
+    await dispatch(deleteListing(ownerId, carId));
     return deletedListing;
 
-
-  } catch (error) {
-    throw error;
-  }
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -134,14 +130,13 @@ const listingsReducer = (state = {}, action) => {
         ...state,
         [action.listing.id]: {...action.listing},
       };
+    case DELETE_LISTING:
+      const updatedState = { ...state};
+      delete updatedState[action.carId]
+      return updatedState;
     default:
       return state;
   }
 };
-
-// case REMOVE_BOOKING:
-// newState = { ...state };
-// delete newState[action.bookingId]
-// return newState;
 
 export default listingsReducer;

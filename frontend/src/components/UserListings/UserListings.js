@@ -35,6 +35,8 @@ function UserListings() {
     dispatch(getUserListings(id));
   }, [listings.toString()]);
 
+  console.log("listings----------", listings);
+
 
   // const handleCloseListings = (e) => {
   //   e.preventDefault();
