@@ -41,14 +41,21 @@ router.delete('/:ownerId/:carId', asyncHandler(async function (req, res) {
   console.log("carId--------------------------", carId);
 
   const listing = await Car.findByPk(carId);
-  const review = await Review.findOne({
+  const reviews = await Review.findAll({
     where: {carId}
   });
 
-  await review.destroy()
+  console.log("reviews----------------", reviews);
+
+  if (reviews.length > 0) {
+    await reviews.destroy();
+    await listing.destroy();
+  } else {
+    console.log('IM IN HERE--------------')
+    await listing.destroy();
+  }
 
   console.log("listing-----------------", listing);
-  await listing.destroy();
 
   return res.json({ownerId, carId});
 }));

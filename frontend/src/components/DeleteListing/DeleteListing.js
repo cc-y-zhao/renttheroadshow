@@ -13,6 +13,14 @@ const DeleteListing = ({ ownerId, carId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const listings = useSelector((state) => {
+    return Object.values(state.listings);
+  });
+
+  useEffect(() => {
+    setShowModal(false);
+  }, [listings.toString()]);
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>Delete Listing</button>
@@ -20,7 +28,6 @@ const DeleteListing = ({ ownerId, carId }) => {
         <Modal onClose={() => setShowModal(false)}>
           <section>
             <h3>Are you sure you want to delete this listing?</h3>
-            <h3>Here are ownerId and carId {ownerId} {carId}</h3>
               <button onClick={() => dispatch(deleteOneListing(ownerId, carId))}>
                 Yes, Delete Listing
               </button>

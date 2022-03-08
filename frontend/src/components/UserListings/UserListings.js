@@ -33,6 +33,7 @@ function UserListings() {
 
   useEffect(() => {
     dispatch(getUserListings(id));
+
   }, [listings.toString()]);
 
   console.log("listings----------", listings);
