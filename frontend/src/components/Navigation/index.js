@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
         <ul className='nav-space'></ul>
-        {/* <NavLink exact to='/listings'> My Listings</NavLink>  -------only show listings if user is logged in*/}
+        <UserListings user={sessionUser}/>
         <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
       </>
     );
