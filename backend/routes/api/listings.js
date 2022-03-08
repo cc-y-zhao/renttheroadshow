@@ -1,7 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 
-const { Car } = require('../../db/models');
+const { Car, Review } = require('../../db/models');
 const listingValidations = require('../../validations/cars');
 
 const router = express.Router();
@@ -41,9 +41,14 @@ router.delete('/:ownerId/:carId', asyncHandler(async function (req, res) {
   console.log("carId--------------------------", carId);
 
   const listing = await Car.findByPk(carId);
+  const review = await Review.findOne({
+    where: {carId}
+  });
+
+  await review.destroy()
 
   console.log("listing-----------------", listing);
-  listing.destroy();
+  await listing.destroy();
 
   return res.json({ownerId, carId});
 }));
