@@ -1,10 +1,11 @@
 import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 import { getCars } from "../../store/cars";
 import CarPageModal from '../CarPageModal/CarPageModal';
+import { NavLink } from 'react-router-dom';
 
 function CarsList() {
   const dispatch = useDispatch();
@@ -13,8 +14,10 @@ function CarsList() {
   // const [showModal, setShowModal] = useState(false);
   // const [currentCar, setCurrentCar] = useState({});
 
+  const [imageClicked, setImageClicked] = useState(false);
+
   const cars = useSelector((state) => {
-    console.log("state.cars----------------", state.cars);
+    console.log("state.cars----------------", state.cars)
     return Object.values(state.cars);
   });
 
@@ -36,18 +39,20 @@ function CarsList() {
       <h2>Cars For Rent</h2>
       <div>
         <div>
-          {cars?.map((car) => (
-            <>
-              <a href={'/cars/'+car.id}>
+          {cars.map((car) => {
+            return (
+              <NavLink to={'/cars/' + car.id}>
                 <img
                   src={car.imageURL}
                   alt={`${car.brand} ${car.model}`}
                   height="370px"
                   width="360px"
                 />
-              </a>
-            </>
-          ))}
+              </NavLink>
+            );
+          }
+          )}
+
         </div>
       </div>
 

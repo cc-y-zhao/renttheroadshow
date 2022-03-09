@@ -9,11 +9,13 @@ function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
 
+  const dispatch = useDispatch();
+  const history = useHistory();
   console.log("carId------------", carId);
 
 
   const car = useSelector(state => {
-    console.log("state---------------", state.cars.carId);
+    console.log("state---------------", state);
     return Object.values(state.cars[carId]);
   });
 
@@ -22,8 +24,6 @@ function CarPage() {
   }, [dispatch]);
   // console.log("car----------------", car);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
 
 
 
