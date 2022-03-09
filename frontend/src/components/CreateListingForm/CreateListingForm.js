@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { createListing } from '../../store/cars';
 import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -77,7 +77,8 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
-      history.push(`/listings/${user.id}`);
+      return history.push(`/listings/${user.id}`);
+      // return <Redirect to={'/listings/'+user.id}></Redirect>
     }
   };
 
