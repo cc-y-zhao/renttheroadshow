@@ -3,29 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
-import { getCars } from "../../store/cars";
+import { getOneCar } from "../../store/cars";
 
 function CarPage() {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
-
-  // const cars = useSelector((state) => {
-  //   return Object.values(state.cars);
-  // });
-
-  // useEffect(() => {
-  //   dispatch(getCars());
-  // }, [dispatch]);
   const params = useParams();
   const carId = parseInt(params.carId, 10);
 
-  const cars = useSelector((state) => {
-    return Object.values(state.cars);
+  const car = useSelector(state => {
+    console.log("state---------------", state.cars);
+    // return Object.values(state.cars[carId]);
   });
 
-  console.log("all cars-----------------", cars);
+  console.log("car----------------", car);
 
-  console.log("params---------------", params);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    dispatch(getOneCar(carId));
+  }, [dispatch]);
+
 
   // return (
   //   <div>
@@ -45,7 +42,7 @@ function CarPage() {
   //     </div>
   //   </div>
   // )
-}
+};
 
 export default CarPage;
 

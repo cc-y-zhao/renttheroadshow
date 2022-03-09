@@ -3,6 +3,7 @@ import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_CARS = 'cars/LOAD';
 const ADD_ONE_CAR = 'cars/ADD_ONE';
+const LOAD_ONE_CAR = 'cars/LOAD_ONE';
 
 const loadCars = list => ({
   type: LOAD_CARS,
@@ -13,6 +14,21 @@ const addOneCar = car => ({
   type: ADD_ONE_CAR,
   car,
 });
+
+const loadOneCar = car => ({
+  type: LOAD_ONE_CAR,
+  car
+});
+
+export const getOneCar = (carId) => async dispatch => {
+  const response = await fetch(`/api/cars/${carId}`);
+
+  if (response.ok) {
+    const car = await response.json();
+    dispatch(loadOneCar(car));
+  }
+};
+
 
 export const getCars = () => async dispatch => {
   const response = await fetch(`/api/cars`);
@@ -71,6 +87,13 @@ const carReducer = (state = {}, action) => {
       });
 
       return allCars;
+    case LOAD_ONE_CAR:
+      return {
+        ...state,
+        [action.car.id]: {
+          ...state[action.car.id]
+        }
+      };
     case ADD_ONE_CAR:
       const newCar = action.car;
       const newState = { ...state, newCar};
