@@ -1,9 +1,7 @@
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('./utils');
 
-const ownerId = check('user.id')
-  .notEmpty()
-  .withMessage('Please log in to create a listing')
+
 const description = check('description')
   .notEmpty()
   .withMessage('Please tell us a little bit about your car')
@@ -18,7 +16,6 @@ const model = check('model')
 const imageURL = check('imageURL')
   .notEmpty()
   .withMessage('Please provide an image URL for your car')
-  .isURL({ require_protocol: false, require_host: false });
 const price = check('price')
   .notEmpty()
   .withMessage('Please provide the rental price of your car')

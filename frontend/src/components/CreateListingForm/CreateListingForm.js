@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { createListing } from '../../store/cars';
-import {ValidationError} from '../../utils/ValidationError';
+// import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 
+import './CreateListingForm.css';
+
 const CreateListingForm = ({ user }) => {
-  const [showForm, setShowForm] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const openForm = () => {
-    if (showForm) return;
-    setShowForm(true);
-  }
+  // const openForm = () => {
+  //   if (showForm) return;
+  //   setShowForm(true);
+  // }
   ////////////
   // useEffect(() => {
   //   if (!showForm) return;
@@ -32,6 +34,7 @@ const CreateListingForm = ({ user }) => {
   const [errors, setErrors] = useState([]);
 
   const ownerId = user.id;
+  console.log("onwerId in createlistingform-----------", ownerId);
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -78,15 +81,20 @@ const CreateListingForm = ({ user }) => {
       state
     };
 
+    console.log("payload----------", payload);
+
     let newListing;
 
     try {
+      console.log("HI FROM TRY CATCH-----------------")
+
       newListing = await dispatch(createListing(payload));
     } catch (error) {
-      if (error instanceof ValidationError) setErrors(error.errors);
+      // if (error instanceof ValidationError) setErrors(error.errors);
+      setErrors(["Unable to process request"]);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
-      // else setErrorMessages({ overall: error.toString().slice(7) })
+      // else setErrors({ overall: error.toString().slice(7) })
     }
     if (newListing) {
       setErrors([]);
@@ -101,7 +109,8 @@ const CreateListingForm = ({ user }) => {
     e.preventDefault();
     setErrors([]);
     //close form:
-    setShowForm(false);
+    // setShowForm(false);
+    //TO DO: PASS IN THE SHOWMODAL AS A PARAM!!
   };
 
   return (
@@ -119,53 +128,60 @@ const CreateListingForm = ({ user }) => {
             type="hidden"
             value={user.id}
           />
-          Make:
-          <input
-            type="text"
-            placeholder="Make"
-            required
-            value={brand}
-            onChange={updateBrand} />
-          Model:
-          <input
-            type="text"
-            placeholder="Model"
-            required
-            value={model}
-            onChange={updateModel} />
-          Description:
-          <input
-            type="text"
-            placeholder="Tell us a bit about your car"
-            required
-            value={description}
-            onChange={updateDescription} />
-          Price:
-          <input
-            type="number"
-            placeholder="Price"
-            min="15"
-            required
-            value={price}
-            onChange={updatePrice} />
-          Image URL:
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={imageURL}
-            onChange={updateImageURL} />
-          City:
-          <input
-            type="text"
-            placeholder="City"
-            value={city}
-            onChange={updateCity} />
-          State:
-          <select onChange={updateState} value={state}>
-            {allStates.map(state =>
-              <option key={state}>{state}</option>
-            )}
-          </select>
+          <div> Make:
+            <input
+              type="text"
+              placeholder="Make"
+              required
+              value={brand}
+              onChange={updateBrand} />
+          </div>
+          <div> Model:
+            <input
+              type="text"
+              placeholder="Model"
+              required
+              value={model}
+              onChange={updateModel} />
+          </div>
+          <div> Description:
+            <input
+              type="text"
+              placeholder="Tell us a bit about your car"
+              required
+              value={description}
+              onChange={updateDescription} />
+          </div>
+          <div> Price:
+            <input
+              type="number"
+              placeholder="Price"
+              min="15"
+              required
+              value={price}
+              onChange={updatePrice} />
+          </div>
+          <div> Image URL:
+            <input
+              type="text"
+              placeholder="Image URL"
+              value={imageURL}
+              onChange={updateImageURL} />
+          </div>
+          <div>City:
+            <input
+              type="text"
+              placeholder="City"
+              value={city}
+              onChange={updateCity} />
+          </div>
+          <div>State:
+            <select onChange={updateState} value={state}>
+              {allStates.map(state =>
+                <option key={state}>{state}</option>
+              )}
+            </select>
+          </div>
           <button
             type="submit"
             disabled={errors.length > 0}
