@@ -15,9 +15,12 @@ function CarPage() {
 
 
   const car = useSelector(state => {
-    console.log("state---------------", state);
-    return Object.values(state.cars[carId]);
+    console.log("carId in selector------------", carId);
+    console.log("state---------------", state.cars[carId]);
+    return state.cars[carId];
   });
+
+  console.log("CAR IN CARPAGE----------", car);
 
   useEffect(() => {
     dispatch(getOneCar(carId));

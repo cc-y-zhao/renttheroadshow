@@ -41,7 +41,7 @@ function CarsList() {
         <div>
           {cars.map((car) => {
             return (
-              <NavLink to={'/cars/' + car.id}>
+              <NavLink key={car.id} to={'/cars/' + car.id}>
                 <img
                   src={car.imageURL}
                   alt={`${car.brand} ${car.model}`}
