@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { createListing } from '../../store/cars';
-// import {ValidationError} from '../../utils/ValidationError';
+import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 
 import './CreateListingForm.css';
 
-const CreateListingForm = ({ user }) => {
+const CreateListingForm = ({ user, showModal, setShowModal }) => {
   // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
@@ -90,17 +90,17 @@ const CreateListingForm = ({ user }) => {
 
       newListing = await dispatch(createListing(payload));
     } catch (error) {
-      // if (error instanceof ValidationError) setErrors(error.errors);
-      setErrors(["Unable to process request"]);
+      if (error instanceof ValidationError) setErrors(error.errors);
+      // setErrors(["Unable to process request"]);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
-      // else setErrors({ overall: error.toString().slice(7) })
+      else setErrors({ overall: error.toString().slice(7) })
     }
     if (newListing) {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
-      // alert()
-      history.push('/');
+      setShowModal(false);
+      history.push(`/listings/${user.id}`);
       // history.push(`/cars/${newListing.id}`);
     }
   };
@@ -109,7 +109,7 @@ const CreateListingForm = ({ user }) => {
     e.preventDefault();
     setErrors([]);
     //close form:
-    // setShowForm(false);
+    setShowModal(false);
     //TO DO: PASS IN THE SHOWMODAL AS A PARAM!!
   };
 

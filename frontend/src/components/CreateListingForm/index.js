@@ -10,7 +10,7 @@ function CreateRentalListingModal({user}) {
       <span className='nav-element create-form-btn' onClick={() => setShowModal(true)}>Create Rental Listing</span>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateListingForm user={user}/>
+          <CreateListingForm user={user} showModal={showModal} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
