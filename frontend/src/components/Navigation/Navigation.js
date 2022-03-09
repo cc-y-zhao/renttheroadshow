@@ -17,8 +17,8 @@ function Navigation({ isLoaded }) {
       <>
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
-        <NavLink className='navlink nav-element' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
-        <NavLink className='navlink nav-element' to='/'>My Reviews</NavLink>
+        <NavLink className='navlink nav-element nav-listings' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
+        <NavLink className='navlink nav-element nav-reviews' to='/'>My Reviews</NavLink>
         <span className='welcome-msg nav-element'>Welcome, {sessionUser.username}!</span>
       </>
     );

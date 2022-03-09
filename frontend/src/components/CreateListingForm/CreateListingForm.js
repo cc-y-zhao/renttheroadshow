@@ -106,9 +106,9 @@ const CreateListingForm = ({ user }) => {
 
   return (
     <>
-      <button className='nav-element' onClick={openForm}>
+      <span className='nav-element create-form-btn' onClick={openForm}>
         Create Rental Listing
-      </button>
+      </span>
       {showForm && (
         <section>
           <form onSubmit={handleSubmit}>
