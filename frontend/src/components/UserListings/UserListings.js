@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../LandingPage/LandingPage.css';
+import '../../index.css'
+
 
 import { getUserListings } from "../../store/listings";
 import EditListingForm from "../EditListing/EditListing";

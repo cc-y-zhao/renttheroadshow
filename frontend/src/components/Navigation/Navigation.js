@@ -6,6 +6,7 @@ import CreateListingForm from '../CreateListingForm/CreateListingForm';
 import UserListings from '../UserListings/UserListings';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import '../../index.css'
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -34,7 +35,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav className='nav-container'>
       <ul className='links-in-nav'>
-        <li>
+        <li className='no-bullet'>
           <NavLink className='navlink nav-element nav-home' exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
         </li>

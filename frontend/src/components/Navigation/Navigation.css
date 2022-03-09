@@ -7,14 +7,18 @@
   /* justify-content: space-evenly; */
   padding: 0.5rem 1rem;
   text-align: center;
-  background-color: rgb(214, 183, 214);
-  border: medium solid rgb(90, 3, 90);
+  background-color: rgb(230, 209, 230);
+  border: medium solid rgb(90, 21, 90);
   margin-bottom: 15px;
   margin-top: 10px;
   /* align-content: center; */
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
  }
+/*
+.no-bullet li::marker {
+  list-style-type: none;
+} */
 
  .nav-element {
    display: inline-flex;
@@ -29,7 +33,9 @@
  }
 
  .nav-home {
-   margin-right: 15px;
+  margin-right: 15px;
+  list-style-type: none;
+
  }
 
  .nav-listings {
@@ -38,7 +44,7 @@
  }
 
  .nav-reviews {
-   margin-right: 600px;
+   margin-right: 800px;
  }
 
  .create-form-btn {

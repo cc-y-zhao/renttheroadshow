@@ -6,6 +6,8 @@ import '../LandingPage/LandingPage.css'
 import { getCars } from "../../store/cars";
 import CarPageModal from '../CarPageModal/CarPageModal';
 import { NavLink } from 'react-router-dom';
+import '../../index.css'
+
 
 function CarsList() {
   const dispatch = useDispatch();
