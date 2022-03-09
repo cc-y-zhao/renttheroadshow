@@ -11,10 +11,10 @@ function CarPage() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log("carId------------", carId);
 
-
+  // TO DO: right now if you manually change the carId in the url nothing renders
   const car = useSelector(state => {
+    console.log("state before carId in selector-------", state)
     console.log("carId in selector------------", carId);
     console.log("state---------------", state.cars[carId]);
     return state.cars[carId];
@@ -24,10 +24,7 @@ function CarPage() {
 
   useEffect(() => {
     dispatch(getOneCar(carId));
-  }, [dispatch]);
-  // console.log("car----------------", car);
-
-
+  }, [carId]);
 
 
   return (
@@ -51,33 +48,3 @@ function CarPage() {
 };
 
 export default CarPage;
-
-
-
-// <div>
-//   <h2>Cars For Rent</h2>
-//   <div>
-//     <div>
-//       {cars?.map((car) => (
-//         <>
-//           <img
-//             onClick={() => setShowModal(true)}
-//             src={car.imageURL}
-//             alt={`${car.brand} ${car.model}`}
-//             height="370px"
-//             width="360px"
-//           />
-//         </>
-//       ))}
-//     </div>
-//     <div>
-//       {showModal && (
-//         <Modal onClose={() => setShowModal(false)}>
-//           <section>
-//             <CarPageModal car={car} />
-//             <button type="button" onClick={() => setShowModal(false)}>Back to all cars</button>
-//           </section>
-//         </Modal>
-//       )}
-//     </div>
-//   </div>
