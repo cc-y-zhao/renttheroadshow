@@ -106,80 +106,75 @@ const CreateListingForm = ({ user }) => {
 
   return (
     <>
-      <span className='nav-element create-form-btn' onClick={openForm}>
-        Create Rental Listing
-      </span>
-      {showForm && (
-        <section>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors &&
-                errors.map(error => (
-                  <li key={error}>{error}</li>
-                ))
-              }
-            </ul>
-            <input
-              type="hidden"
-              value={user.id}
-            />
-            Make:
-            <input
-              type="text"
-              placeholder="Make"
-              required
-              value={brand}
-              onChange={updateBrand} />
-            Model:
-            <input
-              type="text"
-              placeholder="Model"
-              required
-              value={model}
-              onChange={updateModel} />
-            Description:
-            <input
-              type="text"
-              placeholder="Tell us a bit about your car"
-              required
-              value={description}
-              onChange={updateDescription} />
-            Price:
-            <input
-              type="number"
-              placeholder="Price"
-              min="15"
-              required
-              value={price}
-              onChange={updatePrice} />
-            Image URL:
-            <input
-              type="text"
-              placeholder="Image URL"
-              value={imageURL}
-              onChange={updateImageURL} />
-            City:
-            <input
-              type="text"
-              placeholder="City"
-              value={city}
-              onChange={updateCity} />
-            State:
-            <select onChange={updateState} value={state}>
-              {allStates.map(state =>
-                <option key={state}>{state}</option>
-              )}
-            </select>
-            <button
-              type="submit"
-              disabled={errors.length > 0}
-            >
-              Create new listing
-            </button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
-          </form>
-        </section>
-      )}
+      <section>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors &&
+              errors.map(error => (
+                <li key={error}>{error}</li>
+              ))
+            }
+          </ul>
+          <input
+            type="hidden"
+            value={user.id}
+          />
+          Make:
+          <input
+            type="text"
+            placeholder="Make"
+            required
+            value={brand}
+            onChange={updateBrand} />
+          Model:
+          <input
+            type="text"
+            placeholder="Model"
+            required
+            value={model}
+            onChange={updateModel} />
+          Description:
+          <input
+            type="text"
+            placeholder="Tell us a bit about your car"
+            required
+            value={description}
+            onChange={updateDescription} />
+          Price:
+          <input
+            type="number"
+            placeholder="Price"
+            min="15"
+            required
+            value={price}
+            onChange={updatePrice} />
+          Image URL:
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={imageURL}
+            onChange={updateImageURL} />
+          City:
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={updateCity} />
+          State:
+          <select onChange={updateState} value={state}>
+            {allStates.map(state =>
+              <option key={state}>{state}</option>
+            )}
+          </select>
+          <button
+            type="submit"
+            disabled={errors.length > 0}
+          >
+            Create new listing
+          </button>
+          <button type="button" onClick={handleCancelClick}>Cancel</button>
+        </form>
+      </section>
     </>
   );
 };
