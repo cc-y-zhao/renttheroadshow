@@ -1,4 +1,27 @@
 input {
   display: inline-block;
-  margin: 5px;
+  position: relative;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+section {
+  margin: 40px;
+}
+
+.btn-in-form {
+  margin-top: 20px;
+}
+
+.create-listing {
+  margin-right: 20px;
+}
+/*
+.make-in-form > input {
+  left: 20px;
+} */
+
+.section-create-listing-form span {
+  display: block;
+  margin-bottom: 3px;
 }

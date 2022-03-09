@@ -9,28 +9,10 @@ import allStates from "../../utils/USA_States";
 import './CreateListingForm.css';
 
 const CreateListingForm = ({ user, showModal, setShowModal }) => {
-  // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const openForm = () => {
-  //   if (showForm) return;
-  //   setShowForm(true);
-  // }
-  ////////////
-  // useEffect(() => {
-  //   if (!showForm) return;
-
-  //   const closeMenu = () => {
-  //     setShowForm(false);
-  //   };
-
-  //   document.addEventListener('click', closeMenu);
-
-  //   return () => document.removeEventListener("click", closeMenu);
-
-  // }, [showForm]);
   const [errors, setErrors] = useState([]);
 
   const ownerId = user.id;
@@ -68,8 +50,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //need to include the userId in payload:-----------------------
-    //refer back to Navigation Component (user={sessionUser})
     const payload = {
       ownerId,
       description,
@@ -81,8 +61,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       state
     };
 
-    console.log("payload----------", payload);
-
     let newListing;
 
     try {
@@ -91,7 +69,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       newListing = await dispatch(createListing(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrors(error.errors);
-      // setErrors(["Unable to process request"]);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
       else setErrors({ overall: error.toString().slice(7) })
@@ -101,21 +78,18 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
       history.push(`/listings/${user.id}`);
-      // history.push(`/cars/${newListing.id}`);
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     setErrors([]);
-    //close form:
     setShowModal(false);
-    //TO DO: PASS IN THE SHOWMODAL AS A PARAM!!
   };
 
   return (
     <>
-      <section>
+      <section className='section-create-listing-form'>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors &&
@@ -128,23 +102,26 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
             type="hidden"
             value={user.id}
           />
-          <div> Make:
-            <input
-              type="text"
-              placeholder="Make"
-              required
-              value={brand}
-              onChange={updateBrand} />
+          <div>
+            <span>Make: </span>
+              <input
+                type="text"
+                placeholder="Make"
+                required
+                value={brand}
+                onChange={updateBrand} />
           </div>
-          <div> Model:
-            <input
-              type="text"
-              placeholder="Model"
-              required
-              value={model}
-              onChange={updateModel} />
+          <div>
+            <span>Model: </span>
+              <input
+                type="text"
+                placeholder="Model"
+                required
+                value={model}
+                onChange={updateModel} />
           </div>
-          <div> Description:
+          <div>
+            <span>Description: </span>
             <input
               type="text"
               placeholder="Tell us a bit about your car"
@@ -152,7 +129,8 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
               value={description}
               onChange={updateDescription} />
           </div>
-          <div> Price:
+          <div>
+            <span>Price: </span>
             <input
               type="number"
               placeholder="Price"
@@ -161,34 +139,37 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
               value={price}
               onChange={updatePrice} />
           </div>
-          <div> Image URL:
+          <div>
+            <span>Image URL: </span>
             <input
               type="text"
               placeholder="Image URL"
               value={imageURL}
               onChange={updateImageURL} />
           </div>
-          <div>City:
+          <div>
+            <span>City: </span>
             <input
               type="text"
               placeholder="City"
               value={city}
               onChange={updateCity} />
           </div>
-          <div>State:
+          <div>
+            <span>State: </span>
             <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
             </select>
           </div>
-          <button
+          <button className='btn-in-form create-listing'
             type="submit"
             disabled={errors.length > 0}
           >
             Create new listing
           </button>
-          <button type="button" onClick={handleCancelClick}>Cancel</button>
+          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
       </section>
     </>
