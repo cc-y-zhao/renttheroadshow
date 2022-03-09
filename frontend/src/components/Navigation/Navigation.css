@@ -2,33 +2,70 @@
   position: sticky;
   top: 0;
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   padding: 0.5rem 1rem;
   text-align: center;
-  background-color: rgb(44, 42, 42);
+  background-color: rgb(248, 241, 248);
+  border: medium solid #a43795;
   margin-bottom: 15px;
   margin-top: 10px;
-  align-content: center;
-  color: white;
+  /* align-content: center; */
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ }
+/*
+.no-bullet li::marker {
+  list-style-type: none;
+} */
+
+ .nav-element {
+   display: inline-flex;
+   flex-direction: row;
+   color: black;
+   align-content: space-around;
  }
 
  .welcome-msg {
-   display: inline-flex;
-   margin-left: 900px;
-   /* align-self:flex-end; */
-   /* margin-right: 0px; */
-   font-style: italic;
+  margin-right: 0%;
+  font-style: italic;
+ }
+
+ .nav-home {
+  margin-right: 15px;
+  list-style-type: none;
+
+ }
+
+ .nav-listings {
+   margin-left: 15px;
+   margin-right: 15px;
+ }
+
+ .nav-reviews {
+   margin-right: 800px;
+ }
+
+ .create-form-btn {
+   margin-left: 15px;
+   /* margin-right: 10px; */
+   text-decoration: underline;
  }
 
  .navlink {
-   color: white;
+   color: black;
  }
 
- .active {
+ /* .nav-space {
+   display: inline-flex;
+   margin-left:auto;
+ } */
+ /* .active {
    font-weight: bold;
- }
+ } */
+
+
 /* nav {
   position: sticky;
   top: 0;
@@ -43,8 +80,3 @@
   color: aliceblue;
   font-family: Georgia, 'Times New Roman', Times, serif;
 } */
-
-.nav-space {
-  display: inline-flex;
-  margin-left:auto;
-}

@@ -3,6 +3,7 @@ import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_LISTINGS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
 const EDIT_LISTING = 'listings/EDIT_LISTING';
+const DELETE_LISTING = 'listings/DELETE_LISTING';
 
 const loadListingsByOwner = listings => ({
   type: LOAD_LISTINGS_BY_OWNER,
@@ -13,6 +14,53 @@ const editListing = listing => ({
   type: EDIT_LISTING,
   listing,
 })
+
+const deleteListing = (ownerId, carId) => ({
+  type: DELETE_LISTING,
+  ownerId,
+  carId,
+});
+
+//////////////////////////////////////////////////////////////////////////////
+
+export const deleteOneListing = (ownerId, carId) => async dispatch => {
+
+    const response = await csrfFetch(`/api/listings/${ownerId}/${carId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    if (!response.ok) {
+      let error;
+      if (response.status === 422) {
+        error = await response.json();
+        throw new ValidationError(error.errors, response.statusText);
+      } else {
+        let errorJSON;
+        error = await response.text();
+        try {
+          // Check if the error is JSON, i.e., from the Car seeds. If so,
+          // don't throw error yet or it will be caught by the following catch
+          errorJSON = JSON.parse(error);
+        } catch {
+          // Case if server could not be reached
+          throw new Error(error);
+        }
+        throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
+      }
+    }
+
+    //if response is ok
+    const deletedListing = await response.json();
+    await dispatch(deleteListing(ownerId, carId));
+    return deletedListing;
+
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
 
 export const editOneListing = payload => async dispatch => {
   const {ownerId, carId} = payload;
@@ -53,6 +101,8 @@ export const editOneListing = payload => async dispatch => {
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////
+
 
 export const getUserListings = (id) => async dispatch => {
   const response = await fetch(`/api/listings/${id}`);
@@ -63,26 +113,27 @@ export const getUserListings = (id) => async dispatch => {
   }
 }
 
-// const initialState = {
-//   list: [],
-//   types: [],
-// };
+//////////////////////////////////////////////////////////////////////////////
 
 
 const listingsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_LISTINGS_BY_OWNER:
       const listings = action.listings;
-      const newState = {...listings};
+      const newState = {};
+      listings.forEach(listing => {
+        newState[listing.id] = listing;
+      });
       return newState;
     case EDIT_LISTING:
       return {
         ...state,
-        [action.listing.id]: {
-          ...state[action.listing.id],
-          ...action.listing,
-        },
+        [action.listing.id]: {...action.listing},
       };
+    case DELETE_LISTING:
+      const updatedState = { ...state};
+      delete updatedState[action.carId]
+      return updatedState;
     default:
       return state;
   }

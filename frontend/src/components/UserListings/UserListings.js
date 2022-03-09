@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
-import '../LandingPage/LandingPage.css'
+import '../LandingPage/LandingPage.css';
+import '../../index.css'
 
 
 import { getUserListings } from "../../store/listings";
 import EditListingForm from "../EditListing/EditListing";
+import DeleteListing from "../DeleteListing/DeleteListing";
 
 function UserListings() {
   // const [showListings, setShowListings] = useState(false);
@@ -27,15 +29,16 @@ function UserListings() {
   //   setShowListings(true);
   // }
 
-  useEffect(() => {
-    dispatch(getUserListings(id));
-  }, [dispatch]);
-
   const listings = useSelector((state) => {
     return Object.values(state.listings);
   });
 
-  console.log("listings--------", listings);
+  useEffect(() => {
+    dispatch(getUserListings(id));
+
+  }, [listings.toString()]);
+
+  console.log("listings----------", listings);
 
 
   // const handleCloseListings = (e) => {
@@ -60,8 +63,8 @@ function UserListings() {
                 width="360px"
               />
               <span>{car.brand} {car.model}</span>
-              <EditListingForm user={sessionUser} carId={car.id}/>
-              <button type="button">Delete</button>
+              <EditListingForm ownerId={sessionUser.id} carId={car.id}/>
+              <DeleteListing ownerId={sessionUser.id} carId={car.id} />
             </span>
           ))}
         </div>

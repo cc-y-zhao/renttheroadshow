@@ -3,6 +3,7 @@ import { ValidationError } from '../utils/ValidationError';
 
 const LOAD_CARS = 'cars/LOAD';
 const ADD_ONE_CAR = 'cars/ADD_ONE';
+const LOAD_ONE_CAR = 'cars/LOAD_ONE';
 
 const loadCars = list => ({
   type: LOAD_CARS,
@@ -13,6 +14,22 @@ const addOneCar = car => ({
   type: ADD_ONE_CAR,
   car,
 });
+
+const loadOneCar = car => ({
+  type: LOAD_ONE_CAR,
+  car
+});
+
+export const getOneCar = (carId) => async dispatch => {
+  const response = await fetch(`/api/cars/${carId}`);
+
+  if (response.ok) {
+    const car = await response.json();
+    console.log("car from fetch-----------------", car);
+    dispatch(loadOneCar(car));
+  }
+};
+
 
 export const getCars = () => async dispatch => {
   const response = await fetch(`/api/cars`);
@@ -62,30 +79,21 @@ export const createListing = payload => async dispatch => {
 };
 
 
-// const initialState = {
-//   list: [],
-//   types: [],
-// };
-
-//utility function. This could go in another file
-//returns an ordered array of pokemon numbers
-// const sortList = list => {
-//   return list
-//     .sort((pokemonA, pokemonB) => {
-//       return pokemonA.number - pokemonB.number;
-//     })
-//     .map(pokemon => pokemon.id);
-// };
-
 const carReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_CARS:
-      const allCars = {};
+      const allCars = {...state};
       action.list.forEach(car => {
         allCars[car.id] = car;
       });
 
       return allCars;
+    case LOAD_ONE_CAR:
+      const car = action.car;
+      return {
+        ...state,
+        [action.car.id]: car
+      };
     case ADD_ONE_CAR:
       const newCar = action.car;
       const newState = { ...state, newCar};
@@ -96,3 +104,8 @@ const carReducer = (state = {}, action) => {
 };
 
 export default carReducer;
+// const car = action.car;
+// return {
+//   ...state,
+//   [action.car.id]: car
+// };

@@ -106,13 +106,13 @@ const CreateListingForm = ({ user }) => {
 
   return (
     <>
-      <button onClick={openForm}>
+      <span className='nav-element create-form-btn' onClick={openForm}>
         Create Rental Listing
-      </button>
+      </span>
       {showForm && (
         <section>
-          <form className="create-pokemon-form" onSubmit={handleSubmit}>
-            <ul className="errors">
+          <form onSubmit={handleSubmit}>
+            <ul>
               {errors &&
                 errors.map(error => (
                   <li key={error}>{error}</li>
