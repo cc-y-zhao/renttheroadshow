@@ -7,7 +7,7 @@ import './UserListings.css'
 
 
 import { getUserListings } from "../../store/listings";
-import EditListingForm from "../EditListing/EditListing";
+import EditListingModal from "../EditListing";
 import DeleteListing from "../DeleteListing/DeleteListing";
 
 function UserListings() {
@@ -64,7 +64,7 @@ function UserListings() {
                 width="360px"
               />
               <span className='car-name'>{car.brand} {car.model}</span>
-              <EditListingForm ownerId={sessionUser.id} carId={car.id}/>
+              <EditListingModal ownerId={sessionUser.id} carId={car.id}/>
               <DeleteListing ownerId={sessionUser.id} carId={car.id} />
             </div>
           ))}

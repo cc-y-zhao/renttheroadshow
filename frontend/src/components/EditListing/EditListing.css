@@ -1,0 +1,26 @@
+input {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+section {
+  margin: 40px;
+}
+
+.btn-in-form {
+  margin-top: 20px;
+}
+
+.create-listing {
+  margin-right: 20px;
+}
+
+.description {
+  height: 100px;
+}
+.section-edit-listing-form span {
+  display: block;
+  margin-bottom: 3px;
+}

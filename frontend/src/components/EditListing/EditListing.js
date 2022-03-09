@@ -5,17 +5,18 @@ import { editOneListing } from '../../store/listings';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
+import './EditListing.css';
 
-const EditListingForm = ({ ownerId, carId}) => {
-  const [showForm, setShowForm] = useState(false);
+const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
+  // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const openForm = () => {
-    if (showForm) return;
-    setShowForm(true);
-  }
+  // const openForm = () => {
+  //   if (showForm) return;
+  //   setShowForm(true);
+  // }
 
   const [errors, setErrors] = useState([]);
 
@@ -80,7 +81,8 @@ const EditListingForm = ({ ownerId, carId}) => {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!');
       console.log("updated listing------------", updatedListing);
-      setShowForm(false);
+      setShowModal(false);
+      history.push(`/cars/${carId}`)
       return;
       // return;
       // alert()
@@ -92,54 +94,58 @@ const EditListingForm = ({ ownerId, carId}) => {
     e.preventDefault();
     setErrors([]);
     //close form:
-    setShowForm(false);
+    setShowModal(false);
   };
 
   return (
     <>
-      <button className='btn-in-listing' onClick={openForm}>
-        Edit Listing
-      </button>
-      {showForm && (
-        <section>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors &&
-                errors.map(error => (
-                  <li key={error}>{error}</li>
-                ))
-              }
-            </ul>
-            <input
-              type="hidden"
-              value={ownerId}
-            />
-            <input
-              type="hidden"
-              value={carId}
-            />
-            Make:
+      <section className='section-edit-listing-form'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors &&
+              errors.map(error => (
+                <li key={error}>{error}</li>
+              ))
+            }
+          </ul>
+          <input
+            type="hidden"
+            value={ownerId}
+          />
+          <input
+            type="hidden"
+            value={carId}
+          />
+          <div>
+            <span>Make: </span>
             <input
               type="text"
               placeholder="Make"
               required
               value={brand}
               onChange={updateBrand} />
-            Model:
+          </div>
+          <div>
+            <span>Model: </span>
             <input
               type="text"
               placeholder="Model"
               required
               value={model}
               onChange={updateModel} />
-            Description:
+          </div>
+          <div>
+            <span>Description: </span>
             <input
+            className='description'
               type="text"
               placeholder="Tell us a bit about your car"
               required
               value={description}
               onChange={updateDescription} />
-            Price:
+          </div>
+          <div>
+            <span>Price: </span>
             <input
               type="number"
               placeholder="Price"
@@ -147,34 +153,41 @@ const EditListingForm = ({ ownerId, carId}) => {
               required
               value={price}
               onChange={updatePrice} />
-            Image URL:
+          </div>
+          <div>
+            <span>Image URL: </span>
             <input
               type="text"
               placeholder="Image URL"
               value={imageURL}
               onChange={updateImageURL} />
-            City:
+          </div>
+          <div>
+            <span>City:</span>
             <input
               type="text"
               placeholder="City"
               value={city}
               onChange={updateCity} />
-            State:
+          </div>
+          <div>
+            <span>State: </span>
             <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
             </select>
-            <button
-              type="submit"
-              disabled={errors.length > 0}
-            >
-              Update Listing
-            </button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
-          </form>
-        </section>
-      )}
+          </div>
+          <button
+            className='btn-in-form'
+            type="submit"
+            disabled={errors.length > 0}
+          >
+            Update Listing
+          </button>
+          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+        </form>
+      </section>
     </>
   );
 };
