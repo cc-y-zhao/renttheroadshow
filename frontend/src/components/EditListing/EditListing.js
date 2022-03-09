@@ -16,19 +16,7 @@ const EditListingForm = ({ ownerId, carId}) => {
     if (showForm) return;
     setShowForm(true);
   }
-  ////////////
-  // useEffect(() => {
-  //   if (!showForm) return;
 
-  //   const closeMenu = () => {
-  //     setShowForm(false);
-  //   };
-
-  //   document.addEventListener('click', closeMenu);
-
-  //   return () => document.removeEventListener("click", closeMenu);
-
-  // }, [showForm]);
   const [errors, setErrors] = useState([]);
 
   const [description, setDescription] = useState('');
@@ -109,7 +97,7 @@ const EditListingForm = ({ ownerId, carId}) => {
 
   return (
     <>
-      <button onClick={openForm}>
+      <button className='btn-in-listing' onClick={openForm}>
         Edit Listing
       </button>
       {showForm && (

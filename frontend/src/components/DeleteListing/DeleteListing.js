@@ -23,7 +23,7 @@ const DeleteListing = ({ ownerId, carId }) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Delete Listing</button>
+      <button className='btn-in-listing' onClick={() => setShowModal(true)}>Delete Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <section>

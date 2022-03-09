@@ -123,6 +123,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Description: </span>
             <input
+              className='description'
               type="text"
               placeholder="Tell us a bit about your car"
               required

@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../LandingPage/LandingPage.css';
 import '../../index.css'
+import './UserListings.css'
 
 
 import { getUserListings } from "../../store/listings";
@@ -53,19 +54,19 @@ function UserListings() {
     <div>
       <h2>My Listings</h2>
       <div>
-        <div>
+        <div className='listings-container'>
           {listings?.map((car) => (
-            <span className='car-in-listings'>
+            <div className='car-in-listings'>
               <img
                 src={car.imageURL}
                 alt={`${car.brand} ${car.model}`}
                 height="370px"
                 width="360px"
               />
-              <span>{car.brand} {car.model}</span>
+              <span className='car-name'>{car.brand} {car.model}</span>
               <EditListingForm ownerId={sessionUser.id} carId={car.id}/>
               <DeleteListing ownerId={sessionUser.id} carId={car.id} />
-            </span>
+            </div>
           ))}
         </div>
       </div>

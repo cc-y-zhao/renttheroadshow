@@ -16,11 +16,10 @@ section {
 .create-listing {
   margin-right: 20px;
 }
-/*
-.make-in-form > input {
-  left: 20px;
-} */
 
+.description {
+  height: 100px;
+}
 .section-create-listing-form span {
   display: block;
   margin-bottom: 3px;
