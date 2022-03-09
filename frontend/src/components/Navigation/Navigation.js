@@ -36,7 +36,12 @@ function Navigation({ isLoaded }) {
     <nav className='nav-container'>
       <ul className='links-in-nav'>
         <li className='no-bullet'>
-          <NavLink className='navlink nav-element nav-home' exact to="/">Home</NavLink>
+          <NavLink className='navlink nav-element nav-home' exact to="/">
+            <img
+              src={'./logo.png'}
+              alt={'RTRS logo'}
+            />
+          </NavLink>
           {isLoaded && sessionLinks}
         </li>
       </ul>
@@ -45,3 +50,15 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
+
+
+// return (
+//   <nav className='nav-container'>
+//     <ul className='links-in-nav'>
+//       <li className='no-bullet'>
+//         <NavLink className='navlink nav-element nav-home' exact to="/">Home</NavLink>
+//         {isLoaded && sessionLinks}
+//       </li>
+//     </ul>
+//   </nav>
+// );
