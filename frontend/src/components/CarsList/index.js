@@ -14,6 +14,7 @@ function CarsList() {
   // const [currentCar, setCurrentCar] = useState({});
 
   const cars = useSelector((state) => {
+    console.log("state.cars----------------", state.cars);
     return Object.values(state.cars);
   });
 

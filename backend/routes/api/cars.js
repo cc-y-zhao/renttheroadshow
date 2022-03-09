@@ -26,9 +26,14 @@ router.post(
 
 router.get(
   '/:carId',
-  asyncHandler(async function (req, res) {
+  asyncHandler(async function (_req, res) {
     const id = parseInt(req.params.carId, 10);
+    console.log("id from fetch-----------------", id);
+
     const car = await Car.findByPk(id)
+
+    console.log("car from fetch-----------------", car);
+
 
     return res.json(car);
   })

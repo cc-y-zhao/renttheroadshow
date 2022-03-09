@@ -9,39 +9,42 @@ function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
 
+  console.log("carId------------", carId);
+
+
   const car = useSelector(state => {
-    console.log("state---------------", state.cars);
-    // return Object.values(state.cars[carId]);
+    console.log("state---------------", state.cars.carId);
+    return Object.values(state.cars[carId]);
   });
-
-  console.log("car----------------", car);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getOneCar(carId));
   }, [dispatch]);
+  // console.log("car----------------", car);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
 
-  // return (
-  //   <div>
-  //     <h2>{car.brand} {car.model}</h2>
-  //     <div>
-  //       <div>
-  //         <img
-  //           src={car.imageURL}
-  //           alt={`${car.brand} ${car.model}`}
-  //           height="370px"
-  //           width="360px"
-  //         />
-  //       </div>
-  //       <div>{car.description}</div>
-  //       <div>Price: {car.price}</div>
-  //       <div>Location: {car.city}, {car.state}</div>
-  //     </div>
-  //   </div>
-  // )
+
+  return (
+    <div>
+      <h2>{car.brand} {car.model}</h2>
+      <div>
+        <div>
+          <img
+            src={car.imageURL}
+            alt={`${car.brand} ${car.model}`}
+            height="370px"
+            width="360px"
+          />
+        </div>
+        <div>{car.description}</div>
+        <div>Price: {car.price}</div>
+        <div>Location: {car.city}, {car.state}</div>
+      </div>
+    </div>
+  )
 };
 
 export default CarPage;

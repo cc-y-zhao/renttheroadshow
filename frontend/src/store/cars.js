@@ -25,6 +25,7 @@ export const getOneCar = (carId) => async dispatch => {
 
   if (response.ok) {
     const car = await response.json();
+    console.log("car from fetch-----------------", car);
     dispatch(loadOneCar(car));
   }
 };
@@ -88,11 +89,10 @@ const carReducer = (state = {}, action) => {
 
       return allCars;
     case LOAD_ONE_CAR:
+      const car = action.car;
       return {
         ...state,
-        [action.car.id]: {
-          ...state[action.car.id]
-        }
+        [action.car.id]: car
       };
     case ADD_ONE_CAR:
       const newCar = action.car;
@@ -104,3 +104,8 @@ const carReducer = (state = {}, action) => {
 };
 
 export default carReducer;
+// const car = action.car;
+// return {
+//   ...state,
+//   [action.car.id]: car
+// };
