@@ -106,7 +106,7 @@ const CreateListingForm = ({ user }) => {
 
   return (
     <>
-      <button onClick={openForm}>
+      <button className='nav-element' onClick={openForm}>
         Create Rental Listing
       </button>
       {showForm && (

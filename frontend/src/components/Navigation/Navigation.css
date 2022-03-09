@@ -4,22 +4,31 @@
   display: flex;
   /* flex-wrap: wrap; */
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
   padding: 0.5rem 1rem;
   text-align: center;
   background-color: rgb(44, 42, 42);
   margin-bottom: 15px;
   margin-top: 10px;
-  align-content: center;
+  /* align-content: center; */
   color: white;
  }
 
- .welcome-msg {
+ .nav-element {
    display: inline-flex;
-   margin-left: 900px;
-   /* align-self:flex-end; */
-   /* margin-right: 0px; */
-   font-style: italic;
+   flex-direction: row;
+   color: white;
+   align-content: space-around;
+ }
+
+ .welcome-msg {
+  margin-right: 0px;
+  margin-left: 700px;
+  font-style: italic;
+ }
+
+ .nav-home {
+   margin-right: 20px;
  }
 
  .navlink {
@@ -28,7 +37,9 @@
 
  .active {
    font-weight: bold;
- }
+ } */
+
+
 /* nav {
   position: sticky;
   top: 0;

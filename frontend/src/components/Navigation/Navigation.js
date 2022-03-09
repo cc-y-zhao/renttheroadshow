@@ -17,10 +17,9 @@ function Navigation({ isLoaded }) {
       <>
         <ProfileButton user={sessionUser} />
         <CreateListingForm user={sessionUser}/>
-        <ul className='nav-space'></ul>
-        <NavLink className='navlink' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
-        <NavLink className='navlink' to='/'>My Reviews</NavLink>
-        <span className='welcome-msg'>Welcome, {sessionUser.username}!</span>
+        <NavLink className='navlink nav-element' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
+        <NavLink className='navlink nav-element' to='/'>My Reviews</NavLink>
+        <span className='welcome-msg nav-element'>Welcome, {sessionUser.username}!</span>
       </>
     );
   } else {
@@ -34,9 +33,9 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav className='nav-container'>
-      <ul>
+      <ul className='links-in-nav'>
         <li>
-          <NavLink className='navlink' exact to="/">Home</NavLink>
+          <NavLink className='navlink nav-element nav-home' exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
         </li>
       </ul>
