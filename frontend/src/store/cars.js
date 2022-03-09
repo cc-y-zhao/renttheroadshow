@@ -62,21 +62,6 @@ export const createListing = payload => async dispatch => {
 };
 
 
-// const initialState = {
-//   list: [],
-//   types: [],
-// };
-
-//utility function. This could go in another file
-//returns an ordered array of pokemon numbers
-// const sortList = list => {
-//   return list
-//     .sort((pokemonA, pokemonB) => {
-//       return pokemonA.number - pokemonB.number;
-//     })
-//     .map(pokemon => pokemon.id);
-// };
-
 const carReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_CARS:

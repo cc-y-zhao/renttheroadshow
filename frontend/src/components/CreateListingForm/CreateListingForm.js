@@ -111,8 +111,8 @@ const CreateListingForm = ({ user }) => {
       </button>
       {showForm && (
         <section>
-          <form className="create-pokemon-form" onSubmit={handleSubmit}>
-            <ul className="errors">
+          <form onSubmit={handleSubmit}>
+            <ul>
               {errors &&
                 errors.map(error => (
                   <li key={error}>{error}</li>
