@@ -64,7 +64,8 @@ function UserListings() {
                 width="360px"
               />
               <span className='car-name'>{car.brand} {car.model}</span>
-              <EditListingModal ownerId={sessionUser.id} carId={car.id}/>
+              <EditListingModal car={car} ownerId={sessionUser.id} carId={car.id}
+              />
               <DeleteListing ownerId={sessionUser.id} carId={car.id} />
             </div>
           ))}
@@ -75,3 +76,14 @@ function UserListings() {
 }
 
 export default UserListings;
+
+
+// oldMake = { car.brand }
+// oldModel = { car.model }
+// oldDescription = { car.description }
+// oldPrice = { car.price }
+// oldImageURL = { car.imageURL }
+// oldCity = { car.city }
+// oldState = { car.state }
+// ownerId = { sessionUser.id }
+// carId = { car.id }

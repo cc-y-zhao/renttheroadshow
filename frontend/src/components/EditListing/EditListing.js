@@ -7,7 +7,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
 import './EditListing.css';
 
-const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
+const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
   // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
@@ -122,7 +122,7 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
               type="text"
               placeholder="Make"
               required
-              value={brand}
+              value={car.brand}
               onChange={updateBrand} />
           </div>
           <div>
@@ -131,7 +131,7 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
               type="text"
               placeholder="Model"
               required
-              value={model}
+              value={car.model}
               onChange={updateModel} />
           </div>
           <div>
@@ -141,7 +141,7 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
               type="text"
               placeholder="Tell us a bit about your car"
               required
-              value={description}
+              value={car.description}
               onChange={updateDescription} />
           </div>
           <div>
@@ -151,7 +151,7 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
               placeholder="Price"
               min="15"
               required
-              value={price}
+              value={car.price}
               onChange={updatePrice} />
           </div>
           <div>
@@ -159,7 +159,7 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
             <input
               type="text"
               placeholder="Image URL"
-              value={imageURL}
+              value={car.imageURL}
               onChange={updateImageURL} />
           </div>
           <div>
@@ -167,12 +167,12 @@ const EditListingForm = ({ ownerId, carId, showModal, setShowModal}) => {
             <input
               type="text"
               placeholder="City"
-              value={city}
+              value={car.city}
               onChange={updateCity} />
           </div>
           <div>
             <span>State: </span>
-            <select onChange={updateState} value={state}>
+            <select onChange={updateState} value={car.state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
