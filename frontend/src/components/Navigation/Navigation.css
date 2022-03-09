@@ -2,13 +2,13 @@
   position: sticky;
   top: 0;
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: nowrap;
   align-items: center;
   /* justify-content: space-evenly; */
   padding: 0.5rem 1rem;
   text-align: center;
-  background-color: rgb(230, 209, 230);
-  border: medium solid rgb(90, 21, 90);
+  background-color: rgb(248, 241, 248);
+  border: medium solid #a43795;
   margin-bottom: 15px;
   margin-top: 10px;
   /* align-content: center; */
