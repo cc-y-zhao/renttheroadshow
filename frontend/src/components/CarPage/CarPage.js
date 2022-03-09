@@ -1,17 +1,23 @@
-import { Modal } from '../../context/Modal';
+// import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 import { getCars } from "../../store/cars";
-import CarPageModal from '../CarPageModal/CarPageModal';
 
-function CarsList() {
-  const dispatch = useDispatch();
-  const history = useHistory();
+function CarPage() {
+  // const dispatch = useDispatch();
+  // const history = useHistory();
 
-  // const [showModal, setShowModal] = useState(false);
-  // const [currentCar, setCurrentCar] = useState({});
+  // const cars = useSelector((state) => {
+  //   return Object.values(state.cars);
+  // });
+
+  // useEffect(() => {
+  //   dispatch(getCars());
+  // }, [dispatch]);
+  const params = useParams();
+  const carId = parseInt(params.carId, 10);
 
   const cars = useSelector((state) => {
     return Object.values(state.cars);
@@ -19,42 +25,29 @@ function CarsList() {
 
   console.log("all cars-----------------", cars);
 
+  console.log("params---------------", params);
 
-  useEffect(() => {
-    dispatch(getCars());
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getCars()).then((data) => {
-  //     if (!data) history.push("/404");
-  //   });
-  // }, [dispatch]);
-
-  return (
-    <div>
-      <h2>Cars For Rent</h2>
-      <div>
-        <div>
-          {cars?.map((car) => (
-            <>
-              <a href={'/cars/'+car.id}>
-                <img
-                  src={car.imageURL}
-                  alt={`${car.brand} ${car.model}`}
-                  height="370px"
-                  width="360px"
-                />
-              </a>
-            </>
-          ))}
-        </div>
-      </div>
-
-    </div>
-  )
+  // return (
+  //   <div>
+  //     <h2>{car.brand} {car.model}</h2>
+  //     <div>
+  //       <div>
+  //         <img
+  //           src={car.imageURL}
+  //           alt={`${car.brand} ${car.model}`}
+  //           height="370px"
+  //           width="360px"
+  //         />
+  //       </div>
+  //       <div>{car.description}</div>
+  //       <div>Price: {car.price}</div>
+  //       <div>Location: {car.city}, {car.state}</div>
+  //     </div>
+  //   </div>
+  // )
 }
 
-export default CarsList;
+export default CarPage;
 
 
 

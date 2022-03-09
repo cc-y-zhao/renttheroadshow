@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation/Navigation";
 
 import CarsList from "./components/CarsList";
 import UserListings from "./components/UserListings/UserListings";
+import CarPage from "./components/CarPage/CarPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <CarsList />
+          </Route>
+          <Route path='/cars/:carId'>
+            <CarPage />
           </Route>
           <Route path='/listings/:userId'>
             <UserListings/>
