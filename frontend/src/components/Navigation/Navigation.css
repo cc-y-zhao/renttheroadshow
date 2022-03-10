@@ -49,8 +49,7 @@ nav {
 
  .logo-in-nav {
   position: absolute;
-  top: 2.3%;
-  margin-left: 15px;
+  top: 16px;
  }
 
  .nav-listings {
@@ -68,7 +67,7 @@ nav {
  }
 
  .navlink {
-   color: black;
+   color: rgb(15, 14, 14);
  }
 
  /* .nav-space {
