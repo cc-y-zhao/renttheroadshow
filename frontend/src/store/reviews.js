@@ -32,7 +32,7 @@ const addOneReview = review => ({
 //////////////////////////////////////////////////////////////////////////////
 
 export const createReview = payload => async dispatch => {
-  console.log("HI FROM THE CARS STORE-----------");
+  console.log("HI FROM THE REVIEWS STORE-----------");
   try {
     const response = await csrfFetch(`/api/reviews`, {
       method: 'POST',
@@ -169,25 +169,27 @@ export const createReview = payload => async dispatch => {
 
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
-    case LOAD_LISTINGS_BY_OWNER:
-      const listings = action.listings;
-      const newState = {};
-      listings.forEach(listing => {
-        newState[listing.id] = listing;
-      });
-      return newState;
-    case EDIT_LISTING:
-      return {
-        ...state,
-        [action.listing.id]: { ...action.listing },
-      };
-    case DELETE_LISTING:
-      const updatedState = { ...state };
-      delete updatedState[action.carId]
-      return updatedState;
     default:
       return state;
   }
 };
 
 export default reviewsReducer;
+
+
+// case LOAD_LISTINGS_BY_OWNER:
+// const listings = action.listings;
+// const newState = {};
+// listings.forEach(listing => {
+//   newState[listing.id] = listing;
+// });
+// return newState;
+//     case EDIT_LISTING:
+// return {
+//   ...state,
+//   [action.listing.id]: { ...action.listing },
+// };
+//     case DELETE_LISTING:
+// const updatedState = { ...state };
+// delete updatedState[action.carId]
+// return updatedState;
