@@ -5,8 +5,8 @@ import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-import { createListing } from '../../store/cars';
-import { getUserListings } from '../../store/listings';
+// import { createListing } from '../../store/cars';
+// import { getUserListings } from '../../store/listings';
 import { getOneCar } from '../../store/cars';
 
 import './CreateReviewForm.css';
@@ -17,10 +17,8 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
   const history = useHistory();
 
   const [errors, setErrors] = useState([]);
-
   const [content, setContent] = useState('');
   const [rating, setRating] = useState(0);
-
 
   const updateRating = (e) => setRating(e.target.value);
   const updateContent = (e) => setContent(e.target.value);
@@ -38,35 +36,31 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
     e.preventDefault();
 
     const payload = {
-      ownerId,
+      userId,
+      carId,
       rating,
-      brand,
-      model,
-      imageURL,
-      content,
-      city,
-      state
+      content
     };
 
-    let newListing;
+    let newReview;
 
     try {
       console.log("HI FROM TRY CATCH-----------------")
 
-      newListing = await dispatch(createListing(payload));
+      // newReview = await dispatch(createListing(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrors(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
       else setErrors({ overall: error.toString().slice(7) })
     }
-    if (newListing) {
+    if (newReview) {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
-      dispatch(getUserListings(user.id));
-      dispatch(getOneCar(newListing.id));
-      return history.push(`/listings/${user.id}`);
+      // dispatch(getUserListings(user.id));
+      // dispatch(getOneCar(newReview.id));
+      // return history.push(`/listings/${user.id}`);
     }
   };
 
@@ -89,67 +83,27 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
           </ul>
           <input
             type="hidden"
-            value={user.id}
+            value={userId}
+          />
+          <input
+            type="hidden"
+            value={carId}
           />
           <div>
-            <span>Make: </span>
-            <input
-              type="text"
-              placeholder="Make"
-              required
-              value={brand}
-              onChange={updateBrand} />
-          </div>
-          <div>
-            <span>Model: </span>
-            <input
-              type="text"
-              placeholder="Model"
-              required
-              value={model}
-              onChange={updateModel} />
-          </div>
-          <div>
-            <span>Description: </span>
+            <span>Review: </span>
             <input
               className='rating'
               type="text"
-              placeholder="Tell us a bit about your car"
-              required
-              value={rating}
-              onChange={updateRating} />
-          <updateContent/div>
-          <div>
-            <span>Price per day: </span>
-            <input
-              type="number"
-              placeholder="Price"
-              min="15"
+              placeholder="Tell us about your experience renting this car"
               required
               value={content}
-              onChange={updatePrice} />
+              onChange={updateContent} />
           </div>
           <div>
-            <span>Image URL: </span>
-            <input
-              type="text"
-              placeholder="Image URL"
-              value={imageURL}
-              onChange={updateImageURL} />
-          </div>
-          <div>
-            <span>City: </span>
-            <input
-              type="text"
-              placeholder="City"
-              value={city}
-              onChange={updateCity} />
-          </div>
-          <div>
-            <span>State: </span>
-            <select onChange={updateState} value={state}>
-              {allStates.map(state =>
-                <option key={state}>{state}</option>
+            <span>Rating: </span>
+            <select onChange={updateRating} value={rating}>
+              {["", 1, 2, 3, 4, 5].map(num =>
+                <option key={num}>{num}</option>
               )}
             </select>
           </div>
@@ -157,7 +111,7 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
             type="submit"
             disabled={errors.length > 0}
           >
-            Create new listing
+            Post Review
           </button>
           <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
         </form>
