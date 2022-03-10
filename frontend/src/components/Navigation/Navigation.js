@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
+import ProfileButtonModal from './ProfileButtonModal';
 import CreateRentalListingModal from '../CreateListingForm/index';
 import UserListings from '../UserListings/UserListings';
 import LoginFormModal from '../LoginFormModal';
@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <ProfileButton user={sessionUser} />
+        <ProfileButtonModal user={sessionUser} />
         <CreateRentalListingModal user={sessionUser}/>
         <NavLink className='navlink nav-element nav-listings' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
         <NavLink className='navlink nav-element nav-reviews' to='/'>My Reviews</NavLink>
@@ -62,3 +62,6 @@ export default Navigation;
 //     </ul>
 //   </nav>
 // );
+
+
+// <ProfileButton user={sessionUser} />

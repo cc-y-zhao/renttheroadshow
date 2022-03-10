@@ -135,7 +135,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
               onChange={updateDescription} />
           </div>
           <div>
-            <span>Price: </span>
+            <span>Price per day: </span>
             <input
               type="number"
               placeholder="Price"

@@ -145,7 +145,7 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
               onChange={updateDescription} />
           </div>
           <div>
-            <span>Price: </span>
+            <span>Price per day: </span>
             <input
               type="number"
               placeholder={car.price}
