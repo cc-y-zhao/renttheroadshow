@@ -1,0 +1,38 @@
+
+.img-of-car img{
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.description-of-car {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 500px;
+  margin-bottom: 25px;
+}
+
+.price-of-car {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 500px;
+  margin-bottom: 25px;
+}
+
+.location-of-car {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 500px;
+  margin-bottom: 25px;
+}
+
+.car-page-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  /* align-items: center; */
+}

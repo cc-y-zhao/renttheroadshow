@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import '../LandingPage/LandingPage.css';
 import '../../index.css'
@@ -57,13 +57,15 @@ function UserListings() {
         <div className='listings-container'>
           {listings?.map((car) => (
             <div className='car-in-listings'>
-              <img
-                src={car.imageURL}
-                alt={`${car.brand} ${car.model}`}
-                height="370px"
-                width="360px"
-              />
-              <span className='car-name'>{car.brand} {car.model}</span>
+              <NavLink className='car-in-listings' key={car.id} to={'/cars/'+car.id}>
+                <img
+                  src={car.imageURL}
+                  alt={`${car.brand} ${car.model}`}
+                  height="370px"
+                  width="360px"
+                />
+                <span className='car-name'>{car.brand} {car.model}</span>
+              </NavLink>
               <EditListingModal car={car} ownerId={sessionUser.id} carId={car.id}
               />
               <DeleteListing ownerId={sessionUser.id} carId={car.id} />

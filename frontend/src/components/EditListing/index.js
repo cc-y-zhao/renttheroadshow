@@ -7,7 +7,7 @@ function EditListingModal({ car, ownerId, carId }) {
 
   return (
     <>
-      <button className='nav-element' onClick={() => setShowModal(true)}>Edit Listing</button>
+      <button className='nav-element btn-in-listing' onClick={() => setShowModal(true)}>Edit Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditListingForm car={car} ownerId={ownerId} carId={carId} showModal={showModal} setShowModal={setShowModal} />
