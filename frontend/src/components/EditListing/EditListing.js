@@ -120,7 +120,7 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
             <span>Make: </span>
             <input
               type="text"
-              placeholder={car.brand}
+              placeholder={car.brand} //TODO: change this to default value
               required
               value={brand}
               onChange={updateBrand} />
@@ -172,7 +172,7 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           </div>
           <div>
             <span>State: </span>
-            <select onChange={updateState} value={state} placeholder={car.state}>
+            <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
