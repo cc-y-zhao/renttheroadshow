@@ -24,8 +24,6 @@ function CarsList() {
     return Object.values(state.cars);
   });
 
-  console.log("all cars-----------------", cars);
-
 
   useEffect(() => {
     dispatch(getCars());

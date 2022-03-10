@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Redirect } from 'react-router-dom';
-import { deleteOneListing } from '../../store/listings';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
+
+import { deleteOneListing } from '../../store/listings';
 
 const DeleteListing = ({ ownerId, carId }) => {
   const [showModal, setShowModal] = useState(false);
