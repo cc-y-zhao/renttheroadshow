@@ -15,16 +15,14 @@ nav {
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
  }
-/*
-.no-bullet li::marker {
-  list-style-type: none;
-} */
+
+ .links-in-nav {
+   list-style: none;
+ }
 
  .nav-element {
    display: inline-flex;
    justify-content: space-around;
-   /* flex: 0 0 100%; */
-   /* flex-direction: column; */
    color: black;
  }
 
@@ -32,6 +30,11 @@ nav {
   position: absolute;
   right: 30px;
   font-style: italic;
+}
+
+.prof-icon {
+  position: absolute;
+  right: 200px;
 }
 
 .signup-nav {
@@ -44,9 +47,10 @@ nav {
   right: 100px;
 }
 
- .nav-home {
-  margin-right: 15px;
-  list-style-type: none;
+ .logo-in-nav {
+  position: absolute;
+  top: 2.3%;
+  margin-left: 15px;
  }
 
  .nav-listings {
@@ -59,7 +63,7 @@ nav {
  } */
 
  .create-form-btn {
-   margin-left: 15px;
+   margin-left: 75px;
    text-decoration: underline;
  }
 

@@ -7,7 +7,7 @@ function ProfileButtonModal({ user}) {
 
   return (
     <>
-      <button className='nav-element btn-in-listing' onClick={() => setShowModal(true)}>
+      <button className='nav-element btn-in-listing prof-icon' onClick={() => setShowModal(true)}>
         <i className="fas fa-user-circle profile-btn" />
       </button>
       {showModal && (

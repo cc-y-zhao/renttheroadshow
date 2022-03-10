@@ -38,8 +38,10 @@ function Navigation({ isLoaded }) {
         <li className='no-bullet'>
           <NavLink className='navlink nav-element nav-home' exact to="/">
             <img
-              src={'./logo.png'}
-              alt={'RTRS logo'}
+              className='logo-in-nav'
+              src='./images/logo.png'
+              alt='RTRS logo'
+              height='40px'
             />
           </NavLink>
           {isLoaded && sessionLinks}
