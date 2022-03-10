@@ -23,6 +23,8 @@ function CarPage() {
     dispatch(getOneCar(carId));
   }, [carId]);
 
+  //check if logged in user has already posted a review for this car, if so do not show create review modal:
+
 
   return (
     <div className='car-page-container'>

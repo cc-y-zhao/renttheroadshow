@@ -1,7 +1,6 @@
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('./utils');
 
-
 const content = check('content')
   .notEmpty()
   .withMessage('Review cannot be empty')

@@ -2,9 +2,19 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 
 const { Review } = require('../../db/models');
-const reviewValidations = require('../../validations/cars');
+const reviewValidations = require('../../validations/reviews');
 
 const router = express.Router();
+
+router.post(
+  '/',
+  reviewValidations.validateCreate,
+  asyncHandler(async function (req, res) {
+    const review = await Review.create(req.body);
+
+    return res.json(review);
+  })
+)
 
 // router.get(
 //   '/:userId',

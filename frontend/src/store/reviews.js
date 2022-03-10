@@ -62,9 +62,10 @@ export const createReview = payload => async dispatch => {
       }
     }
 
-    const car = await response.json();
-    dispatch(addOneCar(car));
-    return car;
+    const review = await response.json();
+    dispatch(addOneReview(review));
+    return review;
+
   } catch (error) {
     throw error;
   }
@@ -169,6 +170,8 @@ export const createReview = payload => async dispatch => {
 
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
+    case ADD_ONE_REVIEW:
+      const newState = {...state};
     default:
       return state;
   }

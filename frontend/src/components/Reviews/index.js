@@ -26,7 +26,7 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
   useEffect(() => {
     const validationErrors = [];
 
-    if (rating.length < 1 || rating.length > 5) validationErrors.push('Please submit a rating between 1 and 5');
+    if (rating.length === 0) validationErrors.push('Please submit a rating between 1 and 5');
     if (content.length < 10) validationErrors.push('Please tell us a bit more about your experience');
 
     setErrors(validationErrors);
