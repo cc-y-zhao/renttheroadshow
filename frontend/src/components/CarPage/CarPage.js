@@ -41,7 +41,7 @@ function CarPage() {
           />
         </div>
         <div className='description-of-car'>{car.description}</div>
-        <div className='price-of-car'>Rental Price: $ {car.price}</div>
+        <div className='price-of-car'>Rental Price Per Day: $ {car.price}</div>
         <div className='location-of-car'>Location: {car.city}, {car.state}</div>
       </div>
     </div>
