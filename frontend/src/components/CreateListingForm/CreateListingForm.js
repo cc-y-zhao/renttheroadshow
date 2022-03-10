@@ -79,7 +79,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
-      dispatch(getUserListings(newListing.id));
+      dispatch(getUserListings(user.id));
       dispatch(getOneCar(newListing.id));
       return history.push(`/listings/${user.id}`);
     }
