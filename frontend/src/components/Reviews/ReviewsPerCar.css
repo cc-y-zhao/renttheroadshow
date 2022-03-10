@@ -1,0 +1,15 @@
+.each-review {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: medium solid black;
+  width: 500px;
+}
+
+.review-content {
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.reviewer {
+  margin-bottom: 8px;
+}

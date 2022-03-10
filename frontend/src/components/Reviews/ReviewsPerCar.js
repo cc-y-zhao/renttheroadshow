@@ -7,7 +7,7 @@ import '../LandingPage/LandingPage.css'
 // import CarPageModal from '../CarPageModal/CarPageModal';
 import { NavLink } from 'react-router-dom';
 import '../../index.css';
-// import './CarsList.css';
+import './ReviewsPerCar.css';
 
 import { getReviewsByCar } from '../../store/reviews';
 
@@ -38,11 +38,11 @@ function ReviewsPerCar(carId) {
         <div>
           {reviews?.map((review) => {
             return (
-              <>
-                <div>{review.userId} said: </div>
-                <div>{review.content}</div>
+              <section className='each-review'>
+                <div className='reviewer'>{review.userId} said: </div>
+                <div className='review-content'>"{review.content}"</div>
                 <div>Rating: {review.rating}</div>
-              </>
+              </section>
             );
           }
           )}
