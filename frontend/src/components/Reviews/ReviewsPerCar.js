@@ -4,7 +4,6 @@ import { useParams, useHistory, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 
-// import CarPageModal from '../CarPageModal/CarPageModal';
 import { NavLink } from 'react-router-dom';
 import '../../index.css';
 import './ReviewsPerCar.css';
@@ -20,6 +19,8 @@ function ReviewsPerCar(carId) {
     console.log("state.reviews----------------", state)
     return Object.values(state.reviews);
   });
+
+  //TO DO: BUILD USERS STORE TO ACCESS ALL USERS AND PULL USERNAMES TO INCLUDE IN REVIEWS
 
   console.log("carId from reviewsperCar!!!!!!!!!-------------", carId.carId)
   console.log("reviews from ReviewsPerCar-----------", reviews);

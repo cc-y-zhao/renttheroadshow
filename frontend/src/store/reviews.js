@@ -194,6 +194,10 @@ const reviewsReducer = (state = {}, action) => {
         newState[review.id] = review;
       });
       return newState;
+    case ADD_ONE_REVIEW:
+      const newReview = action.review;
+      newState = {...state, newReview};
+      return newState;
     default:
       return state;
   }

@@ -5,13 +5,14 @@ import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-// import { createListing } from '../../store/cars';
+import { createReview, getReviewsByCar } from '../../store/reviews';
 // import { getUserListings } from '../../store/listings';
-import { getOneCar } from '../../store/cars';
+// import { getOneCar } from '../../store/cars';
 
 import './CreateReviewForm.css';
 
 const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,19 +36,21 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     const payload = {
       userId,
       carId,
       rating,
       content
     };
+    console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
 
     let newReview;
 
     try {
       console.log("HI FROM TRY CATCH-----------------")
 
-      // newReview = await dispatch(createListing(payload));
+      newReview = await dispatch(createReview(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrors(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
@@ -57,10 +60,10 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
     if (newReview) {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
+      dispatch(getReviewsByCar(carId));
       setShowModal(false);
-      // dispatch(getUserListings(user.id));
-      // dispatch(getOneCar(newReview.id));
-      // return history.push(`/listings/${user.id}`);
+      //TO DO: MAY NEED TO ADD OTHER DISPATCH (MY REVIEWS?)
+      return history.push(`/cars/${carId}`);
     }
   };
 

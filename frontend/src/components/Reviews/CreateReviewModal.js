@@ -5,7 +5,6 @@ import CreateReviewForm from './index';
 function CreateReviewModal({ carId, userId }) {
   const [showModal, setShowModal] = useState(false);
 
-
   return (
     <>
       <span className='nav-element create-form-btn' onClick={() => setShowModal(true)}>Post Review</span>
