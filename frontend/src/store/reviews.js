@@ -1,22 +1,23 @@
 import { csrfFetch } from "./csrf";
 import { ValidationError } from '../utils/ValidationError';
 
-
+const GET_REVIEWS_BY_CAR = 'reviews/GET_BY_CAR'
 const ADD_ONE_REVIEW = 'reviews/ADD_ONE';
+
+// const LOAD_LISTINGS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
+// const EDIT_LISTING = 'listings/EDIT_LISTING';
+// const DELETE_LISTING = 'listings/DELETE_LISTING';
 
 const addOneReview = review => ({
   type: ADD_ONE_REVIEW,
   review
 })
 
-// const LOAD_LISTINGS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
-// const EDIT_LISTING = 'listings/EDIT_LISTING';
-// const DELETE_LISTING = 'listings/DELETE_LISTING';
+const loadReviewsByCar = reviews => ({
+  type: GET_REVIEWS_BY_CAR,
+  reviews,
+});
 
-// const loadListingsByOwner = listings => ({
-//   type: LOAD_LISTINGS_BY_OWNER,
-//   listings,
-// });
 
 // const editListing = listing => ({
 //   type: EDIT_LISTING,
@@ -28,6 +29,21 @@ const addOneReview = review => ({
 //   ownerId,
 //   carId,
 // });
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+export const getReviewsByCar = (carId) => async dispatch => {
+  const response = await fetch(`/api/reviews/cars/${carId}`);
+
+  console.log("HELLO FROM REVIEWS STORE-----------");
+
+
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(loadReviewsByCar(reviews));
+  }
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -167,11 +183,17 @@ export const createReview = payload => async dispatch => {
 
 //////////////////////////////////////////////////////////////////////////////
 
+let newState;
 
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
-    case ADD_ONE_REVIEW:
-      const newState = {...state};
+    case GET_REVIEWS_BY_CAR:
+      const reviews = action.reviews;
+      newState = {};
+      reviews.forEach(review => {
+        newState[review.id] = review;
+      });
+      return newState;
     default:
       return state;
   }

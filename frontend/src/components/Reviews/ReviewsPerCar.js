@@ -4,47 +4,32 @@ import { useParams, useHistory, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 
-import CarPageModal from '../CarPageModal/CarPageModal';
+// import CarPageModal from '../CarPageModal/CarPageModal';
 import { NavLink } from 'react-router-dom';
 import '../../index.css';
-import './CarsList.css';
+// import './CarsList.css';
+
+import { getReviewsByCar } from '../../store/reviews';
 
 
-function ReviewsPerCar() {
+function ReviewsPerCar(carId) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const reviews = useSelector((state) => {
-    console.log("state.reviews----------------", state.reviews)
+    console.log("state.reviews----------------", state)
     return Object.values(state.reviews);
   });
 
-  const loadReviews = reviews.length > 0;
+  console.log("carId from reviewsperCar!!!!!!!!!-------------", carId.carId)
+  console.log("reviews from ReviewsPerCar-----------", reviews);
+
+  const id = carId.carId;
 
 
-  // useEffect(() => {
-  //   dispatch(getCars());
-  // }, [dispatch]);
-
-
-  // return (
-  //   <div>
-  //     <h2>Reviews</h2>
-  //     <div className='cars-container'>
-  //       {loadReviews && (
-  //         reviews.map((review) => {
-  //           return (
-  //             <>
-  //               <div>{review.userId} said: <div>
-  //               <div>{review.content}</div>
-  //               <div>Rating: {review.rating}</div>
-  //             </>
-  //           )
-  //         })
-  //       )}
-  //     </div>
-  //   </div>
-  // )
+  useEffect(() => {
+    dispatch(getReviewsByCar(id));
+  }, [dispatch]);
 
   return (
     <div>

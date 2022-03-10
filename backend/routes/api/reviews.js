@@ -14,20 +14,26 @@ router.post(
 
     return res.json(review);
   })
-)
+);
 
-// router.get(
-//   '/:userId',
-//   asyncHandler(async function (req, res) {
-//     const listings = await Car.findAll({
-//       where: {
-//         ownerId: req.params.userId
-//       }
-//     });
+router.get(
+  '/cars/:carId',
+  asyncHandler(async function (req, res) {
+    console.log("HELLO FROM REVIEWS ROUTER-----------");
 
-//     return res.json(listings);
-//   })
-// );
+    const carId = parseInt(req.params.carId, 10);
+    console.log("carId-----------", carId);
+
+    const reviews = await Review.findAll({
+      where: {
+        carId: req.params.carId
+      }
+    });
+    console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
+
+    return res.json(reviews);
+  })
+);
 
 // router.put(
 //   '/:userId/:carId',

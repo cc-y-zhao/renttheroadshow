@@ -6,10 +6,13 @@ import '../LandingPage/LandingPage.css'
 import { getOneCar } from "../../store/cars";
 import './CarPage.css'
 import CreateReviewModal from "../Reviews/CreateReviewModal";
+import ReviewsPerCar from "../Reviews/ReviewsPerCar";
 
 function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
+
+  console.log("carId from the CarPage-----------", carId);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -43,7 +46,10 @@ function CarPage() {
         <div className='location-of-car'>Location: {car.city}, {car.state}</div>
       </div>
       <div>
-        <CreateReviewModal carId={carId} userId={car.ownerId}/>
+        <CreateReviewModal carId={car.id} userId={car.ownerId}/>
+      </div>
+      <div>
+        <ReviewsPerCar carId={car.id}/>
       </div>
     </div>
   )
