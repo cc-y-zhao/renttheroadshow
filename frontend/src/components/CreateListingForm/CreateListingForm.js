@@ -5,6 +5,7 @@ import { createListing } from '../../store/cars';
 import {ValidationError} from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
+import { getUserListings } from '../../store/listings';
 
 import './CreateListingForm.css';
 
@@ -77,8 +78,8 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
+      dispatch(getUserListings(newListing.id));
       return history.push(`/listings/${user.id}`);
-      // return <Redirect to={'/listings/'+user.id}></Redirect>
     }
   };
 

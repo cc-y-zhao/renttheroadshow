@@ -120,18 +120,18 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
             <span>Make: </span>
             <input
               type="text"
-              placeholder="Make"
+              placeholder={car.brand}
               required
-              value={car.brand}
+              value={brand}
               onChange={updateBrand} />
           </div>
           <div>
             <span>Model: </span>
             <input
               type="text"
-              placeholder="Model"
+              placeholder={car.model}
               required
-              value={car.model}
+              value={model}
               onChange={updateModel} />
           </div>
           <div>
@@ -139,40 +139,40 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
             <input
             className='description'
               type="text"
-              placeholder="Tell us a bit about your car"
+              placeholder={car.description}
               required
-              value={car.description}
+              value={description}
               onChange={updateDescription} />
           </div>
           <div>
             <span>Price: </span>
             <input
               type="number"
-              placeholder="Price"
+              placeholder={car.price}
               min="15"
               required
-              value={car.price}
+              value={price}
               onChange={updatePrice} />
           </div>
           <div>
             <span>Image URL: </span>
             <input
               type="text"
-              placeholder="Image URL"
-              value={car.imageURL}
+              placeholder={car.imageURL}
+              value={imageURL}
               onChange={updateImageURL} />
           </div>
           <div>
             <span>City:</span>
             <input
               type="text"
-              placeholder="City"
-              value={car.city}
+              placeholder={car.city}
+              value={city}
               onChange={updateCity} />
           </div>
           <div>
             <span>State: </span>
-            <select onChange={updateState} value={car.state}>
+            <select onChange={updateState} value={state} placeholder={car.state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
