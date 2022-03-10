@@ -19,8 +19,10 @@ router.post(
   '/',
   carValidations.validateCreate,
   asyncHandler(async function (req, res) {
-    const id = await Car.create(req.body);
-    return res.redirect(`${req.baseUrl}/${id}`);
+    const car = await Car.create(req.body);
+
+    return res.json(car);
+    // return res.redirect(`${req.baseUrl}/${car.id}`);
   })
 );
 

@@ -5,30 +5,19 @@ import { editOneListing } from '../../store/listings';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import allStates from "../../utils/USA_States";
+import './EditListing.css';
 
-const EditListingForm = ({ ownerId, carId}) => {
-  const [showForm, setShowForm] = useState(false);
+const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
+  // const [showForm, setShowForm] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const openForm = () => {
-    if (showForm) return;
-    setShowForm(true);
-  }
-  ////////////
-  // useEffect(() => {
-  //   if (!showForm) return;
+  // const openForm = () => {
+  //   if (showForm) return;
+  //   setShowForm(true);
+  // }
 
-  //   const closeMenu = () => {
-  //     setShowForm(false);
-  //   };
-
-  //   document.addEventListener('click', closeMenu);
-
-  //   return () => document.removeEventListener("click", closeMenu);
-
-  // }, [showForm]);
   const [errors, setErrors] = useState([]);
 
   const [description, setDescription] = useState('');
@@ -92,8 +81,9 @@ const EditListingForm = ({ ownerId, carId}) => {
       setErrors([]);
       console.log('SUCCESS!!!!!!!!');
       console.log("updated listing------------", updatedListing);
-      setShowForm(false);
+      setShowModal(false);
       return;
+      // history.push(`/cars/${carId}`)
       // return;
       // alert()
       // history.push(`/cars/${updatedListing.id}`);
@@ -104,89 +94,100 @@ const EditListingForm = ({ ownerId, carId}) => {
     e.preventDefault();
     setErrors([]);
     //close form:
-    setShowForm(false);
+    setShowModal(false);
   };
 
   return (
     <>
-      <button onClick={openForm}>
-        Edit Listing
-      </button>
-      {showForm && (
-        <section>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors &&
-                errors.map(error => (
-                  <li key={error}>{error}</li>
-                ))
-              }
-            </ul>
-            <input
-              type="hidden"
-              value={ownerId}
-            />
-            <input
-              type="hidden"
-              value={carId}
-            />
-            Make:
+      <section className='section-edit-listing-form'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors &&
+              errors.map(error => (
+                <li key={error}>{error}</li>
+              ))
+            }
+          </ul>
+          <input
+            type="hidden"
+            value={ownerId}
+          />
+          <input
+            type="hidden"
+            value={carId}
+          />
+          <div>
+            <span>Make: </span>
             <input
               type="text"
-              placeholder="Make"
+              placeholder={car.brand} //TODO: change this to default value
               required
               value={brand}
               onChange={updateBrand} />
-            Model:
+          </div>
+          <div>
+            <span>Model: </span>
             <input
               type="text"
-              placeholder="Model"
+              placeholder={car.model}
               required
               value={model}
               onChange={updateModel} />
-            Description:
+          </div>
+          <div>
+            <span>Description: </span>
             <input
+            className='description'
               type="text"
-              placeholder="Tell us a bit about your car"
+              placeholder={car.description}
               required
               value={description}
               onChange={updateDescription} />
-            Price:
+          </div>
+          <div>
+            <span>Price per day: </span>
             <input
               type="number"
-              placeholder="Price"
+              placeholder={car.price}
               min="15"
               required
               value={price}
               onChange={updatePrice} />
-            Image URL:
+          </div>
+          <div>
+            <span>Image URL: </span>
             <input
               type="text"
-              placeholder="Image URL"
+              placeholder={car.imageURL}
               value={imageURL}
               onChange={updateImageURL} />
-            City:
+          </div>
+          <div>
+            <span>City:</span>
             <input
               type="text"
-              placeholder="City"
+              placeholder={car.city}
               value={city}
               onChange={updateCity} />
-            State:
+          </div>
+          <div>
+            <span>State: </span>
             <select onChange={updateState} value={state}>
               {allStates.map(state =>
                 <option key={state}>{state}</option>
               )}
             </select>
-            <button
-              type="submit"
-              disabled={errors.length > 0}
-            >
-              Update Listing
-            </button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
-          </form>
-        </section>
-      )}
+          </div>
+          <button
+            className='btn-in-form'
+            type="submit"
+            disabled={errors.length > 0}
+          >
+            Update Listing
+          </button>
+          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+        </form>
+      </section>
     </>
   );
 };

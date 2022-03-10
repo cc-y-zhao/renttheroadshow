@@ -20,7 +20,7 @@ section {
 .description {
   height: 100px;
 }
-.section-create-listing-form span {
+.section-edit-listing-form span {
   display: block;
   margin-bottom: 3px;
 }

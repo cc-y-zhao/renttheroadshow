@@ -6,7 +6,8 @@ import '../LandingPage/LandingPage.css'
 import { getCars } from "../../store/cars";
 import CarPageModal from '../CarPageModal/CarPageModal';
 import { NavLink } from 'react-router-dom';
-import '../../index.css'
+import '../../index.css';
+import './CarsList.css';
 
 
 function CarsList() {
@@ -39,11 +40,11 @@ function CarsList() {
   return (
     <div>
       <h2>Cars For Rent</h2>
-      <div>
+      <div className='cars-container'>
         <div>
           {cars.map((car) => {
             return (
-              <NavLink key={car.id} to={'/cars/' + car.id}>
+              <NavLink className='each-car-in-cars' key={car.id} to={'/cars/' + car.id}>
                 <img
                   src={car.imageURL}
                   alt={`${car.brand} ${car.model}`}
@@ -54,7 +55,6 @@ function CarsList() {
             );
           }
           )}
-
         </div>
       </div>
 

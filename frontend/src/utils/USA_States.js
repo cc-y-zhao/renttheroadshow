@@ -1,4 +1,5 @@
 const allStates = [
+  "",
 'AL',
 'AK',
 'AZ',

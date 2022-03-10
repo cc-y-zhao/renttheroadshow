@@ -1,0 +1,20 @@
+.profile-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0e6ee;
+  border: medium solid #a43795;
+  padding: 55px;
+}
+
+.username-in-profile {
+  margin-bottom: 15px;;
+}
+
+.logout-in-profile {
+  margin-top: 25px !important;
+}
+
+.btn-in-profile {
+  margin: 5px;
+}

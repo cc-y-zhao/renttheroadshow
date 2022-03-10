@@ -1,0 +1,11 @@
+.cars-container {
+  display: grid;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+.each-car-in-cars {
+  margin-left: 20px;
+  margin-right: 20px;
+}

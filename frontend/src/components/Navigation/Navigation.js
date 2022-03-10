@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import CreateListingForm from '../CreateListingForm/CreateListingForm';
+import ProfileButtonModal from './ProfileButtonModal';
+import CreateRentalListingModal from '../CreateListingForm/index';
 import UserListings from '../UserListings/UserListings';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
@@ -16,8 +16,8 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <ProfileButton user={sessionUser} />
-        <CreateListingForm user={sessionUser}/>
+        <ProfileButtonModal user={sessionUser} />
+        <CreateRentalListingModal user={sessionUser}/>
         <NavLink className='navlink nav-element nav-listings' to={'/listings/'+sessionUser.id}>My Listings</NavLink>
         <NavLink className='navlink nav-element nav-reviews' to='/'>My Reviews</NavLink>
         <span className='welcome-msg nav-element'>Welcome, {sessionUser.username}!</span>
@@ -27,19 +27,21 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink className='navlink nav-element signup-nav' to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <nav className='nav-container'>
+    <nav>
       <ul className='links-in-nav'>
         <li className='no-bullet'>
           <NavLink className='navlink nav-element nav-home' exact to="/">
             <img
-              src={'./logo.png'}
-              alt={'RTRS logo'}
+              className='logo-in-nav'
+              src='./images/logo.png'
+              alt='RTRS logo'
+              height='40px'
             />
           </NavLink>
           {isLoaded && sessionLinks}
@@ -62,3 +64,6 @@ export default Navigation;
 //     </ul>
 //   </nav>
 // );
+
+
+// <ProfileButton user={sessionUser} />

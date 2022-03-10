@@ -41,6 +41,7 @@ export const getCars = () => async dispatch => {
 };
 
 export const createListing = payload => async dispatch => {
+  console.log("HI FROM THE CARS STORE-----------");
   try {
     const response = await csrfFetch(`/api/cars`, {
       method: 'POST',

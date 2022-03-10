@@ -1,4 +1,23 @@
+.listings-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 .car-in-listings {
   display: flex;
-  align-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 35px;
+  margin-right: 35px;
+  color: black;
+}
+
+.car-name {
+  margin-bottom: 15px;
+}
+
+
+.btn-in-listing {
+  margin-bottom: 8px;
 }
