@@ -19,17 +19,17 @@ router.post(
 router.get(
   '/cars/:carId',
   asyncHandler(async function (req, res) {
-    console.log("HELLO FROM REVIEWS ROUTER-----------");
+    // console.log("HELLO FROM REVIEWS ROUTER-----------");
 
     const carId = parseInt(req.params.carId, 10);
-    console.log("carId-----------", carId);
+    // console.log("carId-----------", carId);
 
     const reviews = await Review.findAll({
       where: {
         carId: req.params.carId
       }
     });
-    console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
+    // console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
 
     return res.json(reviews);
   })
@@ -41,7 +41,7 @@ router.get(
     console.log("HELLO FROM REVIEWS ROUTER-----------");
 
     const userId = parseInt(req.params.userId, 10);
-    console.log("userId-----------", userId);
+    console.log("userId FROM REVIEWS ROUTER-----------", userId);
 
     const reviews = await Review.findAll({
       where: {

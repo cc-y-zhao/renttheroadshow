@@ -111,8 +111,6 @@ export const getReviewsByUser = (userId) => async dispatch => {
 //////////////////////////////////////////////////////////////////////////////
 
 
-//////////////////////////////////////////////////////////////////////////////
-
 // export const deleteOneListing = (ownerId, carId) => async dispatch => {
 
 //   const response = await csrfFetch(`/api/listings/${ownerId}/${carId}`, {
@@ -220,6 +218,8 @@ const reviewsReducer = (state = {}, action) => {
       const newReview = action.review;
       newState = {...state, newReview};
       return newState;
+    case GET_REVIEWS_BY_USER:
+      return action.reviews;
     default:
       return state;
   }

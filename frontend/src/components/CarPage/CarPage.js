@@ -24,7 +24,7 @@ function CarPage() {
 
   useEffect(() => {
     dispatch(getOneCar(carId));
-  }, [carId, dispatch]);
+  }, [dispatch]);
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
 

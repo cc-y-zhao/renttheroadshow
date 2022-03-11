@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation/Navigation";
 import CarsList from "./components/CarsList";
 import UserListings from "./components/UserListings/UserListings";
 import CarPage from "./components/CarPage/CarPage";
+import ReviewsPage from "./components/Reviews/ReviewsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path='/listings/:userId'>
             <UserListings/>
+          </Route>
+          <Route path='/reviews/users/:userId'>
+            <ReviewsPage />
           </Route>
         </Switch>
       )}
