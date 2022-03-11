@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 
 import { getReviewsByUser } from "../../store/reviews";
 
+import DeleteReview from "./DeleteReview";
+
 // import '../LandingPage/LandingPage.css'
 // import './CarPage.css'
 
@@ -36,7 +38,7 @@ function ReviewsPage() {
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
-  }, [dispatch]);
+  }, [reviews.toString()]);
 
   console.log('reviews in reviewspage', reviews);
 
@@ -63,7 +65,7 @@ function ReviewsPage() {
                   <div className='review-rating'>Rating: {review.rating} / 5</div>
                 </section>
                 {/* <EditReviewModal review={review} /> */}
-                <DeleteReview review={review} />
+                <DeleteReview reviewId={review.id}/>
               </>
             );
           }

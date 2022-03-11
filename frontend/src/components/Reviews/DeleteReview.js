@@ -5,27 +5,33 @@ import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-import { deleteOneListing } from '../../store/listings';
+import { deleteReview } from '../../store/reviews';
 
-const DeleteReview = ({review}) => {
+const DeleteReview = ({reviewId}) => {
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    setShowModal(false);
-    dispatch(getReviewsByUser(userId))
-  }, [listings.toString()]);
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id
+
+  const reviews = useSelector(state => {
+    return Object.values(state.reviews);
+  });
+
+  // useEffect(() => {
+  //   setShowModal(false);
+  // }, [reviews.toString()]);
 
   return (
     <>
-      <button className='btn-in-listing' onClick={() => setShowModal(true)}>Delete Listing</button>
+      <button className='btn-in-listing' onClick={() => setShowModal(true)}>Delete</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <section>
             <h3>Are you sure you want to delete this Review?</h3>
-            <button onClick={() => dispatch(deleteOneListing(ownerId, carId))}>
+            <button onClick={() => dispatch(deleteReview(userId, reviewId))}>
               Yes, Delete Review
             </button>
             <button type="button" onClick={() => setShowModal(false)}>Cancel</button>

@@ -54,6 +54,22 @@ router.get(
   })
 );
 
+router.delete('/:userId/:reviewId', asyncHandler(async function (req, res) {
+
+  const reviewId = parseInt(req.params.reviewId, 10);
+  const userId = parseInt(req.params.userId, 10);
+
+  console.log("reviewId--------------------------", reviewId);
+
+  const review = await Review.findByPk(reviewId);
+
+  console.log("FOUND REVIEW----------------", review);
+
+  await review.destroy();
+
+  return res.json({ reviewId });
+}));
+
 // router.put(
 //   '/:userId/:carId',
 //   listingValidations.validateUpdate,

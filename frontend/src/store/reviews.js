@@ -4,6 +4,7 @@ import { ValidationError } from '../utils/ValidationError';
 const GET_REVIEWS_BY_CAR = 'reviews/GET_BY_CAR'
 const ADD_ONE_REVIEW = 'reviews/ADD_ONE';
 const GET_REVIEWS_BY_USER = 'reviews/GET_BY_USER';
+const DELETE_ONE_REVIEW = 'reviews/DELETE-ONE';
 
 // const LOAD_LISTINGS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
 // const EDIT_LISTING = 'listings/EDIT_LISTING';
@@ -23,6 +24,11 @@ const loadReviewsByUser = reviews => ({
   type: GET_REVIEWS_BY_USER,
   reviews,
 });
+
+const deleteOneReview = reviewId => ({
+  type: DELETE_ONE_REVIEW,
+  reviewId
+})
 
 
 // const editListing = listing => ({
@@ -111,41 +117,41 @@ export const getReviewsByUser = (userId) => async dispatch => {
 //////////////////////////////////////////////////////////////////////////////
 
 
-// export const deleteOneListing = (ownerId, carId) => async dispatch => {
+export const deleteReview = (userId, reviewId) => async dispatch => {
 
-//   const response = await csrfFetch(`/api/listings/${ownerId}/${carId}`, {
-//     method: 'DELETE',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
+  const response = await csrfFetch(`/api/reviews/${userId}/${reviewId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
 
-//   if (!response.ok) {
-//     let error;
-//     if (response.status === 422) {
-//       error = await response.json();
-//       throw new ValidationError(error.errors, response.statusText);
-//     } else {
-//       let errorJSON;
-//       error = await response.text();
-//       try {
-//         // Check if the error is JSON, i.e., from the Car seeds. If so,
-//         // don't throw error yet or it will be caught by the following catch
-//         errorJSON = JSON.parse(error);
-//       } catch {
-//         // Case if server could not be reached
-//         throw new Error(error);
-//       }
-//       throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
-//     }
-//   }
+  if (!response.ok) {
+    let error;
+    if (response.status === 422) {
+      error = await response.json();
+      throw new ValidationError(error.errors, response.statusText);
+    } else {
+      let errorJSON;
+      error = await response.text();
+      try {
+        // Check if the error is JSON, i.e., from the Car seeds. If so,
+        // don't throw error yet or it will be caught by the following catch
+        errorJSON = JSON.parse(error);
+      } catch {
+        // Case if server could not be reached
+        throw new Error(error);
+      }
+      throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
+    }
+  }
 
-//   //if response is ok
-//   const deletedListing = await response.json();
-//   await dispatch(deleteListing(ownerId, carId));
-//   return deletedListing;
+  //if response is ok
+  const deletedReview = await response.json();
+  await dispatch(deleteOneReview(reviewId));
+  return deletedReview;
 
-// }
+}
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -219,8 +225,15 @@ const reviewsReducer = (state = {}, action) => {
       newState = {...state, newReview};
       return newState;
     case GET_REVIEWS_BY_USER:
-      console.log('action', action);
-      return action.reviews;
+      newState = {};
+      action.reviews.forEach(review => {
+        newState[review.id] = review;
+      })
+      return newState;
+    case DELETE_ONE_REVIEW:
+      newState = {...state};
+      delete newState[action.reviewId];
+      return newState;
     default:
       return state;
   }
