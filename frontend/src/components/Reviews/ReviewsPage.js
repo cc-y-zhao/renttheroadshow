@@ -18,7 +18,7 @@ function ReviewsPage() {
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id
 
-  // if (params.userId.toString() !== userId.toString()) history.push('/');
+  if (params.userId.toString() !== userId.toString()) history.push('/');
   if (!sessionUser) history.push('/');
 
   const reviews = useSelector(state => {
@@ -32,7 +32,7 @@ function ReviewsPage() {
     return state.cars;
   })
 
-  // console.log("CARS FROM REV")
+  console.log("CARS[2] FROM REVIEWSPAGE---------", cars[2])
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
@@ -40,28 +40,31 @@ function ReviewsPage() {
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
 
-
   return (
-  <div>
-    <h2>My Reviews</h2>
-    <div className='cars-container'>
-      <div>
-        {reviews?.map((review) => {
-          return (
-            <section className='each-review'>
-              {/* <div className='reviewer'>{cars[review.carId].brand}: </div> */}
-              <div className='review-content'>"{review.content}"</div>
-              <div>Rating: {review.rating}</div>
-            </section>
-          );
-        }
-        )}
+    <div>
+      <h2>My Reviews</h2>
+      <div className='cars-container'>
+        <div>
+          {reviews?.map((review) => {
+            return (
+              <section className='each-review'>
+                <img
+                  src={cars[review.carId].imageURL}
+                  alt={`${cars[review.carId].brand} ${cars[review.carId].model}`}
+                  height="370px"
+                  width="360px"
+                />
+                <div className='review-content'>"{review.content}"</div>
+                <div>Rating: {review.rating}</div>
+              </section>
+            );
+          }
+          )}
+        </div>
       </div>
+
     </div>
-
-  </div>
-)
-
+  )
 
 };
 
