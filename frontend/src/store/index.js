@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import carReducer from "./cars";
 import listingsReducer from "./listings";
+import reviewsReducer from "./reviews";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   cars: carReducer,
   listings: listingsReducer,
+  reviews: reviewsReducer,
 });
 
 let enhancer;

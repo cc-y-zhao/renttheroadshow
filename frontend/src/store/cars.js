@@ -83,7 +83,7 @@ export const createListing = payload => async dispatch => {
 const carReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_CARS:
-      const allCars = {...state};
+      const allCars = {};
       action.list.forEach(car => {
         allCars[car.id] = car;
       });
@@ -110,3 +110,12 @@ export default carReducer;
 //   ...state,
 //   [action.car.id]: car
 // };
+
+
+// case LOAD_CARS:
+// const allCars = { ...state };
+// action.list.forEach(car => {
+//   allCars[car.id] = car;
+// });
+
+// return allCars;

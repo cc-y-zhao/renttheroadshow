@@ -5,27 +5,28 @@ import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 import { getOneCar } from "../../store/cars";
 import './CarPage.css'
+import CreateReviewModal from "../Reviews/CreateReviewModal";
+import ReviewsPerCar from "../Reviews/ReviewsPerCar";
 
 function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
+
+  console.log("carId from the CarPage-----------", carId);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
   // TO DO: right now if you manually change the carId in the url nothing renders
   const car = useSelector(state => {
-    console.log("state before carId in selector-------", state)
-    console.log("carId in selector------------", carId);
-    console.log("state---------------", state.cars[carId]);
     return state.cars[carId];
   });
 
-  console.log("CAR IN CARPAGE----------", car);
-
   useEffect(() => {
     dispatch(getOneCar(carId));
-  }, [carId]);
+  }, [dispatch]);
+
+  //check if logged in user has already posted a review for this car, if so do not show create review modal:
 
 
   return (
@@ -43,6 +44,12 @@ function CarPage() {
         <div className='description-of-car'>{car.description}</div>
         <div className='price-of-car'>Rental Price Per Day: $ {car.price}</div>
         <div className='location-of-car'>Location: {car.city}, {car.state}</div>
+      </div>
+      <div>
+        <CreateReviewModal carId={car.id}/>
+      </div>
+      <div>
+        <ReviewsPerCar carId={car.id}/>
       </div>
     </div>
   )
