@@ -49,17 +49,22 @@ function ReviewsPage() {
         <div>
           {reviews?.map((review) => {
             return (
-              <section className='each-review'>
-                <img
-                  src={cars[review.carId].imageURL}
-                  alt={`${cars[review.carId].brand} ${cars[review.carId].model}`}
-                  height="370px"
-                  width="360px"
-                />
-                <div className='review-car-type'>{cars[review.carId].brand} {cars[review.carId].model}</div>
-                <div className='review-content'>"{review.content}"</div>
-                <div className='review-rating'>Rating: {review.rating} / 5</div>
-              </section>
+              <>
+                <section className='each-review'>
+                  <img
+                    className='review-car-img'
+                    src={cars[review.carId].imageURL}
+                    alt={`${cars[review.carId].brand} ${cars[review.carId].model}`}
+                    height="370px"
+                    width="360px"
+                  />
+                  <div className='review-car-type'>{cars[review.carId].brand} {cars[review.carId].model}</div>
+                  <div className='review-content'>"{review.content}"</div>
+                  <div className='review-rating'>Rating: {review.rating} / 5</div>
+                </section>
+                {/* <EditReviewModal review={review} /> */}
+                <DeleteReview review={review} />
+              </>
             );
           }
           )}
