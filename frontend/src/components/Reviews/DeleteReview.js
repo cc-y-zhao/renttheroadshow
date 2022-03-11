@@ -6,6 +6,8 @@ import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 import { deleteReview } from '../../store/reviews';
+import './ReviewsPage.css';
+
 
 const DeleteReview = ({reviewId}) => {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +28,7 @@ const DeleteReview = ({reviewId}) => {
 
   return (
     <>
-      <button className='btn-in-listing' onClick={() => setShowModal(true)}>Delete</button>
+      <button className='btn-in-review' onClick={() => setShowModal(true)}>Delete</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <section>

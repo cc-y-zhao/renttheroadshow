@@ -4,8 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import { getReviewsByUser } from "../../store/reviews";
-
 import DeleteReview from "./DeleteReview";
+import './ReviewsPage.css';
 
 // import '../LandingPage/LandingPage.css'
 // import './CarPage.css'

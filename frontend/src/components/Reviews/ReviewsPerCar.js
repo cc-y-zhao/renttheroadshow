@@ -6,7 +6,7 @@ import '../LandingPage/LandingPage.css'
 
 import { NavLink } from 'react-router-dom';
 import '../../index.css';
-import './ReviewsPerCar.css';
+import './ReviewsPage.css';
 
 import { getReviewsByCar } from '../../store/reviews';
 
