@@ -219,6 +219,7 @@ const reviewsReducer = (state = {}, action) => {
       newState = {...state, newReview};
       return newState;
     case GET_REVIEWS_BY_USER:
+      console.log('action', action);
       return action.reviews;
     default:
       return state;

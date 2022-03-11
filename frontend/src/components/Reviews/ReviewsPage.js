@@ -18,12 +18,12 @@ function ReviewsPage() {
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id
 
-  if (params.userId.toString() !== userId.toString()) history.push('/');
-  if (!sessionUser) history.push('/');
+  // if (params.userId.toString() !== userId.toString()) history.push('/');
+  // if (!sessionUser) history.push('/');
 
   const reviews = useSelector(state => {
     console.log("STATE FROM REVIEWSPAGE------------", state);
-    return state.reviews;
+    return Object.values(state.reviews);
   });
 
   console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
@@ -32,18 +32,20 @@ function ReviewsPage() {
     return state.cars;
   })
 
-  console.log("CARS[2] FROM REVIEWSPAGE---------", cars[2])
+  // console.log("CARS FROM REVIEWSPAGE---------", cars)
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
   }, [dispatch]);
+
+  console.log('reviews in reviewspage', reviews);
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
 
   return (
     <div>
       <h2>My Reviews</h2>
-      <div className='cars-container'>
+      <div className='reviews-container'>
         <div>
           {reviews?.map((review) => {
             return (
@@ -54,8 +56,9 @@ function ReviewsPage() {
                   height="370px"
                   width="360px"
                 />
+                <div className='review-car-type'>{cars[review.carId].brand} {cars[review.carId].model}</div>
                 <div className='review-content'>"{review.content}"</div>
-                <div>Rating: {review.rating}</div>
+                <div className='review-rating'>Rating: {review.rating} / 5</div>
               </section>
             );
           }
