@@ -1,18 +1,18 @@
 
 nav {
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-right: 40px;
   flex-direction: row;
-  background-color: rgb(248, 241, 248);
+  background-color: #a43795;
   border: medium solid #a43795;
   /* margin-top: 0; */
   /* margin-bottom: 15px; */
   /* align-content: center; */
-  color: black;
+  color: white;
   font-family: Georgia, 'Times New Roman', Times, serif;
  }
 
@@ -23,7 +23,7 @@ nav {
  .nav-element {
    display: inline-flex;
    justify-content: space-around;
-   color: black;
+   color: white;
  }
 
 .welcome-msg {
@@ -49,7 +49,7 @@ nav {
 
  .logo-in-nav {
   position: absolute;
-  top: 16px;
+  top: 5px;
  }
 
  .nav-listings {
@@ -67,7 +67,7 @@ nav {
  }
 
  .navlink {
-   color: rgb(15, 14, 14);
+   color: white;
  }
 
  /* .nav-space {
