@@ -20,13 +20,13 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
 
   const [errors, setErrors] = useState([]);
 
-  const [description, setDescription] = useState('');
-  const [brand, setBrand] = useState('');
-  const [model, setModel] = useState('');
-  const [imageURL, setImageURL] = useState('');
-  const [price, setPrice] = useState(0);
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
+  const [description, setDescription] = useState(car.description);
+  const [brand, setBrand] = useState(car.brand);
+  const [model, setModel] = useState(car.model);
+  const [imageURL, setImageURL] = useState(car.imageURL);
+  const [price, setPrice] = useState(car.price);
+  const [city, setCity] = useState(car.city);
+  const [state, setState] = useState(car.state);
 
   const updateDescription = (e) => setDescription(e.target.value);
   const updateBrand = (e) => setBrand(e.target.value);

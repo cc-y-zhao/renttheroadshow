@@ -94,6 +94,7 @@ export const editOneListing = payload => async dispatch => {
     }
 
     const listing = await response.json();
+    console.log("listing from listing store--------", listing);
     dispatch(editListing(listing));
     return listing;
   } catch (error) {
