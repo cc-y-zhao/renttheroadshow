@@ -46,7 +46,7 @@ function CarPage() {
         <div className='location-of-car'>Location: {car.city}, {car.state}</div>
       </div>
       <div>
-        <CreateReviewModal carId={car.id} userId={car.ownerId}/>
+        <CreateReviewModal carId={car.id}/>
       </div>
       <div>
         <ReviewsPerCar carId={car.id}/>

@@ -11,8 +11,7 @@ import { createReview, getReviewsByCar } from '../../store/reviews';
 
 import './CreateReviewForm.css';
 
-const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
-
+const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,6 +19,7 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
   const [errors, setErrors] = useState([]);
   const [content, setContent] = useState('');
   const [rating, setRating] = useState(0);
+  const userId = useSelector(state => state.session.user).id
 
   const updateRating = (e) => setRating(e.target.value);
   const updateContent = (e) => setContent(e.target.value);
@@ -36,19 +36,18 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     const payload = {
       userId,
       carId,
       rating,
       content
     };
-    console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
+    // console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
 
     let newReview;
 
     try {
-      console.log("HI FROM TRY CATCH-----------------")
+      // console.log("HI FROM TRY CATCH-----------------")
 
       newReview = await dispatch(createReview(payload));
     } catch (error) {
@@ -59,7 +58,7 @@ const CreateReviewForm = ({ carId, userId, showModal, setShowModal }) => {
     }
     if (newReview) {
       setErrors([]);
-      console.log('SUCCESS!!!!!!!!')
+      // console.log('SUCCESS!!!!!!!!')
       dispatch(getReviewsByCar(carId));
       setShowModal(false);
       //TO DO: MAY NEED TO ADD OTHER DISPATCH (MY REVIEWS?)

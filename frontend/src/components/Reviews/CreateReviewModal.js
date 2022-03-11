@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CreateReviewForm from './index';
 
-function CreateReviewModal({ carId, userId }) {
+function CreateReviewModal({ carId }) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -10,7 +10,7 @@ function CreateReviewModal({ carId, userId }) {
       <span className='nav-element create-form-btn' onClick={() => setShowModal(true)}>Post Review</span>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateReviewForm carId={carId} userId={userId} showModal={showModal} setShowModal={setShowModal} />
+          <CreateReviewForm carId={carId} showModal={showModal} setShowModal={setShowModal} />
         </Modal>
       )}
     </>
