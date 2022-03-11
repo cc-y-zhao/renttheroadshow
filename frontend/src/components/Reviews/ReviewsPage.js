@@ -4,46 +4,43 @@ import { useParams, useHistory, NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import { getReviewsByUser } from "../../store/reviews";
+import { getCars } from "../../store/cars";
+
 import DeleteReview from "./DeleteReview";
 import EditReviewModal from "./EditReviewModal";
 import './ReviewsPage.css';
 
-// import '../LandingPage/LandingPage.css'
-// import './CarPage.css'
 
 function ReviewsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
 
-  // console.log("params------------", params);
-
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id
 
-  // if (params.userId.toString() !== userId.toString()) history.push('/');
-  // if (!sessionUser) history.push('/');
+  if (params.userId.toString() !== userId.toString()) history.push('/');
+  if (!sessionUser) history.push('/');
 
   const reviews = useSelector(state => {
     // console.log("STATE FROM REVIEWSPAGE------------", state);
     return Object.values(state.reviews);
   });
 
-  // console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
+  console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
 
   const cars = useSelector(state => {
-    return state.cars;
+    return Object.values(state.cars);
   })
 
-  // console.log("CARS FROM REVIEWSPAGE---------", cars)
+  console.log("CARS FROM REVIEWSPAGE---------", cars)
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
-  }, [reviews.toString()]);
+    dispatch(getCars());
+  }, [dispatch, reviews.toString()]);
 
-  // console.log('reviews in reviewspage', reviews);
-
-  //check if logged in user has already posted a review for this car, if so do not show create review modal:
+  //TO DO: check if logged in user has already posted a review for this car, if so do not show create review modal:
 
   return (
     <div>

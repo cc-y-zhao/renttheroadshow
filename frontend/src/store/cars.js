@@ -105,17 +105,3 @@ const carReducer = (state = {}, action) => {
 };
 
 export default carReducer;
-// const car = action.car;
-// return {
-//   ...state,
-//   [action.car.id]: car
-// };
-
-
-// case LOAD_CARS:
-// const allCars = { ...state };
-// action.list.forEach(car => {
-//   allCars[car.id] = car;
-// });
-
-// return allCars;

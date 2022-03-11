@@ -210,8 +210,6 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case EDIT_ONE_REVIEW:
       const updatedReview = action.review;
-      console.log("action---------", action);
-      console.log("updatedReview----------", updatedReview)
       newState = {
         ...state,
         [updatedReview.id]: {...updatedReview}
