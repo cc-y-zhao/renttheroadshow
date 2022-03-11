@@ -16,7 +16,7 @@ function ReviewsPage() {
   const history = useHistory();
   const params = useParams();
 
-  console.log("params------------", params);
+  // console.log("params------------", params);
 
   const sessionUser = useSelector(state => state.session.user);
   const userId = sessionUser.id
@@ -25,11 +25,11 @@ function ReviewsPage() {
   // if (!sessionUser) history.push('/');
 
   const reviews = useSelector(state => {
-    console.log("STATE FROM REVIEWSPAGE------------", state);
+    // console.log("STATE FROM REVIEWSPAGE------------", state);
     return Object.values(state.reviews);
   });
 
-  console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
+  // console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
 
   const cars = useSelector(state => {
     return state.cars;
@@ -41,7 +41,7 @@ function ReviewsPage() {
     dispatch(getReviewsByUser(userId));
   }, [reviews.toString()]);
 
-  console.log('reviews in reviewspage', reviews);
+  // console.log('reviews in reviewspage', reviews);
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
 
