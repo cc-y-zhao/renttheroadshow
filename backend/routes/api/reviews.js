@@ -35,6 +35,25 @@ router.get(
   })
 );
 
+router.get(
+  '/users/:userId',
+  asyncHandler(async function (req, res) {
+    console.log("HELLO FROM REVIEWS ROUTER-----------");
+
+    const userId = parseInt(req.params.userId, 10);
+    console.log("userId-----------", userId);
+
+    const reviews = await Review.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    });
+    console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
+
+    return res.json(reviews);
+  })
+);
+
 // router.put(
 //   '/:userId/:carId',
 //   listingValidations.validateUpdate,

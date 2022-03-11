@@ -3,6 +3,7 @@ import { ValidationError } from '../utils/ValidationError';
 
 const GET_REVIEWS_BY_CAR = 'reviews/GET_BY_CAR'
 const ADD_ONE_REVIEW = 'reviews/ADD_ONE';
+const GET_REVIEWS_BY_USER = 'reviews/GET_BY_USER';
 
 // const LOAD_LISTINGS_BY_OWNER = 'cars/LOAD_CARS_BY_OWNER';
 // const EDIT_LISTING = 'listings/EDIT_LISTING';
@@ -15,6 +16,11 @@ const addOneReview = review => ({
 
 const loadReviewsByCar = reviews => ({
   type: GET_REVIEWS_BY_CAR,
+  reviews,
+});
+
+const loadReviewsByUser = reviews => ({
+  type: GET_REVIEWS_BY_USER,
   reviews,
 });
 
@@ -87,6 +93,22 @@ export const createReview = payload => async dispatch => {
   }
 
 }
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+export const getReviewsByUser = (userId) => async dispatch => {
+  const response = await fetch(`/api/reviews/users/${userId}`);
+
+  console.log("HELLO FROM REVIEWS STORE-----------");
+
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(loadReviewsByUser(reviews));
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////////////////////////////
