@@ -37,7 +37,6 @@ function ReviewsPage() {
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
-    dispatch(getCars());
   }, [dispatch, reviews.toString()]);
 
   //TO DO: check if logged in user has already posted a review for this car, if so do not show create review modal:

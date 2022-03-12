@@ -74,32 +74,32 @@ router.put(
   '/:reviewId',
   reviewValidations.validateUpdate,
   asyncHandler(async function (req, res) {
-    // const {
-    //   reviewId,
-    //   userId,
-    //   carId,
-    //   rating,
-    //   content
-    //   } = req.body;
-    // const oldReview = await Review.findByPk(reviewId);
+    const {
+      reviewId,
+      userId,
+      carId,
+      rating,
+      content
+      } = req.body;
+    const oldReview = await Review.findByPk(reviewId);
 
-    // oldReview.rating = rating;
-    // oldReview.content = content;
+    oldReview.rating = rating;
+    oldReview.content = content;
 
-    // await oldReview.save;
+    await oldReview.save;
 
-    // console.log("updated review from routes------------", oldReview);
-    // return res.json(oldReview);
+    console.log("updated review from routes------------", oldReview);
+    return res.json(oldReview);
 
 
 
-    const updatedReview = await Review.update(req.body, {
-      where: {
-        id: req.params.reviewId
-      }
-    });
-    console.log("updated review from routes------------", updatedReview);
-    return res.json(updatedReview);
+    // const updatedReview = await Review.update(req.body, {
+    //   where: {
+    //     id: req.params.reviewId
+    //   }
+    // });
+    // console.log("updated review from routes------------", updatedReview);
+    // return res.json(updatedReview);
   })
 );
 
