@@ -11,3 +11,8 @@ h2 {
   color: black;
   margin-top: 100px;
 }
+
+.login-btn-nav {
+  background-color: #f0e6ee;
+  color: black !important;
+}

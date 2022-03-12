@@ -5,6 +5,7 @@
   background-color: #f0e6ee;
   border: medium solid #a43795;
   padding: 55px;
+  text-align:end;
 }
 
 .username-in-profile {
@@ -17,4 +18,6 @@
 
 .btn-in-profile {
   margin: 5px;
+  background-color: #a43795;
+  color: white;
 }
