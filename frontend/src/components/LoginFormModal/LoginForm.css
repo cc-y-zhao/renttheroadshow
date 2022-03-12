@@ -27,3 +27,15 @@
 .btn:hover {
   color: white;
 }
+
+.demo-login-div {
+  background-color: #a43795;
+  color: white;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.demo-login-btn {
+  background-color: #a43795;
+  color: white;
+}

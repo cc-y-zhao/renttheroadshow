@@ -10,7 +10,7 @@ function LoginFormModal() {
       <button className='navlink nav-element login-nav login-btn-nav' onClick={() => setShowModal(true)}>Log In</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
+          <LoginForm showModal={showModal} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

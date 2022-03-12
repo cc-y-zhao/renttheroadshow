@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import './LoginForm.css';
 
-function LoginForm() {
+function LoginForm({showModal, setShowModal}) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +13,20 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+    );
+  };
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const credential = 'jeff_winger';
+    const password = 'password';
+
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -50,7 +64,10 @@ function LoginForm() {
       </label>
       <div className='btn'>
         <button className='login-btn' type="submit">Log In</button>
-        <button className='cancel-btn' type="submit">Cancel</button>
+        <button className='cancel-btn' type="button" onClick={() => setShowModal(false)}>Cancel</button>
+      </div>
+      <div className='demo-login-div'>
+        <button className='demo-login-btn' type="button" onClick={handleDemoLogin}>Demo Login</button>
       </div>
     </form>
   );
