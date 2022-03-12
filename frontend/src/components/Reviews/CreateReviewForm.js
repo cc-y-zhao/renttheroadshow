@@ -93,7 +93,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
           />
           <div>
             <span>Review: </span>
-            <input
+            <textarea
               className='rating'
               type="text"
               placeholder="Tell us about your experience renting this car"

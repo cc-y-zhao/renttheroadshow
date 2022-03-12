@@ -136,7 +136,7 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           </div>
           <div>
             <span>Description: </span>
-            <input
+            <textarea
             className='description'
               type="text"
               placeholder={car.description}

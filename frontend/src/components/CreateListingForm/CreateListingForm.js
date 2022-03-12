@@ -126,7 +126,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           </div>
           <div>
             <span>Description: </span>
-            <input
+            <textarea
               className='description'
               type="text"
               placeholder="Tell us a bit about your car"
