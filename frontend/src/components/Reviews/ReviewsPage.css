@@ -1,17 +1,18 @@
 .reviews-container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .each-review {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center !important;
+  box-sizing: border-box;
   margin-bottom: 15px;
   padding: 25px;
   border: medium solid #a43795;
-  width: 500px;
+  width: 600px;
 }
 
 .review-content {
@@ -22,12 +23,25 @@
   font-size: 18px;
 }
 
+.review-and-buttons {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+}
+
 .reviewer {
   margin-bottom: 8px;
 }
 
 .review-rating {
   font-size: 18px;
+}
+
+.img-and-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .review-car-type {
@@ -40,35 +54,12 @@
   margin-bottom: 10px;
 }
 
+
 .btn-in-review {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #a43795;
   color: white;
 }
-/* /////////////////////////// */
 
-/* .listings-container {
-  display: flex;
-  flex-wrap: wrap;
+.edit-review-btn {
+  margin-right: 10px;
 }
-
-
-.car-in-listings {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 35px;
-  margin-right: 35px;
-  color: black;
-}
-
-.car-name {
-  margin-bottom: 15px;
-}
-
-
-.btn-in-listing {
-  margin-bottom: 8px;
-} */

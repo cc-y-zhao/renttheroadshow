@@ -7,7 +7,7 @@ function EditReviewModal({ review }) {
 
   return (
     <>
-      <button className='nav-element btn-in-review' onClick={() => setShowModal(true)}>Edit</button>
+      <button className='btn-in-review edit-review-btn' onClick={() => setShowModal(true)}>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditReviewForm review={review} showModal={showModal} setShowModal={setShowModal} />

@@ -27,13 +27,13 @@ function ReviewsPage() {
     return Object.values(state.reviews);
   });
 
-  console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
+  // console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
 
   const cars = useSelector(state => {
     return Object.values(state.cars);
   })
 
-  console.log("CARS FROM REVIEWSPAGE---------", cars)
+  // console.log("CARS FROM REVIEWSPAGE---------", cars)
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
@@ -45,12 +45,12 @@ function ReviewsPage() {
     <div>
       <h2>My Reviews</h2>
       <div className='reviews-container'>
-        <div>
+        <div className='review-and-buttons'>
           {reviews?.map((review) => {
             return (
               <>
                 <section className='each-review'>
-                  <NavLink key={review.carId} to={'/cars/' + review.carId}>
+                  <NavLink className='img-and-name' key={review.carId} to={'/cars/' + review.carId}>
                     <img
                       className='review-car-img'
                       src={cars[review.carId].imageURL}
@@ -63,8 +63,10 @@ function ReviewsPage() {
                   <div className='review-content'>"{review.content}"</div>
                   <div className='review-rating'>Rating: {review.rating} / 5</div>
                 </section>
-                <EditReviewModal review={review} />
-                <DeleteReview reviewId={review.id}/>
+                <div className='btn-div'>
+                  <EditReviewModal review={review} />
+                  <DeleteReview reviewId={review.id}/>
+                </div>
               </>
             );
           }
