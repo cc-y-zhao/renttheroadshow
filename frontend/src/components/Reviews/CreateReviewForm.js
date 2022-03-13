@@ -74,7 +74,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
 
   return (
     <>
-      <section className='section-create-listing-form'>
+      <section className='section-create-review-form'>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors &&
@@ -91,10 +91,10 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
             type="hidden"
             value={carId}
           />
-          <div>
+          <div className='review-content-input'>
             <span>Review: </span>
             <textarea
-              className='rating'
+              className='review-textbox'
               type="text"
               placeholder="Tell us about your experience renting this car"
               required
@@ -109,7 +109,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
               )}
             </select>
           </div>
-          <button className='btn-in-form create-listing'
+          <button className='btn-in-form create-review'
             type="submit"
             disabled={errors.length > 0}
           >
