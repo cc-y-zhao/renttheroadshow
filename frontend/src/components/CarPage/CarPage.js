@@ -12,8 +12,6 @@ function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
 
-  console.log("carId from the CarPage-----------", carId);
-
   const dispatch = useDispatch();
   const history = useHistory();
 

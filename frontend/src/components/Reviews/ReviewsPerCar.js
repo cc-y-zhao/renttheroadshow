@@ -16,14 +16,13 @@ function ReviewsPerCar(carId) {
   const history = useHistory();
 
   const reviews = useSelector((state) => {
-    console.log("state.reviews----------------", state)
     return Object.values(state.reviews);
   });
 
-  //TO DO: BUILD USERS STORE TO ACCESS ALL USERS AND PULL USERNAMES TO INCLUDE IN REVIEWS
+  // console.log("reviews from ReviewsPerCar----------", reviews[0]['username']);
+  // console.log("username-----------". reviews[0]);
 
-  console.log("carId from reviewsperCar!!!!!!!!!-------------", carId.carId)
-  console.log("reviews from ReviewsPerCar-----------", reviews);
+  //TO DO: BUILD USERS STORE TO ACCESS ALL USERS AND PULL USERNAMES TO INCLUDE IN REVIEWS
 
   const id = carId.carId;
 
@@ -31,6 +30,8 @@ function ReviewsPerCar(carId) {
   useEffect(() => {
     dispatch(getReviewsByCar(id));
   }, [dispatch]);
+
+  //dispatch(getUser)
 
   return (
     <div>
@@ -40,7 +41,7 @@ function ReviewsPerCar(carId) {
           {reviews?.map((review) => {
             return (
               <section className='each-review'>
-                <div className='reviewer'>{review.userId} said: </div>
+                <div className='reviewer'>{review.username} said: </div>
                 <div className='review-content'>"{review.content}"</div>
                 <div>Rating: {review.rating}</div>
               </section>

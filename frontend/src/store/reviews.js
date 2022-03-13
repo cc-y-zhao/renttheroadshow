@@ -38,11 +38,25 @@ const editOneReview = review => ({
 export const getReviewsByCar = (carId) => async dispatch => {
   const response = await fetch(`/api/reviews/cars/${carId}`);
 
-  console.log("HELLO FROM REVIEWS STORE-----------");
-
-
   if (response.ok) {
     const reviews = await response.json();
+
+    reviews.forEach(async review => {
+      const userId = review.userId;
+      const response = await fetch(`/api/users/${userId}`);
+
+      let username = '';
+
+      if (response.ok) {
+        const user = await response.json();
+        username = user.username;
+      } else {
+        username = 'Reviewer';
+      }
+
+      review['username'] = username;
+    });
+
     dispatch(loadReviewsByCar(reviews));
   }
 }
@@ -50,7 +64,7 @@ export const getReviewsByCar = (carId) => async dispatch => {
 //////////////////////////////////////////////////////////////////////////////
 
 export const createReview = payload => async dispatch => {
-  console.log("HI FROM THE REVIEWS STORE-----------");
+
   try {
     const response = await csrfFetch(`/api/reviews`, {
       method: 'POST',
@@ -95,8 +109,6 @@ export const createReview = payload => async dispatch => {
 
 export const getReviewsByUser = (userId) => async dispatch => {
   const response = await fetch(`/api/reviews/users/${userId}`);
-
-  console.log("HELLO FROM REVIEWS STORE-----------");
 
   if (response.ok) {
     const reviews = await response.json();
@@ -192,9 +204,8 @@ let newState;
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_REVIEWS_BY_CAR:
-      const reviews = action.reviews;
       newState = {};
-      reviews.forEach(review => {
+      action.reviews.forEach(review => {
         newState[review.id] = review;
       });
       return newState;
