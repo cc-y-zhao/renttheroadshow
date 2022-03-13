@@ -76,13 +76,15 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
     <>
       <section className='section-create-review-form'>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors &&
-              errors.map(error => (
-                <li key={error}>{error}</li>
-              ))
-            }
-          </ul>
+          <div className='errors-div-create-review'>
+            <ul>
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
+          </div>
           <input
             type="hidden"
             value={userId}

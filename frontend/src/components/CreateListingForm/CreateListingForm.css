@@ -1,3 +1,8 @@
+/* #modal-content {
+  height: 700px;
+  width: 500px;
+} */
+
 input {
   display: inline-block;
   position: relative;
@@ -20,7 +25,11 @@ section {
 .description {
   height: 100px;
 }
-.section-create-listing-form span {
+section.section-create-listing-form span {
   display: block;
   margin-bottom: 3px;
+}
+
+.errors-in-create-listing {
+  height: 130px;
 }

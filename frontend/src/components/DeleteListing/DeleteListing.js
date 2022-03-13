@@ -8,6 +8,8 @@ import allStates from "../../utils/USA_States";
 
 import { deleteOneListing } from '../../store/listings';
 
+import './DeleteListing.css';
+
 const DeleteListing = ({ ownerId, carId }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -25,17 +27,21 @@ const DeleteListing = ({ ownerId, carId }) => {
   return (
     <>
       <button className='btn-in-listing' onClick={() => setShowModal(true)}>Delete Listing</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <section>
-            <h3>Are you sure you want to delete this listing?</h3>
-              <button onClick={() => dispatch(deleteOneListing(ownerId, carId))}>
-                Yes, Delete Listing
-              </button>
-              <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
-          </section>
-        </Modal>
-      )}
+      <div className='delete-listing-modal'>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <section>
+              <h3>Are you sure you want to delete this listing?</h3>
+              <div className='delete-listing-btns'>
+                <button className='delete-listing-btn' onClick={() => dispatch(deleteOneListing(ownerId, carId))}>
+                  Yes, Delete Listing
+                </button>
+                <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+              </div>
+            </section>
+          </Modal>
+        )}
+      </div>
     </>
   );
 };

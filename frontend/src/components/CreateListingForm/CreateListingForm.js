@@ -95,13 +95,15 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
     <>
       <section className='section-create-listing-form'>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors &&
-              errors.map(error => (
-                <li key={error}>{error}</li>
-              ))
-            }
-          </ul>
+          <div className='errors-in-create-listing'>
+            <ul>
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
+          </div>
           <input
             type="hidden"
             value={user.id}
