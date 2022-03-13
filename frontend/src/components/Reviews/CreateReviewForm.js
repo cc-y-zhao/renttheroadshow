@@ -75,7 +75,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
   return (
     <>
       <section className='section-create-review-form'>
-        <form onSubmit={handleSubmit}>
+        <form className='create-review-form' onSubmit={handleSubmit}>
           <div className='errors-div-create-review'>
             <ul>
               {errors &&
@@ -105,19 +105,21 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
           </div>
           <div>
             <span>Rating: </span>
-            <select onChange={updateRating} value={rating}>
+            <select className='select-rating' onChange={updateRating} value={rating}>
               {["", 1, 2, 3, 4, 5].map(num =>
                 <option key={num}>{num}</option>
               )}
             </select>
           </div>
-          <button className='btn-in-form create-review'
-            type="submit"
-            disabled={errors.length > 0}
-          >
-            Post Review
-          </button>
-          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          <div className='btns-review-form'>
+            <button className='btn-in-form create-review'
+              type="submit"
+              disabled={errors.length > 0}
+            >
+              Post Review
+            </button>
+            <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          </div>
         </form>
       </section>
     </>

@@ -1,10 +1,15 @@
 .section-create-review-form {
-  width: 500px;
-  height: 300px;
+  width: 400px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
+.btns-review-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .review-content-input {
@@ -16,10 +21,15 @@
   height: 150px;
 }
 
-/* div.errors-div-create-listing {
-  height: 500px;
-  color: red;
-} */
+div.errors-div-create-review {
+  height: 50px;
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+.select-rating {
+  width: 45px;
+}
 
 
 /* /////////////////////////////////// */
