@@ -86,12 +86,10 @@ router.put(
     oldReview.rating = rating;
     oldReview.content = content;
 
-    await oldReview.save;
+    await oldReview.save();
 
     console.log("updated review from routes------------", oldReview);
     return res.json(oldReview);
-
-
 
     // const updatedReview = await Review.update(req.body, {
     //   where: {
