@@ -20,13 +20,21 @@ function CarPage() {
     return state.cars[carId];
   });
 
+  const userId = useSelector(state => state.session.user).id
+
   useEffect(() => {
     dispatch(getOneCar(carId));
   }, [dispatch]);
 
-  //check if logged in user has already posted a review for this car, if so do not show create review modal:
   if (!car) {
     history.push('/404');
+  }
+  //check if logged in user has already posted a review for this car, if so do not show create review modal:
+
+  //check if logged in user is the owner of this car, if so don't show the Post Review button
+  let enablePostReviewButton = false;
+  if (car.ownerId !== userId) {
+    enablePostReviewButton = true;
   }
 
   return (
@@ -46,7 +54,9 @@ function CarPage() {
         <div className='location-of-car'>Location: {car?.city}, {car?.state}</div>
       </div>
       <div>
-        <CreateReviewModal carId={car?.id}/>
+        {enablePostReviewButton &&
+          <CreateReviewModal carId={car?.id} />
+        }
       </div>
       <div>
         <ReviewsPerCar carId={carId}/>

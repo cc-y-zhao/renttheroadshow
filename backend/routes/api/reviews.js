@@ -6,6 +6,7 @@ const reviewValidations = require('../../validations/reviews');
 
 const router = express.Router();
 
+
 router.post(
   '/',
   reviewValidations.validateCreate,
@@ -15,6 +16,7 @@ router.post(
     return res.json(review);
   })
 );
+
 
 router.get(
   '/cars/:carId',
