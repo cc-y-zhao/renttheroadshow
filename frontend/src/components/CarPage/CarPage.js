@@ -25,7 +25,9 @@ function CarPage() {
   }, [dispatch]);
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
-
+  if (!car) {
+    history.push('/404');
+  }
 
   return (
     <div className='car-page-container'>

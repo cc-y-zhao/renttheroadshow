@@ -9,6 +9,7 @@ import CarsList from "./components/CarsList";
 import UserListings from "./components/UserListings/UserListings";
 import CarPage from "./components/CarPage/CarPage";
 import ReviewsPage from "./components/Reviews/ReviewsPage";
+import GenericErrorHandler from "./components/GenericErrorHandler/GenericErrorHandler";
 
 import {getCars} from './store/cars';
 import {getUsers} from './store/users';
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path='/reviews/users/:userId'>
             <ReviewsPage />
+          </Route>
+          <Route path='/404'>
+            <GenericErrorHandler />
           </Route>
         </Switch>
       )}
