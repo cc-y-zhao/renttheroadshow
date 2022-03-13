@@ -94,7 +94,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
   return (
     <>
       <section className='section-create-listing-form'>
-        <form onSubmit={handleSubmit}>
+        <form className='create-listing-form' onSubmit={handleSubmit}>
           <div className='errors-in-create-listing'>
             <ul>
               {errors &&
@@ -111,6 +111,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Make: </span>
               <input
+                className='input-in-create-listing'
                 type="text"
                 placeholder="Make"
                 required
@@ -120,6 +121,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Model: </span>
               <input
+                className='input-in-create-listing'
                 type="text"
                 placeholder="Model"
                 required
@@ -139,6 +141,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Price per day: </span>
             <input
+              className='input-in-create-listing'
               type="number"
               placeholder="Price"
               min="15"
@@ -149,6 +152,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Image URL: </span>
             <input
+              className='input-in-create-listing'
               type="text"
               placeholder="Image URL"
               value={imageURL}
@@ -157,6 +161,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>City: </span>
             <input
+              className='input-in-create-listing'
               type="text"
               placeholder="City"
               value={city}
