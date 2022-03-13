@@ -30,7 +30,7 @@ function ReviewsPage() {
   // console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
 
   const cars = useSelector(state => {
-    return Object.values(state.cars);
+    return state.cars;
   })
 
   // console.log("CARS FROM REVIEWSPAGE---------", cars)
@@ -41,6 +41,7 @@ function ReviewsPage() {
 
   //TO DO: check if logged in user has already posted a review for this car, if so do not show create review modal:
 
+  console.log("CARS FROM REVIEWSPAGE---------", cars);
   return (
     <div>
       <h2>My Reviews</h2>

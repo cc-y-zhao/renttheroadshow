@@ -40,25 +40,24 @@ export const getReviewsByCar = (carId) => async dispatch => {
 
   if (response.ok) {
     const reviews = await response.json();
-
-    reviews.forEach(async review => {
-      const userId = review.userId;
-      const response = await fetch(`/api/users/${userId}`);
-
-      let username = '';
-
-      if (response.ok) {
-        const user = await response.json();
-        username = user.username;
-      } else {
-        username = 'Reviewer';
-      }
-
-      review['username'] = username;
-    });
-
     dispatch(loadReviewsByCar(reviews));
   }
+
+  // reviews.forEach(async review => {
+  //   const userId = review.userId;
+  //   const response = await fetch(`/api/users/${userId}`);
+
+  //   let username = '';
+
+  //   if (response.ok) {
+  //     const user = await response.json();
+  //     username = user.username;
+  //   } else {
+  //     username = 'Reviewer';
+  //   }
+
+  //   review['username'] = username;
+  // });
 }
 
 //////////////////////////////////////////////////////////////////////////////

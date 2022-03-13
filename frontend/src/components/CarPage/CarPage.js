@@ -47,7 +47,7 @@ function CarPage() {
         <CreateReviewModal carId={car?.id}/>
       </div>
       <div>
-        <ReviewsPerCar carId={car?.id}/>
+        <ReviewsPerCar carId={carId}/>
       </div>
     </div>
   )
