@@ -77,7 +77,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
     }
     if (newListing) {
       setErrors([]);
-      console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
       dispatch(getUserListings(user.id));
       dispatch(getOneCar(newListing.id));

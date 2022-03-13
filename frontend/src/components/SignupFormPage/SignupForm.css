@@ -45,3 +45,8 @@
   color: black !important;
   background-color: #f0e6ee;
 }
+
+.signup-errors {
+  height: 110px;
+  width: 380px;
+}

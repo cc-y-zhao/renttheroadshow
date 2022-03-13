@@ -39,3 +39,7 @@
   background-color: #a43795;
   color: white;
 }
+
+.login-errors {
+  height: 30px;
+}

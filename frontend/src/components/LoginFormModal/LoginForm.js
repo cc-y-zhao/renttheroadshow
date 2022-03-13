@@ -38,11 +38,13 @@ function LoginForm({showModal, setShowModal}) {
 
   return (
     <form className='login-modal' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+      <div>
+        <ul className='login-errors'>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+      </div>
       <label className='label'>
         Username or Email:
         <input

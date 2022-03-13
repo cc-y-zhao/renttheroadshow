@@ -30,9 +30,11 @@ function SignupFormPage({showModal, setShowModal}) {
 
   return (
     <form className='login-modal' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <div className='signup-errors'>
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      </div>
       <label className='label'>
         Email:
         <input
