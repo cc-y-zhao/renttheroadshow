@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({showModal, setShowModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -29,47 +29,54 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='login-modal' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        Email
+      <label className='label'>
+        Email:
         <input
+          className='username-in-login'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label>
-        Username
+      <label className='label'>
+        Username:
         <input
+          className='username-in-login'
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
-      <label>
-        Password
+      <label className='label'>
+        Password:
         <input
+          className='password-in-login'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <label>
-        Confirm Password
+      <label className='label'>
+        Confirm Password:
         <input
+          className='password-in-login'
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <div className='btn'>
+        <button className='login-btn' type="submit">Sign Up</button>
+        <button className='cancel-btn' type="button" onClick={() => setShowModal(false)}>Cancel</button>
+      </div>
     </form>
   );
 }

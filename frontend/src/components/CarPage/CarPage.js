@@ -21,7 +21,11 @@ function CarPage() {
     return state.cars[carId];
   });
 
-  const userId = useSelector(state => state.session.user).id
+  const user = useSelector(state => state.session.user);
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
 
   useEffect(() => {
     dispatch(getOneCar(carId)).then(() => dispatch(getReviewsByCar(carId)));
@@ -42,10 +46,13 @@ function CarPage() {
   });
 
 
-  //check if logged in user is the owner of this car AND  if logged in user
-  //has already posted a review for this car, if so don't show the Post Review button
+  //check:
+  // 1) if logged in user is the owner of this car
+  // 2) if logged in user has already posted a review for this car
+  // 3) if session user is logged in
+  // if not, don't show the Post Review button
   let enablePostReviewButton = false;
-  if (car.ownerId !== userId && !userIds.includes(userId)) {
+  if (car.ownerId !== userId && !userIds.includes(userId) && user) {
     enablePostReviewButton = true;
   }
 
