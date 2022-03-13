@@ -101,13 +101,15 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
     <>
       <section className='section-edit-listing-form'>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors &&
-              errors.map(error => (
-                <li key={error}>{error}</li>
-              ))
-            }
-          </ul>
+          <div className='errors-in-create-listing'>
+            <ul>
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
+          </div>
           <input
             type="hidden"
             value={ownerId}
@@ -119,8 +121,9 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           <div>
             <span>Make: </span>
             <input
+              className='input-in-edit-listing'
               type="text"
-              placeholder={car.brand} //TODO: change this to default value
+              placeholder="Make"
               required
               value={brand}
               onChange={updateBrand} />
@@ -128,8 +131,9 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           <div>
             <span>Model: </span>
             <input
+              className='input-in-edit-listing'
               type="text"
-              placeholder={car.model}
+              placeholder="Model"
               required
               value={model}
               onChange={updateModel} />
@@ -137,9 +141,9 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           <div>
             <span>Description: </span>
             <textarea
-            className='description'
+              className='description'
               type="text"
-              placeholder={car.description}
+              placeholder="Tell us a bit about your car"
               required
               value={description}
               onChange={updateDescription} />
@@ -147,8 +151,9 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           <div>
             <span>Price per day: </span>
             <input
+              className='input-in-edit-listing'
               type="number"
-              placeholder={car.price}
+              placeholder="Price"
               min="15"
               required
               value={price}
@@ -157,16 +162,18 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
           <div>
             <span>Image URL: </span>
             <input
+              className='input-in-edit-listing'
               type="text"
-              placeholder={car.imageURL}
+              placeholder="Image URL"
               value={imageURL}
               onChange={updateImageURL} />
           </div>
           <div>
             <span>City:</span>
             <input
+              className='input-in-edit-listing'
               type="text"
-              placeholder={car.city}
+              placeholder="City"
               value={city}
               onChange={updateCity} />
           </div>
@@ -178,14 +185,16 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
               )}
             </select>
           </div>
-          <button
-            className='btn-in-form'
-            type="submit"
-            disabled={errors.length > 0}
-          >
-            Update Listing
-          </button>
-          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          <div className='btns-edit-listing'>
+            <button
+              className='btn-in-form update-listing-btn'
+              type="submit"
+              disabled={errors.length > 0}
+            >
+              Update Listing
+            </button>
+            <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          </div>
         </form>
       </section>
     </>

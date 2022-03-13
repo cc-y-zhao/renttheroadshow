@@ -76,15 +76,17 @@ const EditReviewForm = ({ review, showModal, setShowModal }) => {
 
   return (
     <>
-      <section className='section-create-listing-form'>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            {errors &&
-              errors.map(error => (
-                <li key={error}>{error}</li>
-              ))
-            }
-          </ul>
+      <section className='section-create-review-form'>
+        <form className='create-review-form' onSubmit={handleSubmit}>
+          <div className='errors-div-create-review'>
+            <ul>
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
+          </div>
           <input
             type="hidden"
             value={userId}
@@ -93,10 +95,10 @@ const EditReviewForm = ({ review, showModal, setShowModal }) => {
             type="hidden"
             value={carId}
           />
-          <div>
+          <div className='review-content-input'>
             <span>Review: </span>
             <textarea
-              className='rating'
+              className='review-textbox'
               type="text"
               placeholder="Tell us about your experience renting this car"
               required
@@ -111,13 +113,15 @@ const EditReviewForm = ({ review, showModal, setShowModal }) => {
               )}
             </select>
           </div>
-          <button className='btn-in-form create-listing'
-            type="submit"
-            disabled={errors.length > 0}
-          >
-            Post Review
-          </button>
-          <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          <div className='btns-review-form'>
+            <button className='btn-in-form create-review'
+              type="submit"
+              disabled={errors.length > 0}
+            >
+              Update Review
+            </button>
+            <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
+          </div>
         </form>
       </section>
     </>

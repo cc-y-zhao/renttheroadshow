@@ -5,6 +5,14 @@ input {
   margin-bottom: 15px;
 }
 
+.input-in-edit-listing {
+  width: 500px !important;
+}
+
+.errors-in-create-listing {
+  height: 145px;
+}
+
 section {
   margin: 40px;
 }
@@ -23,4 +31,16 @@ section {
 .section-edit-listing-form span {
   display: block;
   margin-bottom: 3px;
+}
+
+.btns-edit-listing {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.update-listing-btn {
+  margin-right: 10px;
+  background-color: #a43795;
+  color: white;
 }

@@ -51,6 +51,8 @@ section {
 
 .create-review {
   margin-right: 20px;
+  background-color: #a43795;
+  color: white;
 }
 
 .description {

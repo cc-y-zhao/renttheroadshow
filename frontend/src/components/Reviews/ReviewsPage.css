@@ -69,3 +69,20 @@ section.each-review {
 .edit-review-btn {
   margin-right: 10px;
 }
+
+.user-reviews-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.confirm-delete-review {
+  margin-right: 10px;
+  background-color: #a43795;
+  color: white;
+}
+
+.btn-div {
+  margin-bottom: 15px;
+}
