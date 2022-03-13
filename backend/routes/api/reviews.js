@@ -70,51 +70,38 @@ router.delete('/:userId/:reviewId', asyncHandler(async function (req, res) {
   return res.json({ reviewId });
 }));
 
-// router.put(
-//   '/:userId/:carId',
-//   listingValidations.validateUpdate,
-//   asyncHandler(async function (req, res) {
-//     const listing = await Car.update(req.body, {
-//       where: {
-//         id: req.params.carId,
-//         ownerId: req.params.userId
-//       }
-//     });
-//     return res.json(listing);
-//   })
-// );
+router.put(
+  '/:reviewId',
+  reviewValidations.validateUpdate,
+  asyncHandler(async function (req, res) {
+    const {
+      reviewId,
+      userId,
+      carId,
+      rating,
+      content
+      } = req.body;
+    const oldReview = await Review.findByPk(reviewId);
 
-// router.delete('/:ownerId/:carId', asyncHandler(async function (req, res) {
+    oldReview.rating = rating;
+    oldReview.content = content;
 
-//   const carId = parseInt(req.params.carId, 10);
-//   const ownerId = parseInt(req.params.ownerId, 10);
+    await oldReview.save;
 
-//   console.log("carId--------------------------", carId);
-
-//   const listing = await Car.findByPk(carId);
-//   const reviews = await Review.findAll({
-//     where: { carId }
-//   });
-
-//   console.log("reviews----------------", reviews);
-
-//   if (reviews.length > 0) {
-//     // reviews.forEach((review) => {
-//     //   await review.destroy()
-//     // })
-//     await Review.destroy({
-//       where: { carId }
-//     })
-//     // await reviews.destroy();
-//     await listing.destroy();
-//   } else {
-//     console.log('IM IN HERE--------------')
-//     await listing.destroy();
-//   }
+    console.log("updated review from routes------------", oldReview);
+    return res.json(oldReview);
 
 
-//   return res.json({ ownerId, carId });
-// }));
+
+    // const updatedReview = await Review.update(req.body, {
+    //   where: {
+    //     id: req.params.reviewId
+    //   }
+    // });
+    // console.log("updated review from routes------------", updatedReview);
+    // return res.json(updatedReview);
+  })
+);
 
 
 module.exports = router;

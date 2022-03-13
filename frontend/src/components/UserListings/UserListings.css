@@ -1,8 +1,9 @@
 .listings-container {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
-
 
 .car-in-listings {
   display: flex;
@@ -20,4 +21,21 @@
 
 .btn-in-listing {
   margin-bottom: 8px;
+  background-color: #a43795;
+  color: white;
+}
+
+
+/* ////////////////////// */
+
+.cars-container {
+  display: grid;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+
+.each-car-in-cars {
+  margin-left: 20px;
+  margin-right: 20px;
 }

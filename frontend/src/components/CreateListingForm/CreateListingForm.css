@@ -1,8 +1,11 @@
 input {
   display: inline-block;
   position: relative;
-  width: 200px;
   margin-bottom: 15px;
+}
+
+.input-in-create-listing {
+  width: 500px !important;
 }
 
 section {
@@ -15,12 +18,22 @@ section {
 
 .create-listing {
   margin-right: 20px;
+  background-color: #a43795;
+  color: white;
 }
 
 .description {
   height: 100px;
+  width: 500px;
 }
-.section-create-listing-form span {
-  display: block;
+section.section-create-listing-form span {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
   margin-bottom: 3px;
+  width: 400px;
+}
+
+.errors-in-create-listing {
+  height: 145px;
 }

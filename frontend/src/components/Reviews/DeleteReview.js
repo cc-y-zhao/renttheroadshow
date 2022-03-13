@@ -32,11 +32,13 @@ const DeleteReview = ({reviewId}) => {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <section>
-            <h3>Are you sure you want to delete this Review?</h3>
-            <button onClick={() => dispatch(deleteReview(userId, reviewId))}>
-              Yes, Delete Review
-            </button>
-            <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+            <h3>Are you sure you want to delete this review?</h3>
+            <div className='user-reviews-btns'>
+              <button className='confirm-delete-review' onClick={() => dispatch(deleteReview(userId, reviewId))}>
+                Yes, Delete Review
+              </button>
+              <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
           </section>
         </Modal>
       )}

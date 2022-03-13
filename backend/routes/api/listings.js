@@ -29,6 +29,7 @@ router.put(
         ownerId: req.params.userId
       }
     });
+    console.log("listing from routes-------", listing); // listing = [1]
     return res.json(listing);
   })
 );

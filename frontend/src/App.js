@@ -9,12 +9,16 @@ import CarsList from "./components/CarsList";
 import UserListings from "./components/UserListings/UserListings";
 import CarPage from "./components/CarPage/CarPage";
 import ReviewsPage from "./components/Reviews/ReviewsPage";
+import GenericErrorHandler from "./components/GenericErrorHandler/GenericErrorHandler";
+
+import {getCars} from './store/cars';
+import {getUsers} from './store/users';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreUser()).then(() => dispatch(getCars())).then(() => dispatch(getUsers())).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
@@ -36,6 +40,9 @@ function App() {
           </Route>
           <Route path='/reviews/users/:userId'>
             <ReviewsPage />
+          </Route>
+          <Route path='/404'>
+            <GenericErrorHandler />
           </Route>
         </Switch>
       )}

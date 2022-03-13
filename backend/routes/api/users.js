@@ -45,6 +45,25 @@ router.post(
   }),
 );
 
+router.get(
+  '/',
+  asyncHandler(async function (_req, res) {
+    const users = await User.findAll();
+    return res.json(users);
+  })
+);
+
+
+// router.get(
+//   '/:userId',
+//   asyncHandler(async (req, res) => {
+//     const userId = parseInt(req.params.userId, 10);
+
+//     const user = await User.findByPk(userId);
+
+//     return res.json(user);
+//   })
+// )
 
 
 module.exports = router;

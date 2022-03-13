@@ -18,7 +18,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
   const [errors, setErrors] = useState([]);
 
   const ownerId = user.id;
-  console.log("onwerId in createlistingform-----------", ownerId);
+  // console.log("onwerId in createlistingform-----------", ownerId);
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -94,14 +94,16 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
   return (
     <>
       <section className='section-create-listing-form'>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            {errors &&
-              errors.map(error => (
-                <li key={error}>{error}</li>
-              ))
-            }
-          </ul>
+        <form className='create-listing-form' onSubmit={handleSubmit}>
+          <div className='errors-in-create-listing'>
+            <ul>
+              {errors &&
+                errors.map(error => (
+                  <li key={error}>{error}</li>
+                ))
+              }
+            </ul>
+          </div>
           <input
             type="hidden"
             value={user.id}
@@ -109,6 +111,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Make: </span>
               <input
+                className='input-in-create-listing'
                 type="text"
                 placeholder="Make"
                 required
@@ -118,6 +121,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Model: </span>
               <input
+                className='input-in-create-listing'
                 type="text"
                 placeholder="Model"
                 required
@@ -126,7 +130,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           </div>
           <div>
             <span>Description: </span>
-            <input
+            <textarea
               className='description'
               type="text"
               placeholder="Tell us a bit about your car"
@@ -137,6 +141,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Price per day: </span>
             <input
+              className='input-in-create-listing'
               type="number"
               placeholder="Price"
               min="15"
@@ -147,6 +152,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>Image URL: </span>
             <input
+              className='input-in-create-listing'
               type="text"
               placeholder="Image URL"
               value={imageURL}
@@ -155,6 +161,7 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
           <div>
             <span>City: </span>
             <input
+              className='input-in-create-listing'
               type="text"
               placeholder="City"
               value={city}

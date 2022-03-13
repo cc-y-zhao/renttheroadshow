@@ -1,17 +1,23 @@
 .reviews-container {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .each-review {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 15px;
+  align-items: center !important;
+  box-sizing: border-box;
+  margin-bottom: 0px;
   padding: 25px;
   border: medium solid #a43795;
-  width: 500px;
+  width: 600px;
+}
+
+section.each-review {
+  margin-top: 1px;
+  margin-bottom: 0px;
 }
 
 .review-content {
@@ -22,12 +28,25 @@
   font-size: 18px;
 }
 
+.review-and-buttons {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+}
+
 .reviewer {
   margin-bottom: 8px;
 }
 
 .review-rating {
   font-size: 18px;
+}
+
+.img-and-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .review-car-type {
@@ -40,33 +59,30 @@
   margin-bottom: 10px;
 }
 
-/* .btn-in-review {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-/* /////////////////////////// */
 
-/* .listings-container {
+.btn-in-review {
+  margin-top: 10px;
+  background-color: #a43795;
+  color: white;
+}
+
+.edit-review-btn {
+  margin-right: 10px;
+}
+
+.user-reviews-btns {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
 
-.car-in-listings {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 35px;
-  margin-right: 35px;
-  color: black;
+.confirm-delete-review {
+  margin-right: 10px;
+  background-color: #a43795;
+  color: white;
 }
 
-.car-name {
+.btn-div {
   margin-bottom: 15px;
 }
-
-
-.btn-in-listing {
-  margin-bottom: 8px;
-} */

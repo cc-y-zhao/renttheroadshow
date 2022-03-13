@@ -1,0 +1,10 @@
+.delete-listing-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.delete-listing-btn {
+  margin-right: 10px;
+}

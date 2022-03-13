@@ -12,8 +12,6 @@ function CarPage() {
   const params = useParams();
   const carId = parseInt(params.carId, 10);
 
-  console.log("carId from the CarPage-----------", carId);
-
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,29 +25,31 @@ function CarPage() {
   }, [dispatch]);
 
   //check if logged in user has already posted a review for this car, if so do not show create review modal:
-
+  if (!car) {
+    history.push('/404');
+  }
 
   return (
     <div className='car-page-container'>
-      <h2>{car.brand} {car.model}</h2>
+      <h2>{car?.brand} {car?.model}</h2>
       <div>
         <div className='img-of-car'>
           <img
-            src={car.imageURL}
-            alt={`${car.brand} ${car.model}`}
+            src={car?.imageURL}
+            alt={`${car?.brand} ${car?.model}`}
             height="370px"
             width="360px"
           />
         </div>
-        <div className='description-of-car'>{car.description}</div>
-        <div className='price-of-car'>Rental Price Per Day: $ {car.price}</div>
-        <div className='location-of-car'>Location: {car.city}, {car.state}</div>
+        <div className='description-of-car'>{car?.description}</div>
+        <div className='price-of-car'>Rental Price Per Day: $ {car?.price}</div>
+        <div className='location-of-car'>Location: {car?.city}, {car?.state}</div>
       </div>
       <div>
-        <CreateReviewModal carId={car.id}/>
+        <CreateReviewModal carId={car?.id}/>
       </div>
       <div>
-        <ReviewsPerCar carId={car.id}/>
+        <ReviewsPerCar carId={carId}/>
       </div>
     </div>
   )

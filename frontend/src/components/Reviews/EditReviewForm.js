@@ -5,21 +5,24 @@ import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { ValidationError } from '../../utils/ValidationError';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-import { createReview, getReviewsByCar } from '../../store/reviews';
+import { editReview, getReviewsByUser } from '../../store/reviews';
+
 // import { getUserListings } from '../../store/listings';
 // import { getOneCar } from '../../store/cars';
 
 import './CreateReviewForm.css';
 
-const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
+const EditReviewForm = ({ review, showModal, setShowModal }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const reviewId = review.id;
   const [errors, setErrors] = useState([]);
-  const [content, setContent] = useState('');
-  const [rating, setRating] = useState('');
+  const [content, setContent] = useState(review.content);
+  const [rating, setRating] = useState(review.rating);
   const userId = useSelector(state => state.session.user).id
+  const carId = review.carId;
 
   const updateRating = (e) => setRating(e.target.value);
   const updateContent = (e) => setContent(e.target.value);
@@ -37,6 +40,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
     e.preventDefault();
 
     const payload = {
+      reviewId,
       userId,
       carId,
       rating,
@@ -44,25 +48,23 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
     };
     // console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
 
-    let newReview;
+    let updatedReview;
 
     try {
       // console.log("HI FROM TRY CATCH-----------------")
+      console.log("payload from EditREview-------", payload)
 
-      newReview = await dispatch(createReview(payload));
+      updatedReview = await dispatch(editReview(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrors(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
       else setErrors({ overall: error.toString().slice(7) })
     }
-    if (newReview) {
+    if (updatedReview) {
       setErrors([]);
-      // console.log('SUCCESS!!!!!!!!')
-      dispatch(getReviewsByCar(carId));
       setShowModal(false);
-      //TO DO: MAY NEED TO ADD OTHER DISPATCH (MY REVIEWS?)
-      return history.push(`/cars/${carId}`);
+      return;
     }
   };
 
@@ -105,7 +107,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
           </div>
           <div>
             <span>Rating: </span>
-            <select className='select-rating' onChange={updateRating} value={rating}>
+            <select onChange={updateRating} value={rating}>
               {["", 1, 2, 3, 4, 5].map(num =>
                 <option key={num}>{num}</option>
               )}
@@ -116,7 +118,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
               type="submit"
               disabled={errors.length > 0}
             >
-              Post Review
+              Update Review
             </button>
             <button className='btn-in-form' type="button" onClick={handleCancelClick}>Cancel</button>
           </div>
@@ -126,4 +128,4 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
   );
 };
 
-export default CreateReviewForm;
+export default EditReviewForm;
