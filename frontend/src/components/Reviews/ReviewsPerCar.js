@@ -19,7 +19,7 @@ function ReviewsPerCar(carId) {
     return Object.values(state.reviews);
   });
 
-  // console.log("reviews from ReviewsPerCar----------", reviews[0]['username']);
+  console.log("reviews from ReviewsPerCar----------", reviews);
   // console.log("username-----------". reviews[0]);
 
   //TO DO: BUILD USERS STORE TO ACCESS ALL USERS AND PULL USERNAMES TO INCLUDE IN REVIEWS
@@ -31,7 +31,6 @@ function ReviewsPerCar(carId) {
     dispatch(getReviewsByCar(id));
   }, [dispatch]);
 
-  //dispatch(getUser)
 
   return (
     <div>

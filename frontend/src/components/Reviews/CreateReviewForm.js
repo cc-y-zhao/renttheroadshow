@@ -18,7 +18,7 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
 
   const [errors, setErrors] = useState([]);
   const [content, setContent] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState('');
   const userId = useSelector(state => state.session.user).id
 
   const updateRating = (e) => setRating(e.target.value);
