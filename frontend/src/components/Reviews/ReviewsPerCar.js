@@ -19,19 +19,18 @@ function ReviewsPerCar(carId) {
     return Object.values(state.reviews);
   });
 
+  const users = useSelector((state) => {
+    return state.users;
+  });
 
-  // console.log("username-----------". reviews[0]);
+  console.log("users in ReviewPerCar-------", users);
 
-  //TO DO: BUILD USERS STORE TO ACCESS ALL USERS AND PULL USERNAMES TO INCLUDE IN REVIEWS
-  console.log("carId in ReviewsPerCAr---------", carId);
   const id = carId.carId;
-
 
   useEffect(() => {
     dispatch(getReviewsByCar(id));
   }, [dispatch]);
 
-  console.log("reviews from ReviewsPerCar----------", reviews[0]);
 
 
   return (
@@ -42,7 +41,7 @@ function ReviewsPerCar(carId) {
           {reviews?.map((review) => {
             return (
               <section key={review.id} className='each-review'>
-                <div className='reviewer'>{review.userId} said: </div>
+                <div className='reviewer'>{users[review.userId].username} said: </div>
                 <div className='review-content'>"{review.content}"</div>
                 <div>Rating: {review.rating}</div>
               </section>

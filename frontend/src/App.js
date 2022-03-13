@@ -11,12 +11,13 @@ import CarPage from "./components/CarPage/CarPage";
 import ReviewsPage from "./components/Reviews/ReviewsPage";
 
 import {getCars} from './store/cars';
+import {getUsers} from './store/users';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => dispatch(getCars())).then(() => setIsLoaded(true));
+    dispatch(sessionActions.restoreUser()).then(() => dispatch(getCars())).then(() => dispatch(getUsers())).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (

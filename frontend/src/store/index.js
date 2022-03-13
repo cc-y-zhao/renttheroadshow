@@ -4,6 +4,7 @@ import sessionReducer from './session';
 import carReducer from "./cars";
 import listingsReducer from "./listings";
 import reviewsReducer from "./reviews";
+import usersReducer from "./users";
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   cars: carReducer,
   listings: listingsReducer,
   reviews: reviewsReducer,
+  users: usersReducer,
 });
 
 let enhancer;
