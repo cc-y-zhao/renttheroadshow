@@ -38,7 +38,7 @@ function Navigation({ isLoaded }) {
           <NavLink className='navlink nav-element nav-home' exact to="/">
             <img
               className='logo-in-nav'
-              src='./images/logo.png'
+              src='/images/logo.png'
               alt='RTRS logo'
               height='40px'
             />
