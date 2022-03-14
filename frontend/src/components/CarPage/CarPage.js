@@ -88,7 +88,9 @@ function CarPage() {
         }
       </div>
       <div>
-        <ReviewsPerCar carId={carId}/>
+        {reviews.length > 0 &&
+          <ReviewsPerCar carId={carId}/>
+        }
       </div>
     </div>
   )

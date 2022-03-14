@@ -94,7 +94,6 @@ export const editOneListing = payload => async dispatch => {
     }
 
     const listing = await response.json();
-    console.log("listing from listing store--------", listing);
     dispatch(editListing(listing));
     return listing;
   } catch (error) {
@@ -110,6 +109,7 @@ export const getUserListings = (id) => async dispatch => {
 
   if (response.ok) {
     const listings = await response.json();
+    console.log("listings from store------------", listings)
     dispatch(loadListingsByOwner(listings));
   }
 }
