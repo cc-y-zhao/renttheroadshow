@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import {getUsers} from '../../store/users';
 import './SignupForm.css';
 
 function SignupFormPage({showModal, setShowModal}) {
@@ -19,7 +20,7 @@ function SignupFormPage({showModal, setShowModal}) {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ email, username, password })).then(() => dispatch(getUsers()))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);

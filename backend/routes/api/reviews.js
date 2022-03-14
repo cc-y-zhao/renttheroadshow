@@ -46,6 +46,8 @@ router.get(
       }
     });
 
+    console.log('returned reviews: ', reviews);
+
     return res.json(reviews);
   })
 );
