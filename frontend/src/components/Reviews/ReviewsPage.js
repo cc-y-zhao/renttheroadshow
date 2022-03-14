@@ -32,7 +32,7 @@ function ReviewsPage() {
 
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
-  }, [reviews.toString()]);
+  }, [reviews.toString(), cars.toString()]);
 
   console.log("reviews in ReviewsPage----------", reviews)
 

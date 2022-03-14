@@ -228,6 +228,8 @@ const reviewsReducer = (state = {}, action) => {
       newState = {...state};
       delete newState[action.reviewId];
       return newState;
+    case 'session/removeUser':
+      return {};
     default:
       return state;
   }
