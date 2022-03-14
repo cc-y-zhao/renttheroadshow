@@ -22,9 +22,11 @@ const DeleteReview = ({reviewId}) => {
     return Object.values(state.reviews);
   });
 
-  // useEffect(() => {
-  //   setShowModal(false);
-  // }, [reviews.toString()]);
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteReview(userId, reviewId));
+    return setShowModal(false);
+  }
 
   return (
     <>
@@ -34,7 +36,7 @@ const DeleteReview = ({reviewId}) => {
           <section>
             <h3>Are you sure you want to delete this review?</h3>
             <div className='user-reviews-btns'>
-              <button className='confirm-delete-review' onClick={() => dispatch(deleteReview(userId, reviewId))}>
+              <button className='confirm-delete-review' onClick={handleDelete}>
                 Yes, Delete Review
               </button>
               <button type="button" onClick={() => setShowModal(false)}>Cancel</button>

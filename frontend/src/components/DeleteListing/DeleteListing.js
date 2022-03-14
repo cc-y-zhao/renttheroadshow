@@ -8,6 +8,7 @@ import allStates from "../../utils/USA_States";
 
 import { deleteOneListing } from '../../store/listings';
 
+
 import './DeleteListing.css';
 
 const DeleteListing = ({ ownerId, carId }) => {
@@ -23,6 +24,7 @@ const DeleteListing = ({ ownerId, carId }) => {
   useEffect(() => {
     setShowModal(false);
   }, [listings.toString()]);
+
 
   return (
     <>
