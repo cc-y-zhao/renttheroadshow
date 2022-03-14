@@ -20,7 +20,6 @@ function CarsList() {
   const [imageClicked, setImageClicked] = useState(false);
 
   const cars = useSelector((state) => {
-    console.log("state.cars----------------", state.cars)
     return Object.values(state.cars);
   });
 

@@ -9,8 +9,6 @@
 //   // const dispatch = useDispatch();
 //   // const history = useHistory();
 
-//   console.log("CAR--------------", car);
-
 //   // const cars = useSelector((state) => {
 //   //   return Object.values(state.cars);
 //   // });

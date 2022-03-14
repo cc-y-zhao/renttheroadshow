@@ -46,13 +46,10 @@ const EditReviewForm = ({ review, showModal, setShowModal }) => {
       rating,
       content
     };
-    // console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
 
     let updatedReview;
 
     try {
-      // console.log("HI FROM TRY CATCH-----------------")
-      console.log("payload from EditREview-------", payload)
 
       updatedReview = await dispatch(editReview(payload));
     } catch (error) {

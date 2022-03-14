@@ -79,14 +79,8 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
     }
     if (updatedListing) {
       setErrors([]);
-      console.log('SUCCESS!!!!!!!!');
-      console.log("updated listing------------", updatedListing);
       setShowModal(false);
       return;
-      // history.push(`/cars/${carId}`)
-      // return;
-      // alert()
-      // history.push(`/cars/${updatedListing.id}`);
     }
   };
 

@@ -42,12 +42,10 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
       rating,
       content
     };
-    // console.log("PAYLOAD FROM CREATEREVIEWMODAL---------------", payload);
 
     let newReview;
 
     try {
-      // console.log("HI FROM TRY CATCH-----------------")
 
       newReview = await dispatch(createReview(payload));
     } catch (error) {
@@ -58,10 +56,8 @@ const CreateReviewForm = ({ carId, showModal, setShowModal }) => {
     }
     if (newReview) {
       setErrors([]);
-      // console.log('SUCCESS!!!!!!!!')
       dispatch(getReviewsByCar(carId));
       setShowModal(false);
-      //TO DO: MAY NEED TO ADD OTHER DISPATCH (MY REVIEWS?)
       return history.push(`/cars/${carId}`);
     }
   };

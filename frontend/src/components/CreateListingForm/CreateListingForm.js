@@ -65,7 +65,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
     let newListing;
 
     try {
-      console.log("HI FROM TRY CATCH-----------------")
 
       newListing = await dispatch(createListing(payload));
     } catch (error) {

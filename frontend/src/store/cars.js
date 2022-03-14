@@ -25,7 +25,6 @@ export const getOneCar = (carId) => async dispatch => {
 
   if (response.ok) {
     const car = await response.json();
-    console.log("car from fetch-----------------", car);
     dispatch(loadOneCar(car));
   }
 };
@@ -41,7 +40,7 @@ export const getCars = () => async dispatch => {
 };
 
 export const createListing = payload => async dispatch => {
-  console.log("HI FROM THE CARS STORE-----------");
+
   try {
     const response = await csrfFetch(`/api/cars`, {
       method: 'POST',

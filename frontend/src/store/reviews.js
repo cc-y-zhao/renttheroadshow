@@ -188,7 +188,6 @@ export const editReview = payload => async dispatch => {
     }
 
     const updatedReview = await response.json();
-    console.log("updatedReview from reviews store--------", updatedReview);
     dispatch(editOneReview(updatedReview));
     return updatedReview;
   } catch (error) {

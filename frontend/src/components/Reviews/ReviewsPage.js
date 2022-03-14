@@ -23,25 +23,17 @@ function ReviewsPage() {
   if (!sessionUser) history.push('/');
 
   const reviews = useSelector(state => {
-    // console.log("STATE FROM REVIEWSPAGE------------", state);
     return Object.values(state.reviews);
   });
-
-  // console.log("REVIEWS FROM REVIEWSPAGE------------", reviews);
 
   const cars = useSelector(state => {
     return state.cars;
   })
 
-  // console.log("CARS FROM REVIEWSPAGE---------", cars)
-
   useEffect(() => {
     dispatch(getReviewsByUser(userId));
   }, [dispatch, reviews.toString()]);
 
-  //TO DO: check if logged in user has already posted a review for this car, if so do not show create review modal:
-
-  console.log("CARS FROM REVIEWSPAGE---------", cars);
   return (
     <div>
       <h2>My Reviews</h2>

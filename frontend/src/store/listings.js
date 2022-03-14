@@ -109,7 +109,6 @@ export const getUserListings = (id) => async dispatch => {
 
   if (response.ok) {
     const listings = await response.json();
-    console.log("listings from store------------", listings)
     dispatch(loadListingsByOwner(listings));
   }
 }

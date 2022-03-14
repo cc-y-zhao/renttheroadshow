@@ -21,17 +21,14 @@ router.post(
 router.get(
   '/cars/:carId',
   asyncHandler(async function (req, res) {
-    // console.log("HELLO FROM REVIEWS ROUTER-----------");
 
     const carId = parseInt(req.params.carId, 10);
-    // console.log("carId-----------", carId);
 
     const reviews = await Review.findAll({
       where: {
         carId: req.params.carId
       }
     });
-    // console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
 
     return res.json(reviews);
   })
@@ -40,17 +37,14 @@ router.get(
 router.get(
   '/users/:userId',
   asyncHandler(async function (req, res) {
-    console.log("HELLO FROM REVIEWS ROUTER-----------");
 
     const userId = parseInt(req.params.userId, 10);
-    console.log("userId FROM REVIEWS ROUTER-----------", userId);
 
     const reviews = await Review.findAll({
       where: {
         userId: req.params.userId
       }
     });
-    console.log("REVIEWS FROM REVIEWS ROUTER-------------", reviews);
 
     return res.json(reviews);
   })
@@ -61,11 +55,7 @@ router.delete('/:userId/:reviewId', asyncHandler(async function (req, res) {
   const reviewId = parseInt(req.params.reviewId, 10);
   const userId = parseInt(req.params.userId, 10);
 
-  console.log("reviewId--------------------------", reviewId);
-
   const review = await Review.findByPk(reviewId);
-
-  console.log("FOUND REVIEW----------------", review);
 
   await review.destroy();
 
@@ -90,7 +80,6 @@ router.put(
 
     await oldReview.save();
 
-    console.log("updated review from routes------------", oldReview);
     return res.json(oldReview);
 
     // const updatedReview = await Review.update(req.body, {
@@ -98,7 +87,6 @@ router.put(
     //     id: req.params.reviewId
     //   }
     // });
-    // console.log("updated review from routes------------", updatedReview);
     // return res.json(updatedReview);
   })
 );
