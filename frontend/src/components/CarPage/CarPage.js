@@ -56,6 +56,8 @@ function CarPage() {
     enablePostReviewButton = true;
   }
 
+  const dollarSign = '$';
+
   return (
     <div className='car-page-container'>
       <h2>{car?.brand} {car?.model}</h2>
@@ -69,8 +71,16 @@ function CarPage() {
           />
         </div>
         <div className='description-of-car'>{car?.description}</div>
-        <div className='price-of-car'>Rental Price Per Day: $ {car?.price}</div>
-        <div className='location-of-car'>Location: {car?.city}, {car?.state}</div>
+        <div className='price-of-car'>
+          <span className='rental-price'>Rental Price Per Day: </span>
+          <span>
+            {dollarSign}{car?.price}
+          </span>
+        </div>
+        <div className='location-of-car'>
+          <span className='car-location'>Location: </span>
+          <span>{car?.city}, {car?.state}</span>
+        </div>
       </div>
       <div>
         {enablePostReviewButton &&

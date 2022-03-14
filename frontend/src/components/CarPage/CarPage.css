@@ -15,7 +15,9 @@
 }
 
 .price-of-car {
-  display: block;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
   position: relative;
   margin: 0 auto;
   width: 500px;
@@ -23,11 +25,13 @@
 }
 
 .location-of-car {
-  display: block;
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
   position: relative;
   margin: 0 auto;
   width: 500px;
-  margin-bottom: 25px;
+  margin-bottom: 45px;
 }
 
 .car-page-container div {
@@ -36,4 +40,14 @@
   align-items: center;
   /* flex-wrap: wrap; */
   /* align-items: center; */
+}
+
+.rental-price {
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.car-location {
+  font-weight: bold;
+  margin-right: 7px;
 }
