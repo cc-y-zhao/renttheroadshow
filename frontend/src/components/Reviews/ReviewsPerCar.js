@@ -41,7 +41,7 @@ function ReviewsPerCar(carId) {
               <section key={review.id} className='each-review'>
                 <div className='reviewer'>{users[review.userId].username} said: </div>
                 <div className='review-content'>"{review.content}"</div>
-                <div>Rating: {review.rating}</div>
+                <div>Rating: {review.rating} / 5</div>
               </section>
             );
           }
