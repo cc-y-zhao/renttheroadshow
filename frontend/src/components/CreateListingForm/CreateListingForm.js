@@ -18,7 +18,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
   const [errors, setErrors] = useState([]);
 
   const ownerId = user.id;
-  // console.log("onwerId in createlistingform-----------", ownerId);
   const [description, setDescription] = useState('');
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -77,7 +76,6 @@ const CreateListingForm = ({ user, showModal, setShowModal }) => {
     }
     if (newListing) {
       setErrors([]);
-      console.log('SUCCESS!!!!!!!!')
       setShowModal(false);
       dispatch(getUserListings(user.id));
       dispatch(getOneCar(newListing.id));

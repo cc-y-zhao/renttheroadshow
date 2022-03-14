@@ -1,17 +1,14 @@
 
 nav {
   /* position: sticky; */
-  top: 0;
+  /* top: 0; */
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-right: 40px;
+  /* margin-right: 40px; */
   flex-direction: row;
   background-color: #a43795;
   border: medium solid #a43795;
-  /* margin-top: 0; */
-  /* margin-bottom: 15px; */
-  /* align-content: center; */
   color: white;
   font-family: Georgia, 'Times New Roman', Times, serif;
  }
@@ -28,13 +25,13 @@ nav {
 
 .welcome-msg {
   position: absolute;
-  right: 30px;
+  right: 70px;
   font-style: italic;
 }
 
 .prof-icon {
   position: absolute;
-  right: 200px;
+  right: 20px;
 }
 
 .signup-nav {
@@ -57,39 +54,22 @@ nav {
    margin-right: 15px;
  }
 
- /* .nav-reviews {
-   margin-right: 800px;
- } */
-
  .create-form-btn {
    margin-left: 75px;
+   text-decoration: none;
+   font-weight: 500;
+ }
+
+ .create-form-btn:hover {
    text-decoration: underline;
  }
 
  .navlink {
    color: white;
+   text-decoration: none;
+   font-weight: 500;
  }
 
- /* .nav-space {
-   display: inline-flex;
-   margin-left:auto;
- } */
- /* .active {
-   font-weight: bold;
- } */
-
-
-/* nav {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-grow: 1;
-  background-color:rgb(3, 24, 17);
-  font-size: 18px;
-  margin: 5px;
-  padding: 5px;
-  color: aliceblue;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-} */
+ .navlink:hover {
+  text-decoration: underline;
+ }

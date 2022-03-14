@@ -11,24 +11,16 @@ import EditListingModal from "../EditListing";
 import DeleteListing from "../DeleteListing/DeleteListing";
 
 function UserListings() {
-  // const [showListings, setShowListings] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-
-  console.log("params------------", params);
 
   const sessionUser = useSelector(state => state.session.user);
   const id = sessionUser.id;
 
   if (params.userId.toString() !== id.toString()) history.push('/');
   if (!sessionUser) history.push('/');
-
-  // const openListings = () => {
-  //   if (showListings) return;
-  //   setShowListings(true);
-  // }
 
   const listings = useSelector((state) => {
     return Object.values(state.listings);
@@ -38,16 +30,6 @@ function UserListings() {
     dispatch(getUserListings(id));
   }, [listings.toString()]);
 
-  console.log("listings----------", listings);
-
-
-  // const handleCloseListings = (e) => {
-  //   e.preventDefault();
-  //   //close form:
-  //   setShowListings(false);
-  // };
-
-  // {/* <button type="button" onClick={handleCloseListings}>Close</button> */}
 
   return (
     <div>
@@ -77,14 +59,3 @@ function UserListings() {
 }
 
 export default UserListings;
-
-
-// oldMake = { car.brand }
-// oldModel = { car.model }
-// oldDescription = { car.description }
-// oldPrice = { car.price }
-// oldImageURL = { car.imageURL }
-// oldCity = { car.city }
-// oldState = { car.state }
-// ownerId = { sessionUser.id }
-// carId = { car.id }

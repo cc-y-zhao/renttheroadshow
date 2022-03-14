@@ -5,6 +5,7 @@ import ProfileButtonModal from './ProfileButtonModal';
 import CreateRentalListingModal from '../CreateListingForm/index';
 import UserListings from '../UserListings/UserListings';
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormPage/SignupFormModal';
 import './Navigation.css';
 import '../../index.css'
 
@@ -26,7 +27,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink className='navlink nav-element signup-nav' to="/signup">Sign Up</NavLink>
+        <SignupFormModal />
       </>
     );
   }
@@ -52,6 +53,7 @@ function Navigation({ isLoaded }) {
 
 export default Navigation;
 
+//* <NavLink className='navlink nav-element signup-nav' to="/signup">Sign Up</NavLink>
 
 // return (
 //   <nav className='nav-container'>

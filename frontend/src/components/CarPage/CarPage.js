@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import '../LandingPage/LandingPage.css'
 import { getOneCar } from "../../store/cars";
+import { getReviewsByCar } from "../../store/reviews";
 import './CarPage.css'
 import CreateReviewModal from "../Reviews/CreateReviewModal";
 import ReviewsPerCar from "../Reviews/ReviewsPerCar";
@@ -20,14 +21,42 @@ function CarPage() {
     return state.cars[carId];
   });
 
+  const user = useSelector(state => state.session.user);
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
+
   useEffect(() => {
-    dispatch(getOneCar(carId));
+    dispatch(getOneCar(carId)).then(() => dispatch(getReviewsByCar(carId)));
   }, [dispatch]);
 
-  //check if logged in user has already posted a review for this car, if so do not show create review modal:
   if (!car) {
     history.push('/404');
   }
+  //check if logged in user has already posted a review for this car, if so don't show the Post Review button
+  const reviews = useSelector((state) => {
+    return Object.values(state.reviews);
+  });
+
+  const userIds = [];
+
+  reviews.forEach(review => {
+    userIds.push(review.userId);
+  });
+
+
+  //check:
+  // 1) if logged in user is the owner of this car
+  // 2) if logged in user has already posted a review for this car
+  // 3) if session user is logged in
+  // if not, don't show the Post Review button
+  let enablePostReviewButton = false;
+  if (car.ownerId !== userId && !userIds.includes(userId) && user) {
+    enablePostReviewButton = true;
+  }
+
+  const dollarSign = '$';
 
   return (
     <div className='car-page-container'>
@@ -42,14 +71,26 @@ function CarPage() {
           />
         </div>
         <div className='description-of-car'>{car?.description}</div>
-        <div className='price-of-car'>Rental Price Per Day: $ {car?.price}</div>
-        <div className='location-of-car'>Location: {car?.city}, {car?.state}</div>
+        <div className='price-of-car'>
+          <span className='rental-price'>Rental Price Per Day: </span>
+          <span>
+            {dollarSign}{car?.price}
+          </span>
+        </div>
+        <div className='location-of-car'>
+          <span className='car-location'>Location: </span>
+          <span>{car?.city}, {car?.state}</span>
+        </div>
       </div>
       <div>
-        <CreateReviewModal carId={car?.id}/>
+        {enablePostReviewButton &&
+          <CreateReviewModal carId={car?.id} />
+        }
       </div>
       <div>
-        <ReviewsPerCar carId={carId}/>
+        {reviews.length > 0 &&
+          <ReviewsPerCar carId={carId}/>
+        }
       </div>
     </div>
   )

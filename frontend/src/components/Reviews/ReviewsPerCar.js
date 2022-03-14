@@ -23,7 +23,7 @@ function ReviewsPerCar(carId) {
     return state.users;
   });
 
-  console.log("users in ReviewPerCar-------", users);
+  // console.log("users in ReviewPerCar-------", users);
 
   const id = carId.carId;
 
