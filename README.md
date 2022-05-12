@@ -80,27 +80,14 @@ On the log in page, click "Demo Login".
 
 # Features
 
-## Book Appointments
-<img src="https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/gifs/booking_demo.gif?raw=true" width="580" height="350" />
-<!-- ![Alt Text](https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/videos/booking_demo.gif?raw=true)    -->
+## Listings
 
-Users can book, update, and delete their appointments.
+Users can create, edit, and delete car listings.
    
-## Leave Reviews
-<img src="https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/gifs/review_demo.gif?raw=true" width="580" height="350" />
+## Reviews
+<!-- <img src="https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/gifs/review_demo.gif?raw=true" width="580" height="350" /> -->
 
 Users can create, update, and delete reviews.
-   
-## Add to Favorites
-<img src="https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/gifs/favorite.gif?raw=true" width="580" height="350" />
-
-Users can add and delete favorites.
-   
-## List Businesses 
-<!-- <img src="https://github.com/cc-y-zhao/Book-In-Style/blob/misc_v5/react-app/public/gifs/favorite.gif?raw=true" width="580" height="350" /> -->
-
-Users can list businesses, add services, as well as edit and delete their listings. 
-
 
 <br>
 
