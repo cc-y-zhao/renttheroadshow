@@ -1,6 +1,6 @@
 # Rent The RoadShow (RTRS)
 
-<img width="1023" alt="image" src="https://raw.githubusercontent.com/cc-y-zhao/Book-In-Style/misc_v5/react-app/public/images/ReadMe/book_homepage.png">
+<img width="1023" alt="image" src="https://github.com/cc-y-zhao/renttheroadshow/blob/main/frontend/public/images/homepage.png?raw=true">
 
 [Rent The RoadShow](https://renttheroadshow.herokuapp.com/) is an online destination where users can explore cars, list their cars for rent, and leave reviews. 
 
