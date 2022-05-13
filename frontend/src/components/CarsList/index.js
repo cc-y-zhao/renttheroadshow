@@ -36,7 +36,16 @@ function CarsList() {
 
   return (
     <div>
-      <h2>Cars For Rent</h2>
+      <div className='home-main-img-div'>
+        {/* <img
+          className='home-main-img'
+          src='/images/homepage.png'
+          width='90%'
+          height='400'
+        /> */}
+      </div>
+      <h1 className='discover'>Discover your next ride</h1>
+      {/* <h2>Cars Available Now</h2> */}
       <div className='cars-container'>
         <div className='cars-div'>
           {cars.map((car) => {

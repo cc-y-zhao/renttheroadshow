@@ -21,7 +21,33 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+}
 
 
+.home-main-img-div {
+  background-position: 320px;
+  background-repeat: no-repeat;
+  background-image: url(https://www.mvpcharlotte.com/wp-content/uploads/2020/03/P1000215-scaled-e1584477416908.jpg);
+  background-size: cover;
+  background-color: #ebebeb;
+  height: 450px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-position: 10%;
+  /* background-position: bottom 10%; */
+}
 
+
+.discover {
+  position: absolute;
+  top: 150px;
+  text-align: left;
+  color: white;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 46px;
+  width: 800px;
+  margin-left: 25%;
+  font-family: 'Brown Pro', sans-serif;
 }
