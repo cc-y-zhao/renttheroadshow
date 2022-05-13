@@ -4,13 +4,16 @@ nav {
   /* top: 0; */
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  /* width: 100%; */
   /* margin-right: 40px; */
   flex-direction: row;
   background-color: #a43795;
   border: medium solid #a43795;
   color: white;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Brown Pro', sans-serif;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+  margin-left: 5%;
+  margin-right: 5%;
  }
 
  .links-in-nav {
@@ -25,23 +28,23 @@ nav {
 
 .welcome-msg {
   position: absolute;
-  right: 70px;
+  right: 12%;
   font-style: italic;
 }
 
 .prof-icon {
   position: absolute;
-  right: 20px;
+  right: 8%;
 }
 
 .signup-nav {
   position: absolute;
-  right: 30px;
+  right: 7%;
 }
 
 .login-nav {
   position: absolute;
-  right: 100px;
+  right: 13%;
 }
 
  .logo-in-nav {

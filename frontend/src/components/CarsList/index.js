@@ -36,19 +36,34 @@ function CarsList() {
 
   return (
     <div>
-      <h2>Cars For Rent</h2>
+      <div className='home-main-img-div'>
+        {/* <img
+          className='home-main-img'
+          src='/images/homepage.png'
+          width='90%'
+          height='400'
+        /> */}
+      </div>
+      <h1 className='discover'>Discover your next ride</h1>
+      {/* <h2>Cars Available Now</h2> */}
       <div className='cars-container'>
-        <div>
+        <div className='cars-div'>
           {cars.map((car) => {
             return (
-              <NavLink className='each-car-in-cars' key={car.id} to={'/cars/' + car.id}>
-                <img
-                  src={car.imageURL}
-                  alt={`${car.brand} ${car.model}`}
-                  height="370px"
-                  width="360px"
-                />
-              </NavLink>
+              <div className='each-car-div'>
+                <NavLink className='each-car-in-cars' key={car.id} to={'/cars/' + car.id}>
+                  <img
+                    src={car.imageURL}
+                    alt={`${car.brand} ${car.model}`}
+                    // height="100%"
+                    // width="100%"
+                    height="270px"
+                    width="260px"
+                    // height="370px"
+                    // width="360px"
+                  />
+                </NavLink>
+              </div>
             );
           }
           )}

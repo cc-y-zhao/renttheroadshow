@@ -5,7 +5,49 @@
 }
 
 
-.each-car-in-cars {
+/* .each-car-in-cars {
   margin-left: 20px;
   margin-right: 20px;
+} */
+
+.each-car-div {
+  display: inline-block;
+  height: 15%;
+  width: 25%;
+}
+
+.cars-div {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+.home-main-img-div {
+  background-position: 320px;
+  background-repeat: no-repeat;
+  background-image: url(https://github.com/cc-y-zhao/renttheroadshow/blob/misc_pt4/frontend/public/images/homepage-rtrs.png?raw=true);
+  background-size: cover;
+  background-color: #ebebeb;
+  height: 450px;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-position: 10%;
+  /* background-position: bottom 10%; */
+}
+
+
+.discover {
+  position: absolute;
+  top: 150px;
+  text-align: left;
+  color: white;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 46px;
+  width: 800px;
+  margin-left: 27%;
+  font-family: 'Brown Pro', sans-serif;
 }
