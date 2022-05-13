@@ -27,7 +27,7 @@
 .home-main-img-div {
   background-position: 320px;
   background-repeat: no-repeat;
-  background-image: url(https://www.mvpcharlotte.com/wp-content/uploads/2020/03/P1000215-scaled-e1584477416908.jpg);
+  background-image: url(https://github.com/cc-y-zhao/renttheroadshow/blob/misc_pt4/frontend/public/images/homepage-rtrs.png?raw=true);
   background-size: cover;
   background-color: #ebebeb;
   height: 450px;
@@ -45,9 +45,9 @@
   text-align: left;
   color: white;
   font-weight: 700;
-  font-size: 65px;
+  font-size: 60px;
   line-height: 46px;
   width: 800px;
-  margin-left: 25%;
+  margin-left: 27%;
   font-family: 'Brown Pro', sans-serif;
 }
