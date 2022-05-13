@@ -1,7 +1,7 @@
 ****DONT FORGET TO USE DOTENV!!!******
 CREATE USER czhao WITH PASSWORD 'nAu6N6Ng$BaAM$K' CREATEDB;
 
-//ready to commit
+<!-- //ready to commit -->
 
 ***USERS***
 npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
