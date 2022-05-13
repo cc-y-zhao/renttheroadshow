@@ -5,7 +5,23 @@
 }
 
 
-.each-car-in-cars {
+/* .each-car-in-cars {
   margin-left: 20px;
   margin-right: 20px;
+} */
+
+.each-car-div {
+  display: inline-block;
+  height: 15%;
+  width: 25%;
+}
+
+.cars-div {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+
+
 }

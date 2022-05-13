@@ -38,17 +38,23 @@ function CarsList() {
     <div>
       <h2>Cars For Rent</h2>
       <div className='cars-container'>
-        <div>
+        <div className='cars-div'>
           {cars.map((car) => {
             return (
-              <NavLink className='each-car-in-cars' key={car.id} to={'/cars/' + car.id}>
-                <img
-                  src={car.imageURL}
-                  alt={`${car.brand} ${car.model}`}
-                  height="370px"
-                  width="360px"
-                />
-              </NavLink>
+              <div className='each-car-div'>
+                <NavLink className='each-car-in-cars' key={car.id} to={'/cars/' + car.id}>
+                  <img
+                    src={car.imageURL}
+                    alt={`${car.brand} ${car.model}`}
+                    // height="100%"
+                    // width="100%"
+                    height="270px"
+                    width="260px"
+                    // height="370px"
+                    // width="360px"
+                  />
+                </NavLink>
+              </div>
             );
           }
           )}
