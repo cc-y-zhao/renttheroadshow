@@ -52,19 +52,3 @@ function Navigation({ isLoaded }) {
 }
 
 export default Navigation;
-
-//* <NavLink className='navlink nav-element signup-nav' to="/signup">Sign Up</NavLink>
-
-// return (
-//   <nav className='nav-container'>
-//     <ul className='links-in-nav'>
-//       <li className='no-bullet'>
-//         <NavLink className='navlink nav-element nav-home' exact to="/">Home</NavLink>
-//         {isLoaded && sessionLinks}
-//       </li>
-//     </ul>
-//   </nav>
-// );
-
-
-// <ProfileButton user={sessionUser} />
