@@ -40,3 +40,9 @@ section {
   background-color: #a43795;
   color: white;
 }
+
+
+.errors-in-edit-listing {
+  color:#a43795;
+  margin-bottom: 10px;
+}

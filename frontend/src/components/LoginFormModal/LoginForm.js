@@ -39,32 +39,32 @@ function LoginForm({showModal, setShowModal}) {
   return (
     <form className='login-modal' onSubmit={handleSubmit}>
       <div>
-        <ul className='login-errors'>
+        <div className='login-errors'>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div key={idx}>{error}</div>
           ))}
-        </ul>
+        </div>
       </div>
-      <label className='label'>
-        Username or Email:
+      <div>
+        <div>Username or Email:</div>
+          <input
+            className='input-login'
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+      </div>
+      <div>
+        <div>Password: </div>
         <input
-          className='username-in-login'
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label className='label'>
-        Password:
-        <input
-          className='password-in-login'
+          className='input-login'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
+      </div>
       <div className='btn'>
         <button className='login-btn' type="submit">Log In</button>
         <button className='cancel-btn' type="button" onClick={() => setShowModal(false)}>Cancel</button>

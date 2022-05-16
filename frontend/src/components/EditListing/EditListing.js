@@ -96,13 +96,13 @@ const EditListingForm = ({ car, ownerId, carId, showModal, setShowModal}) => {
       <section className='section-edit-listing-form'>
         <form onSubmit={handleSubmit}>
           <div className='errors-in-edit-listing'>
-            <ul>
+            <div>
               {errors &&
                 errors.map(error => (
-                  <li key={error}>{error}</li>
+                  <div key={error}>{error}</div>
                 ))
               }
-            </ul>
+            </div>
           </div>
           <input
             type="hidden"
