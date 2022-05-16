@@ -45,26 +45,26 @@ function LoginForm({showModal, setShowModal}) {
           ))}
         </ul>
       </div>
-      <label className='label'>
-        Username or Email:
+      <div>
+        <div>Username or Email:</div>
+          <input
+            // className='username-in-login'
+            type="text"
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+      </div>
+      <div>
+        <div>Password: </div>
         <input
-          className='username-in-login'
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label className='label'>
-        Password:
-        <input
-          className='password-in-login'
+          // className='password-in-login'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
+      </div>
       <div className='btn'>
         <button className='login-btn' type="submit">Log In</button>
         <button className='cancel-btn' type="button" onClick={() => setShowModal(false)}>Cancel</button>
