@@ -39,16 +39,16 @@ function LoginForm({showModal, setShowModal}) {
   return (
     <form className='login-modal' onSubmit={handleSubmit}>
       <div>
-        <ul className='login-errors'>
+        <div className='login-errors'>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div key={idx}>{error}</div>
           ))}
-        </ul>
+        </div>
       </div>
       <div>
         <div>Username or Email:</div>
           <input
-            // className='username-in-login'
+            className='input-login'
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -58,7 +58,7 @@ function LoginForm({showModal, setShowModal}) {
       <div>
         <div>Password: </div>
         <input
-          // className='password-in-login'
+          className='input-login'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

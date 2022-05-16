@@ -30,52 +30,52 @@ function SignupFormPage({showModal, setShowModal}) {
   };
 
   return (
-    <form className='login-modal' onSubmit={handleSubmit}>
+    <form className='signup-modal' onSubmit={handleSubmit}>
       <div className='signup-errors'>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        <div>
+          {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+        </div>
       </div>
-      <label className='label'>
-        Email:
+      <div>
+        <div>Email: </div>
         <input
-          className='username-in-login'
+          className='input-signup'
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
-      <label className='label'>
-        Username:
+      </div>
+      <div>
+        <div>Username:</div>
         <input
-          className='username-in-login'
+          className='input-signup'
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
-      <label className='label'>
-        Password:
+      </div>
+      <div>
+        <div>Password: </div>
         <input
-          className='password-in-login'
+          className='input-signup'
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <label className='label'>
-        Confirm Password:
+      </div>
+      <div>
+        <div>Confirm Password:</div>
         <input
-          className='password-in-login'
+          className='input-signup'
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
+      </div>
       <div className='btn'>
         <button className='login-btn' type="submit">Sign Up</button>
         <button className='cancel-btn' type="button" onClick={() => setShowModal(false)}>Cancel</button>
